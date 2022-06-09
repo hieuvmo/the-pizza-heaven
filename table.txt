@@ -1,0 +1,56 @@
+1. table category (
+    id: int (primary key auto_increment),
+    name: string,
+)
+
+2. table food (
+	id:  int (primary key auto_increment),
+	id_category: int (references category (id)),
+	name: 
+    	thumbnail: 
+	price: 
+	size: 
+	description: 
+	discount:
+	quantity: 
+	isStock: 
+)
+
+3 table rating(
+	id: 
+	user_id: phải mua mới được đánh giá hay ngược lại?
+	food_id: 
+	star | point: 
+	review: 
+	isAnonymous: boolean
+)
+
+4. table user (
+	id: 
+	username: 
+	password: 
+	avatar:
+	firstName: 
+	lastName:
+	phone: 
+	dob:
+	address: (noHouse, ward, district, city) 
+	gender: 	
+)
+
+5. table order (
+	id:
+	user_id: nếu null thì lưu các trường sau đây (firstName, lastName, phone, address)
+	totalPrice: 	
+)
+
+6. table order_detail (
+	id: 
+	order_id:
+	food_id:
+	quantity:
+	note: ?
+	status: new(add to cart) | confirm | success | cancel
+)
+
+
