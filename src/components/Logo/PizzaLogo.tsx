@@ -2,7 +2,11 @@ import React from 'react';
 import { Typography } from '@mui/material';
 import { routerPath } from '../../common/config/router/router.path';
 
-export const PizzaLogo = () => {
+interface PizzaLogoProps {
+  customDisplay: {};
+}
+
+export const PizzaLogo: React.FC<PizzaLogoProps> = ({ customDisplay }) => {
   return (
     <Typography
       variant="h6"
@@ -11,7 +15,7 @@ export const PizzaLogo = () => {
       href={routerPath.common.HOME}
       sx={{
         mr: 4,
-        display: { xs: 'none', md: 'flex' },
+        display: customDisplay,
         fontFamily: 'monospace',
         fontWeight: 700,
         letterSpacing: '.3rem',
@@ -20,7 +24,7 @@ export const PizzaLogo = () => {
       }}
     >
       <img alt="Pizza Logo" width={48} src="https://thepizzaheaven.com/wp-content/uploads/2019/09/Untitled-1.png" />
-      <div className="ml-2">
+      <div className="ml-2 text-white">
         <div className="text-xl tracking-normal">The Pizza Heaven</div>
         <p className="text-sm font-light tracking-tight">Everything about pizza</p>
       </div>
