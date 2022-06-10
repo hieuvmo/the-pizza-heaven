@@ -38,9 +38,9 @@ export const Navbar = () => {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Toolbar disableGutters>
-          <PizzaLogo />
+          <PizzaLogo customDisplay={{ xs: 'none', md: 'flex' }} />
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -81,28 +81,8 @@ export const Navbar = () => {
             </Menu>
           </Box>
 
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            <img
-              alt="Pizza Logo"
-              width={48}
-              src="https://thepizzaheaven.com/wp-content/uploads/2019/09/Untitled-1.png"
-            />
-          </Typography>
+          <PizzaLogo customDisplay={{ xs: 'flex', md: 'none' }} />
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page, index) => (
               <Button
