@@ -6,6 +6,10 @@ export const routerPath = {
   admin: {
     USER_LIST: '/admin/users',
   },
+  auth: {
+    USER_REGISTER: '/auth/user/sign-up',
+    LOGIN: '/auth/log-in',
+  },
   common: {
     HOME: '/',
   },
