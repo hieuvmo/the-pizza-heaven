@@ -3,7 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './/common/sass/App.scss';
 import { routerPath } from './common/config/router/router.path';
 import { routerList } from './common/config/router/router.routes';
-import { IRoute } from './common/types/RouterModel';
+import { IRoute } from './common/types/router.model';
 
 function App() {
   return (

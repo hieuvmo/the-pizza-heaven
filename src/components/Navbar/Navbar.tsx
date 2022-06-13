@@ -5,6 +5,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { PizzaLogo } from '../Logo/PizzaLogo';
 import { NavCartAccount } from './NavCartAccount';
 import { NavSearch } from './NavSearch';
+import { Outlet } from 'react-router-dom';
+import { Footer } from 'components/Footer/Footer';
 
 const pages = [
   {
@@ -37,11 +39,10 @@ export const Navbar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed" sx={{ backgroundColor: '#fff' }}>
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <PizzaLogo customDisplay={{ xs: 'none', md: 'flex' }} />
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -50,6 +51,7 @@ export const Navbar = () => {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
+              sx={{ color: 'black' }}
             >
               <MenuIcon />
             </IconButton>
@@ -79,10 +81,8 @@ export const Navbar = () => {
                 </MenuItem>
               ))}
             </Menu>
+            <PizzaLogo customDisplay={{ xs: 'flex', md: 'none' }} />
           </Box>
-
-          <PizzaLogo customDisplay={{ xs: 'flex', md: 'none' }} />
-
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page, index) => (
               <Button
@@ -96,12 +96,12 @@ export const Navbar = () => {
               </Button>
             ))}
           </Box>
-
           <NavSearch />
-
           <NavCartAccount isLogged={isLogged} />
         </Toolbar>
       </Container>
+      <Outlet />
+      <Footer />
     </AppBar>
   );
 };

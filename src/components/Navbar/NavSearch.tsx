@@ -1,6 +1,5 @@
 import { Search } from '@mui/icons-material';
-import React from 'react';
-import { CustomSearch, SearchIconWrapper, StyledInputBase } from '../MuiStyling/MuiStyling';
+import { CustomSearch, SearchIconWrapper, StyledInputBase } from './NavSearch.style';
 
 export const NavSearch = () => {
   return (
