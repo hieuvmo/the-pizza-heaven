@@ -26,7 +26,7 @@ export const PizzaLogo: React.FC<PizzaLogoProps> = ({ customDisplay }) => {
       <img alt="Pizza Logo" width={48} src="https://thepizzaheaven.com/wp-content/uploads/2019/09/Untitled-1.png" />
       <div className="ml-2">
         <div className="text-xl tracking-normal">The Pizza Heaven</div>
-        <p className="text-sm font-light tracking-tight">Everything about pizza</p>
+        <p className="text-sm font-light tracking-tight">Tất cả mọi thứ về pizza</p>
       </div>
     </Typography>
   );

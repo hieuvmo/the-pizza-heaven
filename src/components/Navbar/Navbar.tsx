@@ -1,5 +1,5 @@
 import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { routerPath } from '../../common/config/router/router.path';
 import MenuIcon from '@mui/icons-material/Menu';
 import { PizzaLogo } from '../Logo/PizzaLogo';
@@ -7,6 +7,9 @@ import { NavCartAccount } from './NavCartAccount';
 import { NavSearch } from './NavSearch';
 import { Outlet } from 'react-router-dom';
 import { Footer } from 'components/Footer/Footer';
+import appService from 'services/appService';
+import { ICategory } from 'common/types/category.model';
+import { convertCategoryPath } from 'common/helper/convertPath';
 
 const pages = [
   {
@@ -25,6 +28,19 @@ const pages = [
 export const Navbar = () => {
   const [isLogged, setIsLogged] = React.useState<boolean>(false);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const [categoryAPI, setCategoryAPI] = useState<ICategory[]>([]);
+
+  useEffect(() => {
+    const fetchCategoryFromAPI = async () => {
+      try {
+        const response = await appService.getCategoryList();
+        setCategoryAPI(response);
+      } catch (error) {
+        console.log('Error when fetch category API', error);
+      }
+    };
+    fetchCategoryFromAPI();
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsLogged(event.target.checked);
@@ -73,10 +89,14 @@ export const Navbar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page, index) => (
+              {categoryAPI.map((page, index) => (
                 <MenuItem key={index} onClick={handleCloseNavMenu}>
-                  <Typography component="a" href={page.path} textAlign="center">
-                    {page.name}
+                  <Typography
+                    component="a"
+                    href={`${routerPath.app.FOOD}/${convertCategoryPath(page.categoryName)}`}
+                    textAlign="center"
+                  >
+                    {page.categoryName}
                   </Typography>
                 </MenuItem>
               ))}
@@ -84,15 +104,15 @@ export const Navbar = () => {
             <PizzaLogo customDisplay={{ xs: 'flex', md: 'none' }} />
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page, index) => (
+            {categoryAPI.map((page, index) => (
               <Button
                 key={index}
                 component="a"
-                href={page.path}
+                href={`${routerPath.app.FOOD}/${convertCategoryPath(page.categoryName)}`}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block', fontSize: '1rem' }}
+                sx={{ my: 2, color: 'black', display: 'block', fontSize: '1rem' }}
               >
-                {page.name}
+                {page.categoryName}
               </Button>
             ))}
           </Box>

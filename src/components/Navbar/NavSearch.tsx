@@ -7,7 +7,7 @@ export const NavSearch = () => {
       <SearchIconWrapper>
         <Search />
       </SearchIconWrapper>
-      <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
+      <StyledInputBase placeholder="Nhập đồ ăn bạn muốn…" inputProps={{ 'aria-label': 'search' }} />
     </CustomSearch>
   );
 };

@@ -1,7 +1,7 @@
 export const routerPath = {
   app: {
-    PIZZA: '/app/pizzas',
-    PIZZA_DETAIL: '/app/pizzas/:id',
+    FOOD: '/app/food',
+    FOOD_DETAIL: '/app/food/:category',
   },
   admin: {
     USER_LIST: '/admin/users',
