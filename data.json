@@ -1,0 +1,785 @@
+{
+  "users": [],
+  "categories": [
+    {
+      "categoryID": 1,
+      "categoryName": "Pizza"
+    },
+    {
+      "categoryID": 2,
+      "categoryName": "Khai vị"
+    },
+    {
+      "categoryID": 3,
+      "categoryName": "Mỳ Ý"
+    },
+    {
+      "categoryID": 4,
+      "categoryName": "Nui Bỏ Lò"
+    },
+    {
+      "categoryID": 5,
+      "categoryName": "Salad"
+    },
+    {
+      "categoryID": 6,
+      "categoryName": "Thức uống"
+    },
+    {
+      "categoryID": 7,
+      "categoryName": "Kem hộp"
+    }
+  ],
+  "foods": [
+    {
+      "foodID": 1,
+      "categoryID": 1,
+      "name": "Pizza Hải Sản Đào",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002705_seafood-peach_300.png",
+      "description": "Tôm, Giăm bông, Đào hoà quyện bùng nổ cùng sốt Thousand Island",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["169.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 2,
+      "categoryID": 1,
+      "name": "Pizza Hải Sản Pesto Xanh",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002624_seafood-pesto_300.png",
+      "description": "Tôm, cua, mực và bông cải xanh tươi ngon trên nền sốt Pesto Xanh",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["169.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 3,
+      "categoryID": 1,
+      "name": "Pizza Hải Sản Cocktail",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002212_sf-cocktail_300.png",
+      "description": "Tôm, cua, giăm bông,... với sốt Thousand Island",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["139.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 4,
+      "categoryID": 1,
+      "name": "Pizza Hải Sản Cao Cấp",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002214_sf-deluxe_300.png",
+      "description": "Tôm, cua, mực và nghêu với sốt Marinara",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["139.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 5,
+      "categoryID": 1,
+      "name": "Pizza Hải Sản Nhiệt Đới",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002211_tropical-sf_300.png",
+      "description": "Tôm, nghêu, mực cua, dứa với sốt Thousand Island",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["139.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 6,
+      "categoryID": 1,
+      "name": "Pizza Tôm Cocktail",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002216_shrimp-ctl_300.png",
+      "description": "Tôm với nấm, dứa, cà chua và sốt Thousand Island.",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["139.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 7,
+      "categoryID": 1,
+      "name": "Pizza Aloha",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002217_aloha_300.png",
+      "description": "Thịt nguội, xúc xích tiêu cay và dứa hòa quyện với sốt Thousand Island",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["129.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 8,
+      "categoryID": 1,
+      "name": "Pizza Thịt Xông Khói",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002221_bacon-sup_300.png",
+      "description": "Thịt giăm bông, thịt xông khói và hai loại rau của ớt xanh, cà chua",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["129.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 9,
+      "categoryID": 1,
+      "name": "Pizza Thịt Nguội Kiểu Canada",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002222_ca-bacon_300.png",
+      "description": "Sự kết hợp giữa thịt nguội và bắp ngọt",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["129.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 10,
+      "categoryID": 1,
+      "name": "Pizza Gà Nướng 3 Vị",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002223_ck-trio_300.png",
+      "description": "Gà nướng, gà bơ tỏi và gà ướp sốt nấm",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["129.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 11,
+      "categoryID": 1,
+      "name": "Pizza 5 Loại Thịt Đặc Biệt",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002219_meat-deluxe_300.png",
+      "description": "Xúc xích lợn và bò đặc trưng của Ý, giăm bông, thịt xông khói",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["129.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 12,
+      "categoryID": 1,
+      "name": "Pizza 5 Loại Thịt Đặc Biệt Và Rau Củ",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002218_sup-deluxe_300.png",
+      "description": "Xúc xích bò, giăm bông, thịt xông khói,...và cả thế giới rau phong phú.",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["129.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 13,
+      "categoryID": 1,
+      "name": "Pizza Gà Nướng Dứa",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002228_ck-caldo_300.png",
+      "description": "Thịt gà mang vị ngọt của dứa kết hợp với vị cay nóng của ớt",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["119.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 14,
+      "categoryID": 1,
+      "name": "Pizza Phô Mai",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002226_double-cheese_300.png",
+      "description": "Bánh Pizza với vô vàn phô mai để bạn tha hồ tận hưởng.",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["129.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 15,
+      "categoryID": 1,
+      "name": "Pizza Xúc Xích Ý",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002225_double-pepperoni_300.png",
+      "description": "Xúc xích cay kiểu Ý trên nền sốt cà chua",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["129.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 16,
+      "categoryID": 1,
+      "name": "Pizza Thịt Nguội & Nấm",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002227_h-m_300.png",
+      "description": "Pizza giăm bông và nấm đem đến cho bạn những trải nghiệm thú vị.",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["129.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 17,
+      "categoryID": 1,
+      "name": "Pizza Hawaiian",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002224_hawaii_300.png",
+      "description": "Giăm bông, thịt muối và dứa",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["129.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 18,
+      "categoryID": 1,
+      "name": "Pizza Rau Củ",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002229_veg_300.png",
+      "description": "Hành, ớt chuông, nấm, dứa, cà chua",
+      "size": ["Nhỏ 6\"", "Vừa 9\"", "Lớn 12\""],
+      "price": ["129.000đ", "+80.000đ", "+160.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 19,
+      "categoryID": 1,
+      "name": "Pizza Gà Nướng 3 Vị Nhân Nhồi",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002232_pizza-puff-ck-trio_300.png",
+      "description": "Gà nướng, gà bơ tỏi, gà ướp sốt, nấm, ớt và sốt cà chua",
+      "size": [],
+      "price": ["89.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 20,
+      "categoryID": 1,
+      "name": "Pizza Hawaiian Nhân Nhồi",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002231_pizza-puff-hawaiian_300.png",
+      "description": "Đặc trưng miền nhiệt đới với giăm bông, thịt muối, dứa và sốt cà chua",
+      "size": [],
+      "price": ["89.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 21,
+      "categoryID": 1,
+      "name": "Pizza 5 Loại Thịt Đặc Biệt và Rau Củ Nhân Nhồi",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002230_pizza-puff-super-deluxe_300.png",
+      "description": "Siêu thượng hạng với nhiều loại thịt và rau phong phú với sốt cà chua",
+      "size": [],
+      "price": ["89.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 22,
+      "categoryID": 2,
+      "name": "Cánh gà nướng BBQ (10 miếng)",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002416_bbq-chicken-wings-10-pcs_300.png",
+      "description": "Cánh gà nướng thấm vị với lớp da mỏng giòn",
+      "size": [],
+      "price": ["199.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 23,
+      "categoryID": 2,
+      "name": "Cánh gà nướng BBQ (6 miếng)",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002233_bbq-chicken-wings-6-pcs_300.jpeg",
+      "description": "Cánh gà nướng thấm vị với lớp da mỏng giòn",
+      "size": [],
+      "price": ["129.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 24,
+      "categoryID": 2,
+      "name": "Bánh Mì Que Nướng",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002247_bread-sticks-w-dipping-sauce_300.jpeg",
+      "description": "Làm từ đế bột của Pizza và dùng kèm sốt Cocktail",
+      "size": [],
+      "price": ["49.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 25,
+      "categoryID": 2,
+      "name": "Cánh Gà Tẩm Bột Chiên Giòn (10 miếng)",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002417_korean-style-chicken-wings-10pcs_300.png",
+      "description": "Phủ bởi lớp bột đặc biệt tạo nên lớp vỏ giòn dai hấp dẫn",
+      "size": [],
+      "price": ["199.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 26,
+      "categoryID": 2,
+      "name": "Cánh Gà Tẩm Bột Chiên Giòn (6 miếng)",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002238_korean-style-chicken-wings-6pcs_300.jpeg",
+      "description": "Phủ bởi lớp bột đặc biệt tạo nên lớp vỏ giòn dai hấp dẫn.",
+      "size": [],
+      "price": ["129.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 27,
+      "categoryID": 2,
+      "name": "Bánh Mì Bơ Tỏi",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002245_garlic-bread_300.jpeg",
+      "description": "Một lớp bơ tỏi thơm ngon trên các lát bánh mì nướng",
+      "size": [],
+      "price": ["49.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 28,
+      "categoryID": 2,
+      "name": "Bánh Mì Bơ Tỏi Phủ Phô Mai",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002244_cheese-garlic-breads_300.jpeg",
+      "description": "Lát bánh mì nướng được quết 1 lớp bơ tỏi và phô mai thơm béo",
+      "size": [],
+      "price": ["59.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 29,
+      "categoryID": 2,
+      "name": "Khoai Tây Chiên",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002246_french-fries_300.png",
+      "description": "Khoai tây sợi được chiên và tẩm một lớp muối thấm vị",
+      "size": [],
+      "price": ["69.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 30,
+      "categoryID": 2,
+      "name": "Mực Chiên Giòn",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002242_squid-rings_300.jpeg",
+      "description": "Mực tẩm bột chiên giòn dùng kèm sốt ngò tây",
+      "size": [],
+      "price": ["109.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 31,
+      "categoryID": 2,
+      "name": "Giỏ Khoai Tây Chiên",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002243_potato-basket_300.jpeg",
+      "description": "Sự kết hợp của nhiều kiểu chế biến khoai tây",
+      "size": [],
+      "price": ["79.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 32,
+      "categoryID": 2,
+      "name": "Bánh Kẹp Nướng Mexico",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002241_quesadilla_300.jpeg",
+      "description": "Phô mai, sốt cà chua, nhân gà nướng bơ tỏi, ớt sừng dùng kèm sốt cocktail",
+      "size": [],
+      "price": ["109.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 33,
+      "categoryID": 2,
+      "name": "Tôm Bơ tỏi và Bánh Mì Nướng",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002248_spicy-garlic-shrimp-with-bread_300.jpeg",
+      "description": "Tôm tươi đút lò với tỏi, bơ và phô mai dùng kèm bánh mì nướng bơ tỏi",
+      "size": [],
+      "price": ["119.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 34,
+      "categoryID": 2,
+      "name": "Bánh Phô Mai Xoắn",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002249_cheese-bread-twists_300.jpeg",
+      "description": "Phô mai trắng được nướng với bơ, tỏi và dùng kèm sốt Cocktail",
+      "size": [],
+      "price": ["99.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 35,
+      "categoryID": 2,
+      "name": "Khai Vị Tổng Hợp (Cánh gà chiên giòn)",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002240_platter-ccw_300.jpeg",
+      "description": "Cánh gà chiên giòn, bánh mì tỏi nướng và khoai tây chiên",
+      "size": [],
+      "price": ["169.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 36,
+      "categoryID": 2,
+      "name": "Khai Vị Tổng Hợp (Cánh gà nướng)",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002239_platter-bbq_300.jpeg",
+      "description": "Cánh gà BBQ, bánh mì tỏi nướng và khoai tây chiên",
+      "size": [],
+      "price": ["169.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 37,
+      "categoryID": 2,
+      "name": "Sườn Siêu Sao (5 miếng)",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002463_junior-star-5-pcs_300.png",
+      "description": "Combo Sườn nướng BBQ dùng với khoai tây chiên và Salad",
+      "size": [],
+      "price": ["319.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 38,
+      "categoryID": 2,
+      "name": "Sườn Siêu Sao (10 miếng)",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002510_super-star-10-pcs_300.png",
+      "description": "Combo Sườn nướng BBQ dùng với khoai tây chiên và Salad",
+      "size": [],
+      "price": ["459.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 39,
+      "categoryID": 2,
+      "name": "Đùi Gà Tẩm Bột Chiên Giòn (6pcs)",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002638_korean-style-chicken-drumsticks-6pcs_300.png",
+      "description": "Đùi Gà phủ một lớp bột chiên giòn rụm",
+      "size": [],
+      "price": ["279.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 40,
+      "categoryID": 2,
+      "name": "Gà Giòn Không Xương",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002602_chicken-strip_300.png",
+      "description": "Gà giòn tan với sốt Cocktail thơm ngậy",
+      "size": [],
+      "price": ["99.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 41,
+      "categoryID": 2,
+      "name": "Gà Zòn Zòn (10 miếng)",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002423_fried-chicken-10pcs_300.png",
+      "description": "Cánh gà được phủ bởi một lớp bột chiên giòn",
+      "size": [],
+      "price": ["199.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 42,
+      "categoryID": 2,
+      "name": "Gà Zòn Zòn (6 miếng)",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002422_fried-chicken-6pcs_300.png",
+      "description": "Cánh gà được phủ bởi một lớp bột chiên giòn",
+      "size": [],
+      "price": ["129.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 43,
+      "categoryID": 3,
+      "name": "Mì Ý Cay Hải Sản",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002253_spaghetti-spicy-seafood_300.png",
+      "description": "Mỳ Ý rán với các loại hải sản tươi ngon cùng ớt và tỏi",
+      "size": [],
+      "price": ["129.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 44,
+      "categoryID": 3,
+      "name": "Mì Ý Chay Sốt Marinara",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002259_spaghetti-vegetarian-w-marinara-sauce_300.png",
+      "description": "Sốt Marinara, nấm, ớt chuông và cà chua đỏ",
+      "size": [],
+      "price": ["89.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 45,
+      "categoryID": 3,
+      "name": "Mì Ý Tôm Sốt Kem Cà Chua",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002257_spaghetti-shrimp-rose_300.png",
+      "description": "Sự tươi ngon của tôm kết hợp với sốt kem cà chua",
+      "size": [],
+      "price": ["129.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 46,
+      "categoryID": 3,
+      "name": "Mì Ý Cay Xúc Xích",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002254_spicy-sausage-spaghetti_300.png",
+      "description": "Mỳ Ý rán với xúc xích cay, thảo mộc, ngò gai và húng quế Ý",
+      "size": [],
+      "price": ["109.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 47,
+      "categoryID": 3,
+      "name": "Mì Ý Giăm Bông Và Nấm Sốt Kem",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002255_spaghetti-ham-mushroom_300.png",
+      "description": "Mỳ Ý, nấm và giăm bông được nấu cùng với sốt kem trắng",
+      "size": [],
+      "price": ["99.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 48,
+      "categoryID": 3,
+      "name": "Mì Ý thịt bò bằm",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002258_spaghetti-bolognese_300.png",
+      "description": "Sốt thịt bò bằm đặc trưng kết hợp cùng mỳ Ý",
+      "size": [],
+      "price": ["129.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 49,
+      "categoryID": 3,
+      "name": "Mì Ý Chay Sốt Kem Tươi",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002260_spaghetti-veggi-mushroom-cream-sauce_300.png",
+      "description": "Mỳ Ý chay thơm ngon với sốt kem và nấm",
+      "size": [],
+      "price": ["89.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 50,
+      "categoryID": 4,
+      "name": "Nui Bỏ Lò Hải Sản Sốt Hương Nhu",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002818_seafood-w-sweet-sour-sauce-macaroni_300.png",
+      "description": "Đánh thức vị giác với sốt hương nhu độc đáo, kết hợp cùng hải sản tươi ngon đậm đà",
+      "size": [],
+      "price": ["59.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 51,
+      "categoryID": 4,
+      "name": "Nui Bỏ Lò Gà BBQ Sốt Hương Nhu",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002821_bbq-ck-w-sweet-sour-sauce-macaroni_300.png",
+      "description": "Sự kết hợp hoàn hảo giữa thịt gà BBQ và sốt hương nhu cùng nhiều nguyên liệu tạo mùi thơm hấp dẫn như rau quế, ớt, hành tây, tỏi…khiến hương vị thêm đậm đà",
+      "size": [],
+      "price": ["59.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 52,
+      "categoryID": 4,
+      "name": "Nui Bỏ Lò Phô Mai Thịt Nguội & Nấm Sốt Kem",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002822_h-m-w-cream-sauce-macaroni_300.png",
+      "description": "Thịt nguội và nấm hòa quyện trong sốt kem phủ phô mai",
+      "size": [],
+      "price": ["59.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 53,
+      "categoryID": 4,
+      "name": "Nui Bỏ Lò Phô Mai Gà Bơ Tỏi & Nấm Sốt Kem",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002823_ck-m-w-cream-sauce-macaroni_300.png",
+      "description": "Gà bơ tỏi và nấm hoà quyện trong sốt kem phủ phô mai, cùng với lá mùi tây tạo hương thơm hấp dẫn",
+      "size": [],
+      "price": ["59.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 54,
+      "categoryID": 4,
+      "name": "Nui Bỏ Lò Phô Mai Rau Củ Sốt Kem",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002820_veggi-w-cream-sauce-macaroni_300.png",
+      "description": "Rau củ kết hợp cùng sốt kem phủ phô mai là sự lựa chọn tuyệt vời cho các tín đồ thích sự thanh đạm",
+      "size": [],
+      "price": ["59.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 55,
+      "categoryID": 5,
+      "name": "Salad Trộn Dầu Giấm",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002252_garden-salad_300.png",
+      "description": "Rau với sốt dầu giấm",
+      "size": ["Vừa 9\"", "Lớn 12\""],
+      "price": ["69.000đ", "+50.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 56,
+      "categoryID": 5,
+      "name": "Salad Đặc Sắc",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002250_signature-salad_300.png",
+      "description": "Bông cải xanh, búp cải tím, táo, xà lách, trứng… và sốt Salad đặc biệt",
+      "size": ["Vừa 9\"", "Lớn 12\""],
+      "price": ["79.000đ", "+60.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 57,
+      "categoryID": 5,
+      "name": "Salad Gà Giòn Không Xương",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002600_chicken-strip-salad_300.png",
+      "description": "Salad Gà giòn với trứng cút, thịt xông khói, phô mai parmesan và sốt Thousand Island",
+      "size": ["Vừa 9\"", "Lớn 12\""],
+      "price": ["79.000đ", "+60.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 58,
+      "categoryID": 5,
+      "name": "Salad Da Cá Hồi Giòn",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002601_crispy-salmon-skin-salad_300.png",
+      "description": "Salad với da cá hồi giòn với bắp cải đỏ, cà chua bi, ngô với sốt Yuzu",
+      "size": ["Vừa 9\"", "Lớn 12\""],
+      "price": ["79.000đ", "+60.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 59,
+      "categoryID": 5,
+      "name": "Salad Trộn Sốt Caesar",
+      "img": "https://www.thepizzacompany.vn/images/thumbs/000/0002251_caesars-salad_300.png",
+      "description": "Rau tươi trộn với sốt Caesar",
+      "size": ["Vừa 9\"", "Lớn 12\""],
+      "price": ["79.000đ", "+60.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 60,
+      "categoryID": 6,
+      "name": "Pepsi Lon",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002365_pepsi-can_300.jpeg",
+      "description": "",
+      "size": [],
+      "price": ["29.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 61,
+      "categoryID": 6,
+      "name": "Pepsi 1,5l Chai",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002364_pepsi-15l-pet_300.jpeg",
+      "description": "",
+      "size": [],
+      "price": ["39.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 62,
+      "categoryID": 6,
+      "name": "7Up Lon",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002363_7-up-can_300.jpeg",
+      "description": "",
+      "size": [],
+      "price": ["29.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 63,
+      "categoryID": 6,
+      "name": "Aquafina Chai",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002439_aquafina_300.png",
+      "description": "",
+      "size": [],
+      "price": ["29.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 64,
+      "categoryID": 6,
+      "name": "Bia Heineken",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002436_heineken_300.png",
+      "description": "",
+      "size": [],
+      "price": ["49.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 65,
+      "categoryID": 6,
+      "name": "Bia 333",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002434_333-beer_300.png",
+      "description": "",
+      "size": [],
+      "price": ["49.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 66,
+      "categoryID": 6,
+      "name": "Pepsi Black Lon",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002420_pepsi-black-can_300.jpeg",
+      "description": "",
+      "size": [],
+      "price": ["29.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 67,
+      "categoryID": 6,
+      "name": "7Up 1,5l Chai",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002421_7-up-15l-pet_300.jpeg",
+      "description": "",
+      "size": [],
+      "price": ["39.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 68,
+      "categoryID": 6,
+      "name": "Pepsi Black Lime Lon",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002573_pepsi-lime-can_300.png",
+      "description": "",
+      "size": [],
+      "price": ["29.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 69,
+      "categoryID": 6,
+      "name": "Mirinda Soda Kem Lon",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0002702_mirinda-soda-kem-can_300.png",
+      "description": "",
+      "size": [],
+      "price": ["29.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 70,
+      "categoryID": 7,
+      "name": "Kem Mocha Almond Fudge",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0003006_mocha-almond-fudge-quart_300.png",
+      "description": "Hộp 200 gram",
+      "size": [],
+      "price": ["90.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 71,
+      "categoryID": 7,
+      "name": "Kem Matcha Green Tea",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0003008_matcha-green-tea-quart_300.png",
+      "description": "Hộp 200 gram",
+      "size": [],
+      "price": ["90.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 72,
+      "categoryID": 7,
+      "name": "Kem Very Strawberry",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0003011_very-strawberry-quart-_300.png",
+      "description": "Hộp 200 gram",
+      "size": [],
+      "price": ["90.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 73,
+      "categoryID": 7,
+      "name": "Kem Rum Raisin",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0003009_rum-raisin-quart-_300.png",
+      "description": "Hộp 200 gram",
+      "size": [],
+      "price": ["90.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 74,
+      "categoryID": 7,
+      "name": "Kem Chocolate",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0003007_chocolate-quart-_300.png",
+      "description": "Hộp 200 gram",
+      "size": [],
+      "price": ["90.000đ"],
+      "isStock": true
+    },
+    {
+      "foodID": 75,
+      "categoryID": 7,
+      "name": "Kem Vanilla",
+      "img": "https://thepizzacompany.vn/images/thumbs/000/0003010_vanilla-quart-_300.png",
+      "description": "Hộp 200 gram",
+      "size": [],
+      "price": ["90.000đ"],
+      "isStock": true
+    }
+  ]
+}
