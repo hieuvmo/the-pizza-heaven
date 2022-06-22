@@ -11,7 +11,7 @@ export const Footer = () => {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={4}>
             <Box sx={{ display: 'flex', justifyContent: 'center', paddingBlock: '1.5rem' }}>
-              <PizzaLogo customDisplay={{ xs: 'flex' }} />
+              <PizzaLogo customDisplay={{ xs: 'flex' }} colorText="text-white" />
             </Box>
             <ul className="text-white text-center">
               <li>Địa chỉ: Số 69 Phú Diễn, Bắc Từ Liêm, Hà Nội</li>

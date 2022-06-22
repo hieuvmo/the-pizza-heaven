@@ -11,20 +11,6 @@ import appService from 'services/appService';
 import { ICategory } from 'common/types/category.model';
 import { convertCategoryPath } from 'common/helper/convertPath';
 
-const pages = [
-  {
-    name: 'Users',
-    path: routerPath.admin.USER_LIST,
-  },
-];
-
-// const appPages = [
-//   {
-//     name: 'Pizza',
-//     path: routerPath.app.PIZZA,
-//   },
-// ];
-
 export const Navbar = () => {
   const [isLogged, setIsLogged] = React.useState<boolean>(false);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -58,7 +44,7 @@ export const Navbar = () => {
     <AppBar position="fixed" sx={{ backgroundColor: '#fff' }}>
       <Container maxWidth="lg">
         <Toolbar disableGutters>
-          <PizzaLogo customDisplay={{ xs: 'none', md: 'flex' }} />
+          <PizzaLogo customDisplay={{ xs: 'none', md: 'flex' }} colorText="color-black" />
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -101,7 +87,7 @@ export const Navbar = () => {
                 </MenuItem>
               ))}
             </Menu>
-            <PizzaLogo customDisplay={{ xs: 'flex', md: 'none' }} />
+            <PizzaLogo customDisplay={{ xs: 'flex', md: 'none' }} colorText="color-black" />
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {categoryAPI.map((page, index) => (

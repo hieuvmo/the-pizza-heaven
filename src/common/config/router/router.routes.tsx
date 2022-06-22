@@ -4,6 +4,12 @@ import { TestPage } from '../../../pages/test/TestPage';
 import { SignUpPage } from '../../../pages/auth/SignUp/SignUpPage';
 import { HomePage } from '../../../pages/home/HomePage';
 import { LoginPage } from 'pages/auth/Login/LoginPage';
+import { CategoryListPage } from 'pages/admin/CategoryManagement/CategoryListPage';
+import { CategoryDetailPage } from 'pages/admin/CategoryManagement/CategoryDetailPage';
+import { NewCategoryPage } from 'pages/admin/CategoryManagement/NewCategoryPage';
+import { FoodListPage } from 'pages/admin/ProductManagement/FoodListPage';
+import { FoodDetailPage } from 'pages/admin/ProductManagement/FoodDetailPage';
+import { NewFoodPage } from 'pages/admin/ProductManagement/NewFoodPage';
 
 export const routerList: IRoute[] = [
   //common
@@ -20,6 +26,32 @@ export const routerList: IRoute[] = [
     path: routerPath.auth.LOGIN,
     element: <LoginPage />,
   },
+  //admin
+  {
+    path: routerPath.admin.CATEGORY_LIST,
+    element: <CategoryListPage />,
+  },
+  {
+    path: routerPath.admin.CATEGORY_DETAIL,
+    element: <CategoryDetailPage />,
+  },
+  {
+    path: routerPath.admin.CATEGORY_NEW,
+    element: <NewCategoryPage />,
+  },
+  {
+    path: routerPath.admin.FOOD_LIST,
+    element: <FoodListPage />,
+  },
+  {
+    path: routerPath.admin.FOOD_DETAIL,
+    element: <FoodDetailPage />,
+  },
+  {
+    path: routerPath.admin.FOOD_NEW,
+    element: <NewFoodPage />,
+  },
+
   //test
   {
     path: routerPath.test.TEST,
