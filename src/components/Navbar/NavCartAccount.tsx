@@ -53,8 +53,8 @@ export const NavCartAccount: React.FC<CartAccountProps> = ({ isLogged }) => {
             open={Boolean(anchorElAccount)}
             onClose={handleCloseAccountMenu}
           >
-            <MenuItem onClick={handleCloseAccountMenu}>Đăng xuất</MenuItem>
-            <MenuItem onClick={handleCloseAccountMenu}>Tài khoản của tôi</MenuItem>
+            <MenuItem onClick={handleCloseAccountMenu}>Logout</MenuItem>
+            <MenuItem onClick={handleCloseAccountMenu}>My Account</MenuItem>
           </Menu>
         </div>
       ) : (
@@ -86,10 +86,10 @@ export const NavCartAccount: React.FC<CartAccountProps> = ({ isLogged }) => {
             onClose={handleCloseAccountMenu}
           >
             <MenuItem onClick={handleCloseAccountMenu}>
-              <Link to={routerPath.auth.USER_REGISTER}>Đăng ký</Link>
+              <Link to={routerPath.auth.USER_REGISTER}>Sign up</Link>
             </MenuItem>
             <MenuItem onClick={handleCloseAccountMenu}>
-              <Link to={routerPath.auth.LOGIN}>Đăng nhập</Link>
+              <Link to={routerPath.auth.LOGIN}>Login</Link>
             </MenuItem>
           </Menu>
         </div>

@@ -3,10 +3,12 @@ import { routerPath } from 'common/config/router/router.path';
 import authModel from 'common/types/auth.model';
 import { ColorSchema } from 'common/types/color.model';
 import { AuthForm, ImageSide } from 'components/AuthForm/AuthForm';
+import { AuthButton } from 'components/MuiStyling/AuthButton.style';
+import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
+import { SubmitButtonStyle } from 'components/MuiStyling/MuiStyling.style';
 import { Formik as FormValidation, Form } from 'formik';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthButton, AuthTextField, SubmitButtonStyle } from '../Auth.style';
 import './Login.style.scss';
 
 interface LoginFormInitValue {
@@ -37,7 +39,7 @@ export const Login: React.FC = () => {
         >
           {({ handleChange, handleBlur, touched, errors, values, handleSubmit }) => (
             <Form onSubmit={handleSubmit} className="login-form">
-              <AuthTextField
+              <CustomTextField
                 id="outlined-email"
                 label="Username"
                 type="text"
@@ -51,7 +53,7 @@ export const Login: React.FC = () => {
                 error={touched.email && Boolean(errors.email)}
                 helperText={touched.email && errors.email}
               />
-              <AuthTextField
+              <CustomTextField
                 id="standard-password"
                 label="Password"
                 type="password"

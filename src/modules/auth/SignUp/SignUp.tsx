@@ -8,7 +8,9 @@ import { Link } from 'react-router-dom';
 import { ColorSchema } from 'common/types/color.model';
 import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
 import './SignUp.style.scss';
-import { AuthButton, AuthTextField, SubmitButtonStyle } from 'modules/auth/Auth.style';
+import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
+import { AuthButton } from 'components/MuiStyling/AuthButton.style';
+import { SubmitButtonStyle } from 'components/MuiStyling/MuiStyling.style';
 
 interface SignUpFormInitValue {
   firstName: string;
@@ -66,10 +68,17 @@ export const SignUp = () => {
             setSubmitting(false);
           }}
         >
-          {({ handleChange, handleBlur, touched, errors, values, handleSubmit }) => (
+          {({
+            handleChange,
+            handleBlur,
+            touched,
+            errors,
+            values,
+            handleSubmit,
+          }) => (
             <Form onSubmit={handleSubmit} className="sign_up-form">
               <div className="sign_up-full_name">
-                <AuthTextField
+                <CustomTextField
                   id="first-name"
                   className="first-name"
                   label="First name"
@@ -84,7 +93,7 @@ export const SignUp = () => {
                   helperText={touched.firstName && errors.firstName}
                 />
 
-                <AuthTextField
+                <CustomTextField
                   id="last-name"
                   className="last-name"
                   label="Last name"
@@ -100,7 +109,7 @@ export const SignUp = () => {
                 />
               </div>
 
-              <AuthTextField
+              <CustomTextField
                 id="outlined-email"
                 label="Email"
                 type="text"
@@ -115,7 +124,7 @@ export const SignUp = () => {
                 helperText={touched.email && errors.email}
               />
 
-              <AuthTextField
+              <CustomTextField
                 id="password"
                 label="Password"
                 type="password"
@@ -130,7 +139,7 @@ export const SignUp = () => {
                 helperText={touched.password && errors.password}
               />
 
-              <AuthTextField
+              <CustomTextField
                 id="retype-password"
                 label="Retype password"
                 type="password"
@@ -145,14 +154,30 @@ export const SignUp = () => {
                 helperText={touched.reTypePassword && errors.reTypePassword}
               />
 
-              <AuthButton variant="contained" type="submit" disabled={loading} style={SubmitButtonStyle}>
-                {loading === false ? 'Sign up' : <CircularProgress sx={{ color: '#fff', padding: '6px' }} />}
+              <AuthButton
+                variant="contained"
+                type="submit"
+                disabled={loading}
+                style={SubmitButtonStyle}
+              >
+                {loading === false ? (
+                  'Sign up'
+                ) : (
+                  <CircularProgress sx={{ color: '#fff', padding: '6px' }} />
+                )}
               </AuthButton>
 
               <div className="separator"></div>
               <div className="text-center mb-4 text-sm">
-                <span className="opacity-80 text-[0.925rem]">You have had an account?</span> {'   '}
-                <Link to={routerPath.auth.LOGIN} className="text-redirect" color={ColorSchema.LightGreen}>
+                <span className="opacity-80 text-[0.925rem]">
+                  You have had an account?
+                </span>{' '}
+                {'   '}
+                <Link
+                  to={routerPath.auth.LOGIN}
+                  className="text-redirect"
+                  color={ColorSchema.LightGreen}
+                >
                   Sign in
                 </Link>
               </div>

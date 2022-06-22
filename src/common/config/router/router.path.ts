@@ -4,7 +4,12 @@ export const routerPath = {
     FOOD_DETAIL: '/app/food/:category',
   },
   admin: {
-    USER_LIST: '/admin/users',
+    CATEGORY_LIST: '/admin/categories',
+    CATEGORY_DETAIL: '/admin/categories/:id',
+    CATEGORY_NEW: '/admin/new/category',
+    FOOD_LIST: '/admin/foods',
+    FOOD_DETAIL: '/admin/foods/:id',
+    FOOD_NEW: '/admin/new/food',
   },
   auth: {
     USER_REGISTER: '/auth/user/sign-up',
