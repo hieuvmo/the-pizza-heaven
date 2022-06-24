@@ -1,15 +1,16 @@
-import { AccountCircle, NoAccounts, ShoppingCart } from '@mui/icons-material';
-import { Badge, IconButton, Menu, MenuItem } from '@mui/material';
+import { AccountCircle, NoAccounts } from '@mui/icons-material';
+import { IconButton, Menu, MenuItem } from '@mui/material';
+import { routerPath } from 'common/config/router/router.path';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { routerPath } from '../../common/config/router/router.path';
 
-interface CartAccountProps {
+interface AccountProps {
   isLogged: boolean;
 }
 
-export const NavCartAccount: React.FC<CartAccountProps> = ({ isLogged }) => {
-  const [anchorElAccount, setAnchorElAccount] = React.useState<null | HTMLElement>(null);
+export const NavAccount: React.FC<AccountProps> = ({ isLogged }) => {
+  const [anchorElAccount, setAnchorElAccount] =
+    React.useState<null | HTMLElement>(null);
 
   const handleOpenAccountMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElAccount(event.currentTarget);
@@ -20,11 +21,6 @@ export const NavCartAccount: React.FC<CartAccountProps> = ({ isLogged }) => {
   };
   return (
     <>
-      <IconButton size="large" aria-label="show 4 new mails" color="inherit" sx={{ color: 'black' }}>
-        <Badge badgeContent={4} color="error">
-          <ShoppingCart fontSize="medium" />
-        </Badge>
-      </IconButton>
       {isLogged ? (
         <div>
           <IconButton
@@ -34,7 +30,6 @@ export const NavCartAccount: React.FC<CartAccountProps> = ({ isLogged }) => {
             aria-haspopup="true"
             onClick={handleOpenAccountMenu}
             color="inherit"
-            sx={{ color: 'black' }}
           >
             <AccountCircle fontSize="large" />
           </IconButton>
@@ -66,7 +61,6 @@ export const NavCartAccount: React.FC<CartAccountProps> = ({ isLogged }) => {
             aria-haspopup="true"
             onClick={handleOpenAccountMenu}
             color="inherit"
-            sx={{ color: 'black' }}
           >
             <NoAccounts fontSize="large" />
           </IconButton>

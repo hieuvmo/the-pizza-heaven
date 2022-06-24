@@ -13,19 +13,19 @@ const customStyles = {
 };
 
 export const Test = () => {
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  // const [modalIsOpen, setIsOpen] = React.useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
+  // function openModal() {
+  //   setIsOpen(true);
+  // }
 
-  function closeModal() {
-    setIsOpen(false);
-  }
+  // function closeModal() {
+  //   setIsOpen(false);
+  // }
 
   return (
     <>
-      <button onClick={openModal}>open</button>
+      {/* <button onClick={openModal}>open</button>
       <CustomModal isOpen={modalIsOpen} styling={customStyles}>
         <button onClick={closeModal}>close</button>
         <div>I am a modal</div>
@@ -36,7 +36,8 @@ export const Test = () => {
           <button>inside</button>
           <button>the modal</button>
         </form>
-      </CustomModal>
+      </CustomModal> */}
+      <h1>test</h1>
     </>
   );
 };

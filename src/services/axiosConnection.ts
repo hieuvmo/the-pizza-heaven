@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { SERVICE_API } from '../common/constants/pathAPI';
+import { CLOUDINARY_API, SERVICE_API } from '../common/constants/pathAPI';
 
-const AxiosClient = axios.create({ baseURL: SERVICE_API });
+export const axiosClient = axios.create({ baseURL: SERVICE_API });
 
-export default AxiosClient;
+export const axiosAdmin = axios.create({ baseURL: CLOUDINARY_API });

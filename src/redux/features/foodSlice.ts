@@ -60,7 +60,7 @@ const initialState: FoodState = {
     name: '',
     thumbnail: '',
     description: '',
-    price: '',
+    price: 0,
     isStock: true,
   },
   isLoading: true,

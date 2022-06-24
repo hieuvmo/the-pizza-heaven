@@ -37,7 +37,14 @@ export const Login: React.FC = () => {
             setSubmitting(false);
           }}
         >
-          {({ handleChange, handleBlur, touched, errors, values, handleSubmit }) => (
+          {({
+            handleChange,
+            handleBlur,
+            touched,
+            errors,
+            values,
+            handleSubmit,
+          }) => (
             <Form onSubmit={handleSubmit} className="login-form">
               <CustomTextField
                 id="outlined-email"
@@ -78,23 +85,40 @@ export const Login: React.FC = () => {
                       value={values.storeUser}
                       name="storeUser"
                       style={{
-                        color: '#008c7a',
+                        color: ColorSchema.LightGreen,
                       }}
                     />
                   }
                 />
-                <Link to={routerPath.common.HOME} className="my-auto text-redirect">
+                <Link
+                  to={routerPath.common.HOME}
+                  className="my-auto text-redirect"
+                >
                   Forgot password?
                 </Link>
               </div>
-              <AuthButton variant="contained" type="submit" disabled={loading} style={SubmitButtonStyle}>
-                {loading === false ? 'Sign In' : <CircularProgress sx={{ color: '#fff', padding: '6px' }} />}
+              <AuthButton
+                variant="contained"
+                type="submit"
+                disabled={loading}
+                style={SubmitButtonStyle}
+              >
+                {loading === false ? (
+                  'Sign In'
+                ) : (
+                  <CircularProgress sx={{ color: '#fff', padding: '6px' }} />
+                )}
               </AuthButton>
 
               <div className="separator"></div>
               <div className="text-center mb-4 text-sm">
-                <span className="opacity-80">Dont have an account?</span> {'   '}
-                <Link to={routerPath.auth.USER_REGISTER} className="text-redirect" color={ColorSchema.LightGreen}>
+                <span className="opacity-80">Dont have an account?</span>{' '}
+                {'   '}
+                <Link
+                  to={routerPath.auth.USER_REGISTER}
+                  className="text-redirect"
+                  color={ColorSchema.LightGreen}
+                >
                   Sign up
                 </Link>
               </div>

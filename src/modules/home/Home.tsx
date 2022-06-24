@@ -1,11 +1,13 @@
-import { Navbar } from 'components/Navbar/Navbar';
 import React from 'react';
+import './Home.style.scss';
+import { FoodMenu } from './FoodMenu/FoodMenu';
+import { BannerSlider } from 'components/Slider/BannerSlider';
 
 export const Home = () => {
   return (
     <>
-      <Navbar />
-      <div className="p-96">abc</div>
+      <BannerSlider />
+      <FoodMenu />;
     </>
   );
 };
