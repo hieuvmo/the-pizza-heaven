@@ -6,7 +6,7 @@ export interface IFood {
   name: string;
   thumbnail: string;
   description: string;
-  price: string;
+  price: number;
   isStock: boolean;
 }
 
@@ -15,12 +15,14 @@ export interface IFoodWithoutId {
   name: string;
   thumbnail: string;
   description: string;
-  price: string;
+  price: number;
   isStock: boolean;
 }
 
 class ValidateInterfaces {
   private validateNotNullRegEx = /^(?!\s*$).+/;
+  private validateIsNumberRegEx =
+    /^\s*[+-]?(\d+|\d*\.\d+|\d+\.\d*)([Ee][+-]?\d+)?\s*$/;
   public foodSchema;
 
   constructor() {
@@ -39,10 +41,7 @@ class ValidateInterfaces {
         ),
       price: Yup.string()
         .required('This field can not be empty')
-        .matches(
-          this.validateNotNullRegEx,
-          'This field must exist text or number',
-        ),
+        .matches(this.validateIsNumberRegEx, 'This field only exist number'),
     });
   }
 }

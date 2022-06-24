@@ -1,3 +1,6 @@
 1) Food admin 
-    - CSS textarea
-    - formik for upload image and select categoryID
+    - new food: not validate upload image
+    - food list: price not convert to vnd
+2) Home
+    - open model before call api successfully
+

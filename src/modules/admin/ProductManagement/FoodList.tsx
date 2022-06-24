@@ -54,7 +54,7 @@ export const FoodList = () => {
     thumbnail: string,
     name: string,
     description: string,
-    price: string,
+    price: number,
     isStock: boolean,
   ): IFoodDataTable {
     return { id, categoryID, thumbnail, name, description, price, isStock };
@@ -113,7 +113,7 @@ export const FoodList = () => {
                       align="center"
                       colSpan={8}
                     >
-                      Food Management
+                      Product Management
                     </TableCell>
                   </TableRow>
                   <TableRow>
@@ -161,7 +161,7 @@ export const FoodList = () => {
                                 <TableCell key={column.id}>
                                   {typeof value === 'number'
                                     ? value
-                                    : shortcutSentence(value)}
+                                    : shortcutSentence(value, 25)}
                                 </TableCell>
                               );
                             }

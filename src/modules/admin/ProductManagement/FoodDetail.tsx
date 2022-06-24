@@ -29,8 +29,8 @@ import appService from 'services/appService';
 import { ICategory } from 'common/types/category.model';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
 import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
-import axios from 'axios';
 import { PRODUCT_SELECT_IS_STOCK } from 'common/constants';
+import adminService from 'services/adminService';
 
 export const FoodDetail = () => {
   const { foodDetail, isLoading } = useAppSelector(
@@ -88,11 +88,8 @@ export const FoodDetail = () => {
 
     try {
       setIsImageLoading(true);
-      const response = await axios.post(
-        'https://api.cloudinary.com/v1_1/duitozhul/image/upload',
-        formData,
-      );
-      dispatch(changeFoodImageUrl(response?.data?.url));
+      const response = await adminService.uploadImageToCloudinary(formData);
+      dispatch(changeFoodImageUrl(response));
     } catch (error) {
       console.log('Error when uploading image to cloudinary', error);
     } finally {
@@ -123,7 +120,7 @@ export const FoodDetail = () => {
               fontSize: '2rem',
             }}
           >
-            Edit Food
+            Edit Product
           </Typography>
           <FormValidation
             initialValues={{
@@ -219,6 +216,7 @@ export const FoodDetail = () => {
                           Category ID
                         </InputLabel>
                         <Select
+                          required
                           id="category-id"
                           name="categoryID"
                           value={foodDetail.categoryID}
@@ -248,7 +246,7 @@ export const FoodDetail = () => {
                         value={values.name}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        placeholder="123"
+                        placeholder="Pizza Hải Sản Đào"
                         error={touched.name && Boolean(errors.name)}
                         helperText={touched.name && errors.name}
                       />
@@ -266,7 +264,7 @@ export const FoodDetail = () => {
                         value={values.price}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        placeholder="123"
+                        placeholder="169000"
                         error={touched.price && Boolean(errors.price)}
                         helperText={touched.price && errors.price}
                       />
@@ -301,6 +299,7 @@ export const FoodDetail = () => {
                           Is Stock
                         </InputLabel>
                         <Select
+                          required
                           id="is-stock"
                           name="isStock"
                           value={String(foodDetail.isStock)}

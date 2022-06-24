@@ -116,7 +116,7 @@ export const NewFood = () => {
               fontSize: '2rem',
             }}
           >
-            Add New Category
+            Add New Product
           </Typography>
           <FormValidation
             initialValues={{
@@ -124,7 +124,7 @@ export const NewFood = () => {
               name: '',
               thumbnail: '',
               description: '',
-              price: '',
+              price: 0,
               isStock: false,
             }}
             validationSchema={foodModel.foodSchema}
@@ -169,6 +169,7 @@ export const NewFood = () => {
                       )}
                     </Grid>
                     <CustomTextField
+                      required
                       sx={{ width: '80%', marginBottom: '1rem' }}
                       name="thumbnail"
                       type="file"
@@ -219,6 +220,7 @@ export const NewFood = () => {
                           Category ID
                         </InputLabel>
                         <Select
+                          required
                           id="category-id"
                           name="categoryID"
                           value={newCategoryID}
@@ -248,7 +250,7 @@ export const NewFood = () => {
                         value={values.name}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        placeholder="123"
+                        placeholder="Pizza Hải Sản Đào"
                         error={touched.name && Boolean(errors.name)}
                         helperText={touched.name && errors.name}
                       />
@@ -266,7 +268,7 @@ export const NewFood = () => {
                         value={values.price}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        placeholder="123"
+                        placeholder="169000"
                         error={touched.price && Boolean(errors.price)}
                         helperText={touched.price && errors.price}
                       />
@@ -301,6 +303,7 @@ export const NewFood = () => {
                           Is Stock
                         </InputLabel>
                         <Select
+                          required
                           id="is-stock"
                           name="isStock"
                           value={String(newIsStock)}
