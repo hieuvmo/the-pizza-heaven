@@ -13,58 +13,6 @@ import { NewFoodPage } from 'pages/admin/ProductManagement/NewFoodPage';
 import { AccountPage } from 'pages/app/Account/AccountPage';
 import { getLocalStorageItem } from 'common/helper/storage';
 
-export const routerList: IRoute[] = [
-  //common
-  {
-    path: routerPath.common.HOME,
-    element: <HomePage />,
-  },
-  //auth
-  {
-    path: routerPath.auth.USER_REGISTER,
-    element: <SignUpPage />,
-  },
-  {
-    path: routerPath.auth.LOGIN,
-    element: <LoginPage />,
-  },
-  //admin
-  {
-    path: routerPath.admin.CATEGORY_LIST,
-    element: <CategoryListPage />,
-  },
-  {
-    path: routerPath.admin.CATEGORY_DETAIL,
-    element: <CategoryDetailPage />,
-  },
-  {
-    path: routerPath.admin.CATEGORY_NEW,
-    element: <NewCategoryPage />,
-  },
-  {
-    path: routerPath.admin.FOOD_LIST,
-    element: <FoodListPage />,
-  },
-  {
-    path: routerPath.admin.FOOD_DETAIL,
-    element: <FoodDetailPage />,
-  },
-  {
-    path: routerPath.admin.FOOD_NEW,
-    element: <NewFoodPage />,
-  },
-  //app
-  {
-    path: routerPath.app.MY_ACCOUNT,
-    element: <AccountPage />,
-  },
-  //test
-  {
-    path: routerPath.test.TEST,
-    element: <TestPage />,
-  },
-];
-
 const staticRoute: IRoute[] = [
   //common
   {
