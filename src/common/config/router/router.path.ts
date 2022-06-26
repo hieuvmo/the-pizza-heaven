@@ -11,6 +11,7 @@ export const routerPath = {
     FOOD_LIST: '/admin/foods',
     FOOD_DETAIL: '/admin/foods/:id',
     FOOD_NEW: '/admin/new/food',
+    ORDER_LIST: '/admin/orders',
   },
   auth: {
     USER_REGISTER: '/auth/user/sign-up',

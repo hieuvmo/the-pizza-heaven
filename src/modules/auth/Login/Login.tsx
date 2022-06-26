@@ -34,7 +34,6 @@ export const Login: React.FC = () => {
       const userInfo = response.user;
       setLocalStorageItem('access-token', accessToken);
       setLocalStorageItem('user-info', userInfo);
-      setLocalStorageItem('user-id', userInfo.id);
       navigate(routerPath.common.HOME);
     } catch (error: any) {
       console.log('Error when registering account', error);
@@ -57,7 +56,6 @@ export const Login: React.FC = () => {
           initialValues={{ email: '', password: '', storeUser: true }}
           validationSchema={authModel.loginSchema}
           onSubmit={(values: ILogin, { setSubmitting }) => {
-            console.log('values', values);
             submitLoginForm(values);
             setSubmitting(false);
           }}

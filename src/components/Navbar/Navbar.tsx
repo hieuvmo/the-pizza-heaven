@@ -1,7 +1,6 @@
 import {
   AppBar,
   Box,
-  Button,
   Container,
   IconButton,
   Menu,
@@ -9,26 +8,31 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { Fragment } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import { PizzaLogo } from '../Logo/PizzaLogo';
 import { NavAccount } from './NavAccount/NavAccount';
 import { NavSearch } from './NavSearch/NavSearch';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Footer } from 'components/Footer/Footer';
 import { FooterTop } from 'components/Footer/FooterTop';
-import { NAVBAR_ITEM_ARR } from 'common/constants';
+import { NAVBAR_ATTRIBUTE } from 'common/constants';
 import { NavCart } from './NavCart/NavCart';
+import { getLocalStorageItem } from 'common/helper/storage';
 
 export const Navbar = () => {
-  const [isLogged, setIsLogged] = React.useState<boolean>(false);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsLogged(event.target.checked);
-  };
+  let location = useLocation();
+  const isAdminPage: boolean = location.pathname.includes('/admin');
+
+  const token: string = getLocalStorageItem('access-token');
+  const isLogged: boolean = token !== undefined;
+
+  const userId: number = getLocalStorageItem('user-info')?.id;
+  const isAdminAccount: boolean = userId === 1;
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -77,17 +81,35 @@ export const Navbar = () => {
                   display: { xs: 'block', md: 'none' },
                 }}
               >
-                {NAVBAR_ITEM_ARR.map((item, index) => (
-                  <MenuItem key={index} onClick={handleCloseNavMenu}>
-                    <Typography
-                      component="a"
-                      href={item.path}
-                      textAlign="center"
-                    >
-                      {item.name}
-                    </Typography>
-                  </MenuItem>
-                ))}
+                {!isAdminPage
+                  ? NAVBAR_ATTRIBUTE.APP.map((item, index) => (
+                      <MenuItem key={index} onClick={handleCloseNavMenu}>
+                        <Typography
+                          component="a"
+                          href={item.path}
+                          textAlign="center"
+                          sx={{
+                            textTransform: 'uppercase',
+                          }}
+                        >
+                          {item.name}
+                        </Typography>
+                      </MenuItem>
+                    ))
+                  : NAVBAR_ATTRIBUTE.ADMIN.map((item, index) => (
+                      <MenuItem key={index} onClick={handleCloseNavMenu}>
+                        <Typography
+                          component="a"
+                          href={item.path}
+                          textAlign="center"
+                          sx={{
+                            textTransform: 'uppercase',
+                          }}
+                        >
+                          {item.name}
+                        </Typography>
+                      </MenuItem>
+                    ))}
               </Menu>
               <PizzaLogo
                 customDisplay={{ xs: 'flex', md: 'none' }}
@@ -96,33 +118,48 @@ export const Navbar = () => {
             </Box>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {NAVBAR_ITEM_ARR.map((item, index) => (
-                <Button
-                  key={index}
-                  component="a"
-                  href={item.path}
-                  onClick={handleCloseNavMenu}
-                  sx={{
-                    my: 2,
-                    color: 'white',
-                    display: 'block',
-                    fontSize: '1rem',
-                  }}
-                >
-                  {item.name}
-                </Button>
-              ))}
+              {!isAdminPage
+                ? NAVBAR_ATTRIBUTE.APP.map((item, index) => (
+                    <MenuItem key={index} onClick={handleCloseNavMenu}>
+                      <Typography
+                        component="a"
+                        href={item.path}
+                        textAlign="center"
+                        sx={{
+                          textTransform: 'uppercase',
+                        }}
+                      >
+                        {item.name}
+                      </Typography>
+                    </MenuItem>
+                  ))
+                : NAVBAR_ATTRIBUTE.ADMIN.map((item, index) => (
+                    <MenuItem key={index} onClick={handleCloseNavMenu}>
+                      <Typography
+                        component="a"
+                        href={item.path}
+                        textAlign="center"
+                        sx={{
+                          textTransform: 'uppercase',
+                        }}
+                      >
+                        {item.name}
+                      </Typography>
+                    </MenuItem>
+                  ))}
             </Box>
 
-            <NavSearch />
+            <NavSearch isAdminPage={isAdminPage} />
 
-            <NavCart />
+            <NavCart isAdminPage={isAdminPage} />
 
-            <NavAccount isLogged={isLogged} />
+            <NavAccount isLogged={isLogged} isAdminAccount={isAdminAccount} />
           </Toolbar>
         </Container>
       </AppBar>
-      <Outlet />
+      <div className="mt-14">
+        <Outlet />
+      </div>
       <FooterTop />
       <Footer />
     </>

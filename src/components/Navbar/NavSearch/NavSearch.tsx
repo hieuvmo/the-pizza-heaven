@@ -5,16 +5,24 @@ import {
   StyledInputBase,
 } from './NavSearch.style';
 
-export const NavSearch = () => {
+interface NavSearchProps {
+  isAdminPage: boolean;
+}
+
+export const NavSearch: React.FC<NavSearchProps> = ({ isAdminPage }) => {
   return (
-    <CustomSearch>
-      <SearchIconWrapper>
-        <Search />
-      </SearchIconWrapper>
-      <StyledInputBase
-        placeholder="Nhập đồ ăn bạn muốn…"
-        inputProps={{ 'aria-label': 'search' }}
-      />
-    </CustomSearch>
+    <>
+      {!isAdminPage && (
+        <CustomSearch>
+          <SearchIconWrapper>
+            <Search />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Nhập đồ ăn bạn muốn…"
+            inputProps={{ 'aria-label': 'search' }}
+          />
+        </CustomSearch>
+      )}
+    </>
   );
 };

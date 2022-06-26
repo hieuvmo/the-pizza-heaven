@@ -30,10 +30,10 @@ export const Account = () => {
 
   const submitAccountForm = async (values: IUser) => {
     const accountObj = {
-      firstName: values.firstName,
-      lastName: values.lastName,
       email: values.email,
       password: userInfoFromDB?.password as string,
+      firstName: values.firstName,
+      lastName: values.lastName,
       phone: values.phone,
       address: values.address,
     };
@@ -64,16 +64,16 @@ export const Account = () => {
       }
     };
     fetchUserInfoAPI();
-  }, []);
+  }, [userInfo.id]);
 
   return (
-    <Container className="mt-12 px-4 py-12">
+    <Container className="px-4 py-12">
       <p className="text-guild-line">profile</p>
       <FormValidation
         initialValues={{
+          email: userInfo.email,
           firstName: userInfo.firstName,
           lastName: userInfo.lastName,
-          email: userInfo.email,
           phone: userInfo.phone,
           address: userInfo.address,
         }}

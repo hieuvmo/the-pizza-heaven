@@ -1,10 +1,10 @@
 import * as Yup from 'yup';
 
 export interface ISignUp {
-  firstName: string;
-  lastName: string;
   email: string;
   password: string;
+  firstName: string;
+  lastName: string;
   reTypePassword?: string;
   phone: string;
   address: string;

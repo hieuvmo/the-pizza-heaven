@@ -21,10 +21,10 @@ export interface IWard {
 }
 
 export interface IUser {
+  email: string;
   id?: number;
   firstName: string;
   lastName: string;
-  email: string;
   password?: string;
   phone: string;
   address: string;

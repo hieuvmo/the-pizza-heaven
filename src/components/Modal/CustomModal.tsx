@@ -1,6 +1,6 @@
 import { Close } from '@mui/icons-material';
 import { ColorSchema } from 'common/types/color.model';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ReactModal from 'react-modal';
 import Modal from 'react-modal';
 
@@ -40,6 +40,8 @@ export const CustomModal: React.FunctionComponent<ModalProps> = ({
         assignResultStyled.push(Object.assign(currentValue, newValue));
     }
   }
+
+  //using memo
   const finalStyled: ReactModal.Styles = {
     overlay: assignResultStyled[0],
     content: assignResultStyled[1],
