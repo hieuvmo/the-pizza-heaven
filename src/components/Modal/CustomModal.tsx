@@ -20,7 +20,7 @@ export const CustomModal: React.FunctionComponent<ModalProps> = ({
   requestCloseModal,
 }) => {
   const currentStyled: ReactModal.Styles = {
-    overlay: { marginTop: '3rem' },
+    overlay: { marginTop: '3rem', backgroundColor: 'rgba(0,0,0, .8)' },
     content: {
       marginInline: 'auto',
       marginBlock: 'auto',

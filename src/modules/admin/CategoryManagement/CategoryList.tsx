@@ -15,14 +15,24 @@ import { routerPath } from 'common/config/router/router.path';
 import { CATEGORY_TABLE_HEAD } from 'common/constants';
 import { capitalizeFirstLetter } from 'common/helper/string';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
-import { ICategoryColumn, ICategoryDataTable, IdCategoryType } from 'common/types/table.mui.model';
+import {
+  ICategoryColumn,
+  ICategoryDataTable,
+  IdCategoryType,
+} from 'common/types/table.mui.model';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { deleteCategoryById, getCategoryDetailById, getCategoryList } from 'redux/features/categorySlice';
+import {
+  deleteCategoryById,
+  getCategoryDetailById,
+  getCategoryList,
+} from 'redux/features/categorySlice';
 import { RootState } from 'redux/store';
 
 export const CategoryList = () => {
-  const { categoryList, isLoading } = useAppSelector((state: RootState) => state.category);
+  const { categoryList, isLoading } = useAppSelector(
+    (state: RootState) => state.category,
+  );
   const dispatch = useAppDispatch();
 
   const [page, setPage] = useState(0);
@@ -33,7 +43,8 @@ export const CategoryList = () => {
   }, [dispatch]);
 
   const categoryColumns = CATEGORY_TABLE_HEAD.map((item): ICategoryColumn => {
-    const categoryLabel = item === 'id' ? item.toUpperCase() : capitalizeFirstLetter(item);
+    const categoryLabel =
+      item === 'id' ? item.toUpperCase() : capitalizeFirstLetter(item);
     return { id: item as IdCategoryType, label: categoryLabel };
   });
 
@@ -49,7 +60,9 @@ export const CategoryList = () => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
@@ -76,11 +89,15 @@ export const CategoryList = () => {
               marginBlock: '2.5rem',
             }}
           >
-            <TableContainer sx={{ maxHeight: 500 }}>
+            <TableContainer sx={{ maxHeight: 390 }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
-                    <TableCell sx={{ fontSize: '2rem' }} align="center" colSpan={7}>
+                    <TableCell
+                      sx={{ fontSize: '2rem' }}
+                      align="center"
+                      colSpan={7}
+                    >
                       Category Management
                     </TableCell>
                   </TableRow>
@@ -93,50 +110,63 @@ export const CategoryList = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {categoryRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    return (
-                      <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                        {categoryColumns.map((column) => {
-                          const value = row[column.id];
-                          if (value) {
-                            return (
-                              <TableCell key={column.id} align="right">
-                                {column.format && typeof value === 'number' ? column.format(value) : value}
-                              </TableCell>
-                            );
-                          } else {
-                            return (
-                              <TableCell key={column.id} align="right">
-                                <Link
-                                  to={`${routerPath.admin.CATEGORY_LIST}/${row.id}`}
-                                  onClick={() => handleClickEditButton(row.id)}
-                                >
-                                  <Button
-                                    sx={{
-                                      marginRight: '1rem',
-                                    }}
-                                    color="info"
-                                    variant="contained"
-                                    startIcon={<Edit />}
+                  {categoryRows
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row) => {
+                      return (
+                        <TableRow
+                          hover
+                          role="checkbox"
+                          tabIndex={-1}
+                          key={row.id}
+                        >
+                          {categoryColumns.map((column) => {
+                            const value = row[column.id];
+                            if (value) {
+                              return (
+                                <TableCell key={column.id} align="right">
+                                  {column.format && typeof value === 'number'
+                                    ? column.format(value)
+                                    : value}
+                                </TableCell>
+                              );
+                            } else {
+                              return (
+                                <TableCell key={column.id} align="right">
+                                  <Link
+                                    to={`${routerPath.admin.CATEGORY_LIST}/${row.id}`}
+                                    onClick={() =>
+                                      handleClickEditButton(row.id)
+                                    }
                                   >
-                                    Edit
+                                    <Button
+                                      sx={{
+                                        marginRight: '1rem',
+                                      }}
+                                      color="info"
+                                      variant="contained"
+                                      startIcon={<Edit />}
+                                    >
+                                      Edit
+                                    </Button>
+                                  </Link>
+                                  <Button
+                                    onClick={() =>
+                                      handleClickDeleteButton(row.id)
+                                    }
+                                    color="error"
+                                    variant="contained"
+                                    startIcon={<Delete />}
+                                  >
+                                    Delete
                                   </Button>
-                                </Link>
-                                <Button
-                                  onClick={() => handleClickDeleteButton(row.id)}
-                                  color="error"
-                                  variant="contained"
-                                  startIcon={<Delete />}
-                                >
-                                  Delete
-                                </Button>
-                              </TableCell>
-                            );
-                          }
-                        })}
-                      </TableRow>
-                    );
-                  })}
+                                </TableCell>
+                              );
+                            }
+                          })}
+                        </TableRow>
+                      );
+                    })}
                 </TableBody>
               </Table>
             </TableContainer>
