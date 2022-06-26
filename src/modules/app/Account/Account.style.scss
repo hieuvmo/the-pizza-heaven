@@ -1,0 +1,10 @@
+.text-guild-line {
+  color: #008c7a;
+  @apply text-center uppercase text-3xl font-semibold my-10;
+}
+
+.text-support {
+  background-color: #008c7a;
+  color: #ffffff;
+  @apply px-3 py-2 mb-4;
+}

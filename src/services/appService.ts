@@ -1,6 +1,7 @@
 import { ENDPOINT_API } from 'common/constants/pathAPI';
 import { ICategory } from 'common/types/category.model';
 import { IFood } from 'common/types/food.model';
+import { IUser } from 'common/types/user.model';
 import { axiosClient } from './axiosConnection';
 
 class AppService {
@@ -59,6 +60,23 @@ class AppService {
   }
   async addNewFood(params: IFood): Promise<IFood[]> {
     const { data } = await axiosClient.post(`${ENDPOINT_API.FOOD}`, params);
+    return data;
+  }
+
+  //USERS
+  async getUserList(): Promise<IUser[]> {
+    const { data } = await axiosClient.get(`${ENDPOINT_API.USER}`);
+    return data;
+  }
+  async getUserById(id: number): Promise<IUser> {
+    const { data } = await axiosClient.get(`${ENDPOINT_API.USER}/${id}`);
+    return data;
+  }
+  async updateUserById(params: IUser, id: number): Promise<IUser> {
+    const { data } = await axiosClient.put(
+      `${ENDPOINT_API.USER}/${id}`,
+      params,
+    );
     return data;
   }
 }

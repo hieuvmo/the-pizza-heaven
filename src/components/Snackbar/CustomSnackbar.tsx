@@ -9,8 +9,17 @@ interface SnackbarProps {
   verticalPosition?: SnackbarOrigin['vertical'];
 }
 
-export const CustomSnackbar = ({ snackbarColor, res, open, setOpen, verticalPosition }: SnackbarProps) => {
-  const handleClose = (_event: React.SyntheticEvent | Event, reason?: string) => {
+export const CustomSnackbar = ({
+  snackbarColor,
+  res,
+  open,
+  setOpen,
+  verticalPosition,
+}: SnackbarProps) => {
+  const handleClose = (
+    _event: React.SyntheticEvent | Event,
+    reason?: string,
+  ) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -22,14 +31,18 @@ export const CustomSnackbar = ({ snackbarColor, res, open, setOpen, verticalPosi
     <>
       <Snackbar
         anchorOrigin={{
-          vertical: `${verticalPosition ? verticalPosition : 'top'}`,
-          horizontal: 'center',
+          vertical: `${verticalPosition ? verticalPosition : 'bottom'}`,
+          horizontal: 'left',
         }}
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
       >
-        <Alert onClose={handleClose} severity={snackbarColor} sx={{ width: '100%' }}>
+        <Alert
+          onClose={handleClose}
+          severity={snackbarColor}
+          sx={{ width: '100%' }}
+        >
           {res}
         </Alert>
       </Snackbar>

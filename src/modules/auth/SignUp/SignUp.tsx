@@ -2,7 +2,7 @@ import { Formik as FormValidation, Form } from 'formik';
 import { AlertColor, CircularProgress } from '@mui/material';
 import { AuthForm, ImageSide } from 'components/AuthForm/AuthForm';
 import { useState } from 'react';
-import authModel from 'common/types/auth.model';
+import authModel, { ISignUp } from 'common/types/auth.model';
 import { routerPath } from 'common/config/router/router.path';
 import { Link } from 'react-router-dom';
 import { ColorSchema } from 'common/types/color.model';
@@ -11,14 +11,7 @@ import './SignUp.style.scss';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
 import { AuthButton } from 'components/MuiStyling/AuthButton.style';
 import { SubmitButtonStyle } from 'components/MuiStyling/MuiStyling.style';
-
-interface SignUpFormInitValue {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  reTypePassword?: string;
-}
+import authService from 'services/authService';
 
 export const SignUp = () => {
   const [loading, setLoading] = useState(false);
@@ -26,20 +19,20 @@ export const SignUp = () => {
   const [responseFromAPI, setResponseFromAPI] = useState('');
   const [snackbarType, setSnackbarType] = useState<AlertColor>();
 
-  const signUpSubmit = async (signUpValues: SignUpFormInitValue) => {
+  const submitSignUpForm = async (signUpValues: ISignUp) => {
     const signUpObj = { ...signUpValues };
     delete signUpObj?.reTypePassword;
 
     try {
       setLoading(true);
-      // const response = await clientService.userSignUp(signUpObj);
+      await authService.registerClientAccount(signUpObj);
       setSnackbarType('success');
-      // setResponseFromAPI(response);
+      setResponseFromAPI('You have created account successfully');
       setShowSnackbar(true);
     } catch (error: any) {
       console.log('Error when registering account', error);
       setSnackbarType('error');
-      setResponseFromAPI(error?.data?.message);
+      setResponseFromAPI(error?.response?.data);
       setShowSnackbar(true);
     } finally {
       setLoading(false);
@@ -61,10 +54,12 @@ export const SignUp = () => {
             email: '',
             password: '',
             reTypePassword: '',
+            phone: '',
+            address: '',
           }}
           validationSchema={authModel.clientSignUpSchema}
-          onSubmit={async (values: SignUpFormInitValue, { setSubmitting }) => {
-            await signUpSubmit(values);
+          onSubmit={async (values: ISignUp, { setSubmitting }) => {
+            await submitSignUpForm(values);
             setSubmitting(false);
           }}
         >
@@ -178,7 +173,7 @@ export const SignUp = () => {
                   className="text-redirect"
                   color={ColorSchema.LightGreen}
                 >
-                  Sign in
+                  Log in
                 </Link>
               </div>
             </Form>

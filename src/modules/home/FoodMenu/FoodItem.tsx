@@ -159,14 +159,9 @@ export const FoodItem: React.FC<FoodItemProps> = ({ categoryID }) => {
       <CustomModal
         isOpen={openModal}
         setIsOpen={setOpenModal}
-        styling={{
-          overlay: { marginTop: '3rem' },
-          content: {
-            marginBlock: 'auto',
-            height: 'fit-content',
-            paddingBottom: '2.5rem',
-            borderRadius: '1rem',
-          },
+        newStyled={{
+          overlay: {},
+          content: {},
         }}
       >
         <Grid
@@ -191,7 +186,7 @@ export const FoodItem: React.FC<FoodItemProps> = ({ categoryID }) => {
             }}
           >
             <img
-              className="w-3/5"
+              className="3/5"
               src={productById?.thumbnail}
               alt={productById?.name}
             />

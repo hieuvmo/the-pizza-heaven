@@ -1,26 +1,50 @@
-import { Checkbox, CircularProgress, FormControlLabel } from '@mui/material';
+import {
+  AlertColor,
+  Checkbox,
+  CircularProgress,
+  FormControlLabel,
+} from '@mui/material';
 import { routerPath } from 'common/config/router/router.path';
-import authModel from 'common/types/auth.model';
+import { setLocalStorageItem } from 'common/helper/storage';
+import authModel, { ILogin } from 'common/types/auth.model';
 import { ColorSchema } from 'common/types/color.model';
 import { AuthForm, ImageSide } from 'components/AuthForm/AuthForm';
 import { AuthButton } from 'components/MuiStyling/AuthButton.style';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
 import { SubmitButtonStyle } from 'components/MuiStyling/MuiStyling.style';
+import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
 import { Formik as FormValidation, Form } from 'formik';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import authService from 'services/authService';
 import './Login.style.scss';
 
-interface LoginFormInitValue {
-  email: string;
-  password: string;
-  storeUser: boolean;
-}
-
 export const Login: React.FC = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [responseFromAPI, setResponseFromAPI] = useState('');
+  const [snackbarType, setSnackbarType] = useState<AlertColor>();
 
-  function submitLogin(params: LoginFormInitValue) {}
+  const submitLoginForm = async (params: ILogin) => {
+    try {
+      setLoading(true);
+      const response = await authService.loginAccount(params);
+      const accessToken = response.accessToken;
+      const userInfo = response.user;
+      setLocalStorageItem('access-token', accessToken);
+      setLocalStorageItem('user-info', userInfo);
+      setLocalStorageItem('user-id', userInfo.id);
+      navigate(routerPath.common.HOME);
+    } catch (error: any) {
+      console.log('Error when registering account', error);
+      setSnackbarType('error');
+      setResponseFromAPI(error?.response?.data);
+      setShowSnackbar(true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <AuthForm
@@ -28,12 +52,13 @@ export const Login: React.FC = () => {
       imageLink="https://res.cloudinary.com/duitozhul/image/upload/v1655088034/the-pizza-heaven/authentication/log-in.svg"
     >
       <div className="login-container">
-        <h1 className="login-heading">Sign In</h1>
+        <h1 className="login-heading">Log In</h1>
         <FormValidation
           initialValues={{ email: '', password: '', storeUser: true }}
           validationSchema={authModel.loginSchema}
-          onSubmit={(values: LoginFormInitValue, { setSubmitting }) => {
-            submitLogin(values);
+          onSubmit={(values: ILogin, { setSubmitting }) => {
+            console.log('values', values);
+            submitLoginForm(values);
             setSubmitting(false);
           }}
         >
@@ -126,6 +151,13 @@ export const Login: React.FC = () => {
           )}
         </FormValidation>
       </div>
+
+      <CustomSnackbar
+        snackbarColor={snackbarType}
+        res={responseFromAPI}
+        open={showSnackbar}
+        setOpen={setShowSnackbar}
+      />
     </AuthForm>
   );
 };

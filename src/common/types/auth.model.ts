@@ -1,14 +1,42 @@
 import * as Yup from 'yup';
 
+export interface ISignUp {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  reTypePassword?: string;
+  phone: string;
+  address: string;
+}
+export interface ILogin {
+  email: string;
+  password: string;
+  storeUser: boolean;
+}
+
 class AuthValidation {
-  private validateRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+  private validatePasswordRegEx =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+  private validateNotNullRegEx = /^(?!\s*$).+/;
+
   public clientSignUpSchema;
   public loginSchema;
 
   constructor() {
     this.clientSignUpSchema = Yup.object().shape({
-      firstName: Yup.string().required('This field can not be empty'),
-      lastName: Yup.string().required('This field can not be empty'),
+      firstName: Yup.string()
+        .required('This field can not be empty')
+        .matches(
+          this.validateNotNullRegEx,
+          'This field must exist text or number',
+        ),
+      lastName: Yup.string()
+        .required('This field can not be empty')
+        .matches(
+          this.validateNotNullRegEx,
+          'This field must exist text or number',
+        ),
       email: Yup.string()
         .email()
         .min(16, 'Your email is too short')
@@ -19,7 +47,7 @@ class AuthValidation {
         .max(30, 'Incorrect password length')
         .required('This field can not be empty')
         .matches(
-          this.validateRegEx,
+          this.validatePasswordRegEx,
           'Must contain 8 characters, one uppercase, one lowercase, one number and one special case character',
         ),
       reTypePassword: Yup.string()

@@ -1,13 +1,14 @@
 import { Close } from '@mui/icons-material';
 import { ColorSchema } from 'common/types/color.model';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import ReactModal from 'react-modal';
 import Modal from 'react-modal';
 
 interface ModalProps {
   children: React.ReactNode;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  styling: ReactModal.Styles;
+  newStyled?: ReactModal.Styles;
   requestCloseModal?: () => void;
 }
 
@@ -15,13 +16,33 @@ export const CustomModal: React.FunctionComponent<ModalProps> = ({
   children,
   isOpen,
   setIsOpen,
-  styling,
+  newStyled,
   requestCloseModal,
 }) => {
-  const styledModal = {
-    ...styling,
-    marginTop: '5rem',
-    width: '80%',
+  const currentStyled: ReactModal.Styles = {
+    overlay: { marginTop: '3rem' },
+    content: {
+      marginInline: 'auto',
+      marginBlock: 'auto',
+      height: 'fit-content',
+      width: 'fit-content',
+      paddingBottom: '2.5rem',
+      borderRadius: '1rem',
+    },
+  };
+
+  const assignResultStyled: React.CSSProperties[] = [];
+  for (const [currentKey, currentValue] of Object.entries(currentStyled)) {
+    for (const [newKey, newValue] of Object.entries(
+      newStyled as ReactModal.Styles,
+    )) {
+      if (currentKey === newKey)
+        assignResultStyled.push(Object.assign(currentValue, newValue));
+    }
+  }
+  const finalStyled: ReactModal.Styles = {
+    overlay: assignResultStyled[0],
+    content: assignResultStyled[1],
   };
 
   const handleCloseModal = () => {
@@ -32,7 +53,7 @@ export const CustomModal: React.FunctionComponent<ModalProps> = ({
     <Modal
       ariaHideApp={false}
       isOpen={isOpen}
-      style={styling}
+      style={finalStyled}
       onRequestClose={requestCloseModal}
     >
       <div

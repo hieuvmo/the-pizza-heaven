@@ -10,6 +10,7 @@ import { NewCategoryPage } from 'pages/admin/CategoryManagement/NewCategoryPage'
 import { FoodListPage } from 'pages/admin/ProductManagement/FoodListPage';
 import { FoodDetailPage } from 'pages/admin/ProductManagement/FoodDetailPage';
 import { NewFoodPage } from 'pages/admin/ProductManagement/NewFoodPage';
+import { AccountPage } from 'pages/app/Account/AccountPage';
 
 export const routerList: IRoute[] = [
   //common
@@ -51,7 +52,11 @@ export const routerList: IRoute[] = [
     path: routerPath.admin.FOOD_NEW,
     element: <NewFoodPage />,
   },
-
+  //app
+  {
+    path: routerPath.app.MY_ACCOUNT,
+    element: <AccountPage />,
+  },
   //test
   {
     path: routerPath.test.TEST,
