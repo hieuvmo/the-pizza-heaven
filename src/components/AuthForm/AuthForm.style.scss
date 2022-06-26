@@ -6,12 +6,12 @@
 
   &-decorator {
     overflow: hidden;
-    @apply w-full h-screen z-0 flex absolute;
+    @apply w-full h-screen z-0 flex absolute pt-0;
   }
 
   &-container {
     min-height: 50%;
-    @apply w-10/12 bg-white flex mx-auto rounded-3xl z-20;
+    @apply w-10/12 bg-white flex mx-auto rounded-3xl z-20 mt-14;
   }
 
   &-img_side {

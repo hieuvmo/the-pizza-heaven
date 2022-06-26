@@ -163,7 +163,7 @@ export const SignUp = () => {
               </AuthButton>
 
               <div className="separator"></div>
-              <div className="text-center mb-4 text-sm">
+              <div className="text-center text-sm">
                 <span className="opacity-80 text-[0.925rem]">
                   You have had an account?
                 </span>{' '}

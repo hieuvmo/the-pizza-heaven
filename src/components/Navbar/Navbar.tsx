@@ -19,6 +19,7 @@ import { FooterTop } from 'components/Footer/FooterTop';
 import { NAVBAR_ATTRIBUTE } from 'common/constants';
 import { NavCart } from './NavCart/NavCart';
 import { getLocalStorageItem } from 'common/helper/storage';
+import { routerPath } from 'common/config/router/router.path';
 
 export const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -27,6 +28,10 @@ export const Navbar = () => {
 
   let location = useLocation();
   const isAdminPage: boolean = location.pathname.includes('/admin');
+  const isHomePage: boolean = location.pathname === routerPath.common.HOME;
+  const isLoginPage: boolean = location.pathname === routerPath.auth.LOGIN;
+  const isSignInPage: boolean =
+    location.pathname === routerPath.auth.USER_REGISTER;
 
   const token: string = getLocalStorageItem('access-token');
   const isLogged: boolean = token !== undefined;
@@ -157,11 +162,15 @@ export const Navbar = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      <div className="pt-14">
+      <div className={`${!isLoginPage && !isSignInPage && 'pt-14'}`}>
         <Outlet />
       </div>
-      <FooterTop />
-      <Footer />
+      {isHomePage && (
+        <>
+          <FooterTop />
+          <Footer />
+        </>
+      )}
     </>
   );
 };
