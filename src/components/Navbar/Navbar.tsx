@@ -157,7 +157,7 @@ export const Navbar = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      <div className="mt-14">
+      <div className="pt-14">
         <Outlet />
       </div>
       <FooterTop />

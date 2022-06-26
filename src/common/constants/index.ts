@@ -131,7 +131,7 @@ export const ACCOUNT_ATTRIBUTE = {
   CLIENT_ACCOUNT: [
     {
       attribute: 'Log out',
-      path: routerPath.auth.LOGIN,
+      path: routerPath.common.HOME,
     },
     {
       attribute: 'My Account',
@@ -141,7 +141,7 @@ export const ACCOUNT_ATTRIBUTE = {
   ADMIN_ACCOUNT: [
     {
       attribute: 'Log out',
-      path: routerPath.auth.LOGIN,
+      path: routerPath.common.HOME,
     },
     {
       attribute: 'Management',
