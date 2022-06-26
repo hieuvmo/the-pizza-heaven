@@ -4,6 +4,15 @@
       "email": "thepizzaheaven@gmail.com",
       "password": "$2a$10$uOEm1Sf4MYKPiP7uU3S4S.KZNHxG/M3ckX7/.KinUsjgwPuXf6MNS",
       "id": 1
+    },
+    {
+      "email": "bongdavuive21@gmail.com",
+      "password": "$2a$10$uDlFJmdocNkvbgKRNpek/u2kEuNDRm1yRDkGhRSlRG63ZCglTknEq",
+      "firstName": "dfsdfas",
+      "lastName": "fsdf",
+      "phone": "",
+      "address": "",
+      "id": 2
     }
   ],
   "categories": [
@@ -529,7 +538,10 @@
       "name": "Salad Trộn Dầu Giấm",
       "thumbnail": "https://res.cloudinary.com/duitozhul/image/upload/v1655557802/the-pizza-heaven/product/salad/0002252_garden-salad_300_gkfieg.png",
       "description": "Rau với sốt dầu giấm",
-      "size": ["Vừa 9\"", "Lớn 12\""],
+      "size": [
+        "Vừa 9\"",
+        "Lớn 12\""
+      ],
       "price": 69000,
       "isStock": true
     },
@@ -539,7 +551,10 @@
       "name": "Salad Đặc Sắc",
       "thumbnail": "https://res.cloudinary.com/duitozhul/image/upload/v1655557924/the-pizza-heaven/product/salad/0002250_signature-salad_300_bk6zg4.png",
       "description": "Bông cải xanh, búp cải tím, táo, xà lách, trứng… và sốt Salad đặc biệt",
-      "size": ["Vừa 9\"", "Lớn 12\""],
+      "size": [
+        "Vừa 9\"",
+        "Lớn 12\""
+      ],
       "price": 79000,
       "isStock": true
     },
@@ -549,7 +564,10 @@
       "name": "Salad Gà Giòn Không Xương",
       "thumbnail": "https://res.cloudinary.com/duitozhul/image/upload/v1655558047/the-pizza-heaven/product/salad/0002600_chicken-strip-salad_300_axogqc.png",
       "description": "Salad Gà giòn với trứng cút, thịt xông khói, phô mai parmesan và sốt Thousand Island",
-      "size": ["Vừa 9\"", "Lớn 12\""],
+      "size": [
+        "Vừa 9\"",
+        "Lớn 12\""
+      ],
       "price": 79000,
       "isStock": true
     },
@@ -559,7 +577,10 @@
       "name": "Salad Da Cá Hồi Giòn",
       "thumbnail": "https://res.cloudinary.com/duitozhul/image/upload/v1655558172/the-pizza-heaven/product/salad/0002601_crispy-salmon-skin-salad_300_gwq8a4.png",
       "description": "Salad với da cá hồi giòn với bắp cải đỏ, cà chua bi, ngô với sốt Yuzu",
-      "size": ["Vừa 9\"", "Lớn 12\""],
+      "size": [
+        "Vừa 9\"",
+        "Lớn 12\""
+      ],
       "price": 79000,
       "isStock": true
     },
@@ -569,7 +590,10 @@
       "name": "Salad Trộn Sốt Caesar",
       "thumbnail": "https://res.cloudinary.com/duitozhul/image/upload/v1655558298/the-pizza-heaven/product/salad/0002251_caesars-salad_300_oiy4qv.png",
       "description": "Rau tươi trộn với sốt Caesar",
-      "size": ["Vừa 9\"", "Lớn 12\""],
+      "size": [
+        "Vừa 9\"",
+        "Lớn 12\""
+      ],
       "price": 79000,
       "isStock": true
     },
