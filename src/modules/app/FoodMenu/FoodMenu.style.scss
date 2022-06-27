@@ -22,7 +22,7 @@
   }
 
   &-tabs {
-    @apply px-4 flex flex-wrap list-none justify-center cursor-pointer;
+    @apply px-4 flex flex-wrap list-none justify-center cursor-pointer pb-4;
 
     &-item {
       @apply px-4 flex flex-col;

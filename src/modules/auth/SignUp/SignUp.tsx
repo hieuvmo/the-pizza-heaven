@@ -30,7 +30,7 @@ export const SignUp = () => {
       setResponseFromAPI('You have created account successfully');
       setShowSnackbar(true);
     } catch (error: any) {
-      console.log('Error when registering account', error);
+      console.log('Error when registering account', error?.response?.data);
       setSnackbarType('error');
       setResponseFromAPI(error?.response?.data);
       setShowSnackbar(true);

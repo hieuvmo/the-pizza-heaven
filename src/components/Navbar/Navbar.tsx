@@ -8,7 +8,7 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material';
-import React, { Fragment } from 'react';
+import React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import { PizzaLogo } from '../Logo/PizzaLogo';
 import { NavAccount } from './NavAccount/NavAccount';
@@ -29,6 +29,7 @@ export const Navbar = () => {
   let location = useLocation();
   const isAdminPage: boolean = location.pathname.includes('/admin');
   const isHomePage: boolean = location.pathname === routerPath.common.HOME;
+  const isSearchPage: boolean = location.pathname.includes('/search');
   const isLoginPage: boolean = location.pathname === routerPath.auth.LOGIN;
   const isSignInPage: boolean =
     location.pathname === routerPath.auth.USER_REGISTER;
@@ -45,6 +46,17 @@ export const Navbar = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const renderFooter = () => {
+    if (isHomePage || isSearchPage) {
+      return (
+        <>
+          <FooterTop />
+          <Footer />
+        </>
+      );
+    }
   };
 
   return (
@@ -165,12 +177,7 @@ export const Navbar = () => {
       <div className={`${!isLoginPage && !isSignInPage && 'pt-14'}`}>
         <Outlet />
       </div>
-      {isHomePage && (
-        <>
-          <FooterTop />
-          <Footer />
-        </>
-      )}
+      {renderFooter()}
     </>
   );
 };

@@ -13,7 +13,9 @@ import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
 import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
 
 export const CategoryDetail = () => {
-  const { categoryDetail, isLoading } = useAppSelector((state: RootState) => state.category);
+  const { categoryDetail, isLoading } = useAppSelector(
+    (state: RootState) => state.category,
+  );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -22,7 +24,7 @@ export const CategoryDetail = () => {
     await dispatch(
       updateCategoryById({
         updatedCategory: values,
-        categoryID: parseInt(id as string),
+        categoryId: parseInt(id as string),
       }),
     );
     !isLoading && navigate(routerPath.admin.CATEGORY_LIST);
@@ -56,7 +58,14 @@ export const CategoryDetail = () => {
               setSubmitting(false);
             }}
           >
-            {({ handleChange, handleBlur, touched, errors, values, handleSubmit }) => (
+            {({
+              handleChange,
+              handleBlur,
+              touched,
+              errors,
+              values,
+              handleSubmit,
+            }) => (
               <Form onSubmit={handleSubmit}>
                 <Grid container spacing={2} justifyContent="center">
                   <Grid item xs={10} sm={6} md={4}>
@@ -64,7 +73,7 @@ export const CategoryDetail = () => {
                       fullWidth
                       id="category-id"
                       className="category-id"
-                      name="categoryID"
+                      name="categoryId"
                       label="ID"
                       type="text"
                       variant="outlined"
@@ -85,12 +94,19 @@ export const CategoryDetail = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder="Pizza"
-                      error={touched.categoryName && Boolean(errors.categoryName)}
+                      error={
+                        touched.categoryName && Boolean(errors.categoryName)
+                      }
                       helperText={touched.categoryName && errors.categoryName}
                     />
                   </Grid>
                   <Grid item xs={10} sm={6} md={4}>
-                    <ConfirmButton fullWidth type="submit" variant="contained" startIcon={<Check />}>
+                    <ConfirmButton
+                      fullWidth
+                      type="submit"
+                      variant="contained"
+                      startIcon={<Check />}
+                    >
                       Confirm edit category
                     </ConfirmButton>
                   </Grid>

@@ -36,7 +36,7 @@ export const Login: React.FC = () => {
       setLocalStorageItem('user-info', userInfo);
       navigate(routerPath.common.HOME);
     } catch (error: any) {
-      console.log('Error when registering account', error);
+      console.log('Error when registering account', error?.response?.data);
       setSnackbarType('error');
       setResponseFromAPI(error?.response?.data);
       setShowSnackbar(true);

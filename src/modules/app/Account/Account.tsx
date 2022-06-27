@@ -47,7 +47,7 @@ export const Account = () => {
       setSnackbarType('success');
       setShowSnackbar(true);
     } catch (error: any) {
-      console.log('Error when confirm update user info', error);
+      console.log('Error when updateUserById', error);
       setResponse(error?.response?.data);
       setSnackbarType('error');
       setShowSnackbar(true);

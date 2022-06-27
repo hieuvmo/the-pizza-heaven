@@ -41,9 +41,9 @@ class AppService {
     const { data } = await axiosClient.get(`${ENDPOINT_API.FOOD}/${id}`);
     return data;
   }
-  async getFoodDetailByCategoryId(categoryID: number): Promise<IFood[]> {
+  async getFoodDetailByCategoryId(categoryId: number): Promise<IFood[]> {
     const { data } = await axiosClient.get(
-      `${ENDPOINT_API.FOOD}/?categoryID=${categoryID}`,
+      `${ENDPOINT_API.FOOD}/?categoryId=${categoryId}`,
     );
     return data;
   }
@@ -62,6 +62,16 @@ class AppService {
     const { data } = await axiosClient.post(`${ENDPOINT_API.FOOD}`, params);
     return data;
   }
+  async filterAndOrderProductById(
+    categoryId: number,
+    filterValue: string,
+    orderByValue: string,
+  ): Promise<IFood[]> {
+    const { data } = await axiosClient.get(
+      `${ENDPOINT_API.CATEGORY}/${categoryId}${ENDPOINT_API.FOOD}?_sort=${filterValue}&_order=${orderByValue}`,
+    );
+    return data;
+  }
 
   //USERS
   async getUserList(): Promise<IUser[]> {
@@ -76,6 +86,14 @@ class AppService {
     const { data } = await axiosClient.put(
       `${ENDPOINT_API.USER}/${id}`,
       params,
+    );
+    return data;
+  }
+
+  //SEARCH
+  async searchProductFullText(searchValue: string): Promise<IFood[]> {
+    const { data } = await axiosClient.get(
+      `${ENDPOINT_API.FOOD}?q=${searchValue}`,
     );
     return data;
   }

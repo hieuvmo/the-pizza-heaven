@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 export interface IFood {
   id: number;
-  categoryID: number;
+  categoryId: number;
   name: string;
   thumbnail: string;
   description: string;
@@ -11,7 +11,7 @@ export interface IFood {
 }
 
 export interface IFoodWithoutId {
-  categoryID: number;
+  categoryId: number;
   name: string;
   thumbnail: string;
   description: string;

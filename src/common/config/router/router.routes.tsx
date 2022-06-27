@@ -7,17 +7,22 @@ import { LoginPage } from 'pages/auth/Login/LoginPage';
 import { CategoryListPage } from 'pages/admin/CategoryManagement/CategoryListPage';
 import { CategoryDetailPage } from 'pages/admin/CategoryManagement/CategoryDetailPage';
 import { NewCategoryPage } from 'pages/admin/CategoryManagement/NewCategoryPage';
-import { FoodListPage } from 'pages/admin/ProductManagement/FoodListPage';
-import { FoodDetailPage } from 'pages/admin/ProductManagement/FoodDetailPage';
-import { NewFoodPage } from 'pages/admin/ProductManagement/NewFoodPage';
 import { AccountPage } from 'pages/app/Account/AccountPage';
 import { getLocalStorageItem } from 'common/helper/storage';
+import { ProductSearchPage } from 'pages/app/Search/ProductSearchPage';
+import { ProductListPage } from 'pages/admin/ProductManagement/FoodProductPage';
+import { ProductDetailPage } from 'pages/admin/ProductManagement/ProductDetailPage';
+import { NewProductPage } from 'pages/admin/ProductManagement/NewProductPage';
 
 const staticRoute: IRoute[] = [
   //common
   {
     path: routerPath.common.HOME,
     element: <HomePage />,
+  },
+  {
+    path: routerPath.app.SEARCH,
+    element: <ProductSearchPage />,
   },
 
   //test
@@ -60,15 +65,15 @@ const adminRoute: IRoute[] = [
   },
   {
     path: routerPath.admin.FOOD_LIST,
-    element: <FoodListPage />,
+    element: <ProductListPage />,
   },
   {
     path: routerPath.admin.FOOD_DETAIL,
-    element: <FoodDetailPage />,
+    element: <ProductDetailPage />,
   },
   {
     path: routerPath.admin.FOOD_NEW,
-    element: <NewFoodPage />,
+    element: <NewProductPage />,
   },
 ];
 

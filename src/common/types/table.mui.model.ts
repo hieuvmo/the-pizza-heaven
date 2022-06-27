@@ -15,7 +15,7 @@ export interface ICategoryDataTable {
 
 export type IdFoodType =
   | 'id'
-  | 'categoryID'
+  | 'categoryId'
   | 'name'
   | 'thumbnail'
   | 'description'
@@ -32,7 +32,7 @@ export interface IFoodColumn {
 
 export interface IFoodDataTable {
   id: number;
-  categoryID: number;
+  categoryId: number;
   thumbnail: string;
   name: string;
   description: string;
