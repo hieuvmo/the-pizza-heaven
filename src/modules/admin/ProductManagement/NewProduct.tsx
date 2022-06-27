@@ -27,7 +27,7 @@ import { ICategory } from 'common/types/category.model';
 import appService from 'services/appService';
 import { PRODUCT_SELECT_IS_STOCK } from 'common/constants';
 
-export const NewFood = () => {
+export const NewProduct = () => {
   const { foodList, isLoading } = useAppSelector(
     (state: RootState) => state.food,
   );
@@ -37,7 +37,7 @@ export const NewFood = () => {
   const [imageSelected, setImageSelected] = useState<File>();
   const [isImageLoading, setIsImageLoading] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string>('');
-  const [newCategoryID, setNewCategoryID] = useState<number>();
+  const [newCategoryId, setNewCategoryId] = useState<number>();
   const [newIsStock, setNewIsStock] = useState<boolean>(false);
 
   useEffect(() => {
@@ -56,7 +56,7 @@ export const NewFood = () => {
   const handleSubmitNewFoodForm = async (values: IFoodWithoutId) => {
     const newFoodObj: IFood = {
       id: lastFoodId + 1,
-      categoryID: newCategoryID as number,
+      categoryId: newCategoryId as number,
       thumbnail: imageUrl.replace('http', 'https'),
       name: values.name,
       price: values.price,
@@ -94,7 +94,7 @@ export const NewFood = () => {
   };
 
   const handleChangeSelectCategory = (e: SelectChangeEvent<number>) => {
-    setNewCategoryID(e.target.value as number);
+    setNewCategoryId(e.target.value as number);
   };
 
   const handleChangeSelectIsStock = (e: SelectChangeEvent) => {
@@ -120,7 +120,7 @@ export const NewFood = () => {
           </Typography>
           <FormValidation
             initialValues={{
-              categoryID: 0,
+              categoryId: 0,
               name: '',
               thumbnail: '',
               description: '',
@@ -222,8 +222,8 @@ export const NewFood = () => {
                         <Select
                           required
                           id="category-id"
-                          name="categoryID"
-                          value={newCategoryID}
+                          name="categoryId"
+                          value={newCategoryId}
                           label="Category ID"
                           onChange={handleChangeSelectCategory}
                         >

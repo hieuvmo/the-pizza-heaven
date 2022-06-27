@@ -12,26 +12,26 @@ export const getCategoryList = createAsyncThunk(
 
 export const deleteCategoryById = createAsyncThunk(
   'category/deleteCategoryById',
-  async (categoryID: number) => {
-    const response = await appService.deleteCategoryById(categoryID);
+  async (categoryId: number) => {
+    const response = await appService.deleteCategoryById(categoryId);
     return response;
   },
 );
 
 export const getCategoryDetailById = createAsyncThunk(
   'category/getCategoryDetailById',
-  async (categoryID: number) => {
-    const response = await appService.getCategoryDetailById(categoryID);
+  async (categoryId: number) => {
+    const response = await appService.getCategoryDetailById(categoryId);
     return response;
   },
 );
 
 export const updateCategoryById = createAsyncThunk(
   'category/updateCategoryById',
-  async (params: { updatedCategory: ICategory; categoryID: number }) => {
+  async (params: { updatedCategory: ICategory; categoryId: number }) => {
     const response = await appService.updateCategoryById(
       params.updatedCategory,
-      params.categoryID,
+      params.categoryId,
     );
     return response;
   },

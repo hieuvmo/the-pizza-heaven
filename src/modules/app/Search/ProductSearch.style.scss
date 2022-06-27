@@ -1,0 +1,16 @@
+.product_search {
+  &-container {
+    @apply px-4 py-16;
+  }
+
+  &-heading {
+    @apply flex text-3xl justify-center mb-8;
+
+    .heading-result {
+      @apply pr-4;
+    }
+
+    .heading-value {
+    }
+  }
+}

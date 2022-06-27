@@ -4,7 +4,7 @@ export const CATEGORY_TABLE_HEAD = ['id', 'name', 'status'];
 
 export const PRODUCT_TABLE_HEAD = [
   'id',
-  'categoryID',
+  'categoryId',
   'thumbnail',
   'name',
   'description',
@@ -149,3 +149,34 @@ export const ACCOUNT_ATTRIBUTE = {
     },
   ],
 };
+
+export interface ISelect {
+  value: string;
+  label: string;
+}
+
+export const FILTER_ATTRIBUTE: ISelect[] = [
+  {
+    value: 'id',
+    label: 'Best seller',
+  },
+  {
+    value: 'name',
+    label: 'Name',
+  },
+  {
+    value: 'price',
+    label: 'Price',
+  },
+];
+
+export const ORDER_BY_ATTRIBUTE: ISelect[] = [
+  {
+    value: 'asc',
+    label: 'ASC',
+  },
+  {
+    value: 'desc',
+    label: 'DESC',
+  },
+];

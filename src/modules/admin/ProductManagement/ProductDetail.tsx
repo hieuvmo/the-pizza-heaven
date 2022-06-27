@@ -18,7 +18,7 @@ import { GoBack } from 'components/GoBack/GoBack';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
-  changeCategoryIDSelect,
+  changeCategoryIdSelect,
   changeFoodImageUrl,
   changeIsStockSelect,
   updateFoodById,
@@ -32,7 +32,7 @@ import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
 import { PRODUCT_SELECT_IS_STOCK } from 'common/constants';
 import adminService from 'services/adminService';
 
-export const FoodDetail = () => {
+export const ProductDetail = () => {
   const { foodDetail, isLoading } = useAppSelector(
     (state: RootState) => state.food,
   );
@@ -58,7 +58,7 @@ export const FoodDetail = () => {
   const handleSubmitUpdateFoodList = async (values: IFood) => {
     const newFoodDetail: IFood = {
       id: values.id,
-      categoryID: foodDetail.categoryID,
+      categoryId: foodDetail.categoryId,
       thumbnail: foodDetail.thumbnail.replace('http', 'https'),
       name: values.name,
       price: values.price,
@@ -98,7 +98,7 @@ export const FoodDetail = () => {
   };
 
   const handleChangeSelectCategory = (e: SelectChangeEvent<number>) => {
-    dispatch(changeCategoryIDSelect(e.target.value as number));
+    dispatch(changeCategoryIdSelect(e.target.value as number));
   };
 
   const handleChangeSelectIsStock = (e: SelectChangeEvent) => {
@@ -125,7 +125,7 @@ export const FoodDetail = () => {
           <FormValidation
             initialValues={{
               id: foodDetail.id,
-              categoryID: foodDetail.categoryID,
+              categoryId: foodDetail.categoryId,
               name: foodDetail.name,
               thumbnail: foodDetail.thumbnail,
               description: foodDetail.description,
@@ -218,9 +218,9 @@ export const FoodDetail = () => {
                         <Select
                           required
                           id="category-id"
-                          name="categoryID"
-                          value={foodDetail.categoryID}
-                          label="Category ID"
+                          name="categoryId"
+                          value={foodDetail.categoryId}
+                          label="Category Id"
                           onChange={handleChangeSelectCategory}
                         >
                           {categoryListAPI.map((item) => {

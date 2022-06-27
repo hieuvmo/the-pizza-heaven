@@ -29,7 +29,7 @@ import {
 } from 'redux/features/foodSlice';
 import { RootState } from 'redux/store';
 
-export const FoodList = () => {
+export const ProductList = () => {
   const { foodList, isLoading } = useAppSelector(
     (state: RootState) => state.food,
   );
@@ -50,20 +50,20 @@ export const FoodList = () => {
 
   function createFoodData(
     id: number,
-    categoryID: number,
+    categoryId: number,
     thumbnail: string,
     name: string,
     description: string,
     price: number,
     isStock: boolean,
   ): IFoodDataTable {
-    return { id, categoryID, thumbnail, name, description, price, isStock };
+    return { id, categoryId, thumbnail, name, description, price, isStock };
   }
 
   const foodRows = foodList?.map((item) => {
     return createFoodData(
       item.id,
-      item.categoryID,
+      item.categoryId,
       item.thumbnail,
       item.name,
       item.description,

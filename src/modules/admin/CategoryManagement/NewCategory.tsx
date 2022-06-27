@@ -2,7 +2,10 @@ import { Form, Formik as FormValidation } from 'formik';
 import { Container, Grid, Typography } from '@mui/material';
 import { routerPath } from 'common/config/router/router.path';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
-import categoryModel, { ICategory, ICategoryWithoutId } from 'common/types/category.model';
+import categoryModel, {
+  ICategory,
+  ICategoryWithoutId,
+} from 'common/types/category.model';
 import { GoBack } from 'components/GoBack/GoBack';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +16,9 @@ import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
 import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
 
 export const NewCategory = () => {
-  const { categoryList, isLoading } = useAppSelector((state: RootState) => state.category);
+  const { categoryList, isLoading } = useAppSelector(
+    (state: RootState) => state.category,
+  );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -53,7 +58,14 @@ export const NewCategory = () => {
               setSubmitting(false);
             }}
           >
-            {({ handleChange, handleBlur, touched, errors, values, handleSubmit }) => (
+            {({
+              handleChange,
+              handleBlur,
+              touched,
+              errors,
+              values,
+              handleSubmit,
+            }) => (
               <Form onSubmit={handleSubmit}>
                 <Grid container spacing={2} justifyContent="center">
                   <Grid item xs={10} sm={6} md={4}>
@@ -61,7 +73,7 @@ export const NewCategory = () => {
                       fullWidth
                       id="category-id"
                       className="category-id"
-                      name="categoryID"
+                      name="categoryId"
                       label="ID"
                       type="text"
                       variant="outlined"
@@ -82,12 +94,19 @@ export const NewCategory = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder="Pizza"
-                      error={touched.categoryName && Boolean(errors.categoryName)}
+                      error={
+                        touched.categoryName && Boolean(errors.categoryName)
+                      }
                       helperText={touched.categoryName && errors.categoryName}
                     />
                   </Grid>
                   <Grid item xs={10} sm={6} md={4}>
-                    <ConfirmButton fullWidth type="submit" variant="contained" startIcon={<Check />}>
+                    <ConfirmButton
+                      fullWidth
+                      type="submit"
+                      variant="contained"
+                      startIcon={<Check />}
+                    >
                       Confirm add new
                     </ConfirmButton>
                   </Grid>

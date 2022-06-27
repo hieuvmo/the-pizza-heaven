@@ -15,43 +15,45 @@ import { convertNumberToVND } from 'common/helper/convertToVND';
 import { ColorSchema } from 'common/types/color.model';
 import { IFood } from 'common/types/food.model';
 import { CustomModal } from 'components/Modal/CustomModal';
-import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
-import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
 import React, { useEffect, useState } from 'react';
 import appService from 'services/appService';
+import { FoodDetail } from '../FoodDetail/FoodDetail';
+import './FoodItem.style.scss';
 
 interface FoodItemProps {
-  categoryID: number;
+  categoryId: number;
+  filterValue: string;
+  orderByValue: string;
 }
 
-export const FoodItem: React.FC<FoodItemProps> = ({ categoryID }) => {
-  const [productByCategoryId, setProductByCategoryId] = useState<IFood[]>([]);
+export const FoodItem: React.FC<FoodItemProps> = ({
+  categoryId,
+  filterValue,
+  orderByValue,
+}) => {
+  const [productFilterByCategoryId, setProductFilterByCategoryId] = useState<
+    IFood[]
+  >([]);
   const [foodId, setFoodId] = useState<number>();
-  const [productById, setProductById] = useState<IFood>();
   const [openModal, setOpenModal] = useState(false);
   const [randomNumberOfStock, setRandomNumberOfStock] = useState<number>(0);
 
   useEffect(() => {
-    const fetchProductByCategoryIdAPI = async () => {
+    const fetchProductFilterByCategoryIdAPI = async () => {
       try {
-        const response = await appService.getFoodDetailByCategoryId(categoryID);
-        setProductByCategoryId(response);
+        const response = await appService.filterAndOrderProductById(
+          categoryId,
+          filterValue,
+          orderByValue,
+        );
+        setProductFilterByCategoryId(response);
       } catch (error) {
-        console.log('Error when fetch product by category id', error);
-      }
-    };
-    const fetchProductByIdAPI = async () => {
-      try {
-        const response = await appService.getFoodDetailById(foodId as number);
-        setProductById(response);
-      } catch (error) {
-        console.log('Error when fetch product by id', error);
+        console.log('Error when fetch product filter by category id', error);
       }
     };
 
-    fetchProductByCategoryIdAPI();
-    if (foodId !== undefined) fetchProductByIdAPI();
-  }, [categoryID, foodId]);
+    fetchProductFilterByCategoryIdAPI();
+  }, [categoryId, filterValue, orderByValue]);
 
   const handleClickBuyNowBtn = (foodId: number) => {
     setFoodId(foodId);
@@ -70,7 +72,7 @@ export const FoodItem: React.FC<FoodItemProps> = ({ categoryID }) => {
         }}
         spacing={2}
       >
-        {productByCategoryId.map((item, index) => (
+        {productFilterByCategoryId.map((item, index) => (
           <Grid
             item
             xs={6}
@@ -85,7 +87,7 @@ export const FoodItem: React.FC<FoodItemProps> = ({ categoryID }) => {
                 sx={item.isStock ? { opacity: '1' } : { opacity: '0.25' }}
               >
                 {!item.thumbnail ? (
-                  <div className="h-48 ">
+                  <div className="h-48">
                     <Skeleton
                       variant="rectangular"
                       width={'100%'}
@@ -93,12 +95,10 @@ export const FoodItem: React.FC<FoodItemProps> = ({ categoryID }) => {
                     />
                   </div>
                 ) : (
-                  <div className="h-48 flex relative">
+                  <div className="food_item-container">
                     {!item.isStock && (
-                      <div className="absolute text-white top-1/4 left-1/4 w-1/2 h-1/2 bg-[rgba(0,0,0,0.75)] text-center rounded-[50%]">
-                        <span className="h-full flex justify-center items-center">
-                          Bán hết
-                        </span>
+                      <div className="food_item-sold_out">
+                        <span className="sold_out-text ">Bán hết</span>
                       </div>
                     )}
                     <CardMedia
@@ -127,7 +127,7 @@ export const FoodItem: React.FC<FoodItemProps> = ({ categoryID }) => {
                     sx={{ marginRight: '1rem', fontSize: '0.875rem' }}
                   >
                     Giá:{' '}
-                    <strong className="text-black font-bold text-base">
+                    <strong className="food_item-price">
                       {convertNumberToVND(item.price)}
                     </strong>
                   </Typography>
@@ -164,75 +164,10 @@ export const FoodItem: React.FC<FoodItemProps> = ({ categoryID }) => {
           content: {},
         }}
       >
-        <Grid
-          container
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          spacing={2}
-        >
-          <Grid
-            item
-            xs={12}
-            md={6}
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              width: '100%',
-              alignItems: 'center',
-              flexDirection: 'column',
-            }}
-          >
-            <img
-              className="3/5"
-              src={productById?.thumbnail}
-              alt={productById?.name}
-            />
-            <h2 className="text-[#d30e15] text-3xl font-bold p-2">
-              {convertNumberToVND(productById?.price as number)}
-            </h2>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <div className="w-6 h-[2px] bg-[#008c7a]"></div>
-            <h3 className="text-2xl font-bold mt-1 mb-3 text-[#111111]">
-              {productById?.name}
-            </h3>
-            <p className="text-[#444444]">{productById?.description}</p>
-            <div className="flex justify-between items-center mb-4 mt-8">
-              <div>
-                Product Number: <span>{randomNumberOfStock}</span>
-              </div>
-              <CustomTextField
-                id="number-product"
-                label="Number"
-                type="number"
-                InputProps={{
-                  inputProps: { min: 1, max: randomNumberOfStock },
-                }}
-                defaultValue={1}
-              />
-            </div>
-            <CustomTextField
-              fullWidth
-              multiline
-              minRows={3}
-              maxRows={5}
-              id="note"
-              name="note"
-              label="Note"
-              type="text"
-              placeholder="Enter your note here"
-              variant="outlined"
-            />
-            <div className="mt-8">
-              <ConfirmButton fullWidth type="submit" variant="contained">
-                Add to cart
-              </ConfirmButton>
-            </div>
-          </Grid>
-        </Grid>
+        <FoodDetail
+          foodId={foodId as number}
+          randomNumberOfStock={randomNumberOfStock}
+        />
       </CustomModal>
     </Container>
   );

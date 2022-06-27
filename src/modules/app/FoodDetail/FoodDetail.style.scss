@@ -1,0 +1,25 @@
+.food_detail {
+  &-thumbnail {
+    @apply md:w-1/2 lg:w-3/5;
+  }
+
+  &-price {
+    @apply text-[#d30e15] text-2xl font-bold p-2;
+  }
+
+  &-line {
+    @apply w-6 h-[2px] bg-[#008c7a];
+  }
+
+  &-title {
+    @apply text-2xl font-bold mt-1 mb-3 text-[#111111];
+  }
+
+  &-description {
+    @apply text-[#444444];
+  }
+
+  &-quantity {
+    @apply flex justify-between items-center mb-4 mt-8;
+  }
+}

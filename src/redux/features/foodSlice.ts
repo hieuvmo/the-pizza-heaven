@@ -56,7 +56,7 @@ const initialState: FoodState = {
   editedFood: null,
   foodDetail: {
     id: 0,
-    categoryID: 0,
+    categoryId: 0,
     name: '',
     thumbnail: '',
     description: '',
@@ -70,11 +70,11 @@ export const foodSlice = createSlice({
   name: 'foods',
   initialState,
   reducers: {
-    changeCategoryIDSelect: (
+    changeCategoryIdSelect: (
       state: FoodState,
       action: PayloadAction<number>,
     ) => {
-      state.foodDetail.categoryID = action.payload;
+      state.foodDetail.categoryId = action.payload;
     },
     changeIsStockSelect: (state: FoodState, action: PayloadAction<boolean>) => {
       state.foodDetail.isStock = action.payload;
@@ -177,7 +177,7 @@ export const foodSlice = createSlice({
 });
 
 export const {
-  changeCategoryIDSelect,
+  changeCategoryIdSelect,
   changeIsStockSelect,
   changeFoodImageUrl,
 } = foodSlice.actions;

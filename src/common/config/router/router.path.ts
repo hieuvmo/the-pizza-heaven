@@ -1,8 +1,7 @@
 export const routerPath = {
   app: {
     MY_ACCOUNT: '/app/my-account',
-    FOOD: '/app/food',
-    FOOD_DETAIL: '/app/food/:category',
+    SEARCH: '/search',
   },
   admin: {
     CATEGORY_LIST: '/admin/categories',
