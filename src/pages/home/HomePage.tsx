@@ -1,4 +1,4 @@
-import { Home } from 'modules/home/HomeModule';
+import { Home } from 'modules/home/Home';
 import React from 'react';
 
 export const HomePage = () => {

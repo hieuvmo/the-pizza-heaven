@@ -83,7 +83,7 @@ class AppService {
     return data;
   }
   async updateUserById(params: IUser, id: number): Promise<IUser> {
-    const { data } = await axiosClient.put(
+    const { data } = await axiosClient.patch(
       `${ENDPOINT_API.USER}/${id}`,
       params,
     );
