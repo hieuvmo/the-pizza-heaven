@@ -9,7 +9,7 @@ import { Formik as FormValidation, Form } from 'formik';
 import { ColorSchema } from 'common/types/color.model';
 import { CustomStep } from 'components/MuiStyling/CustomStep.style';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Account.style.scss';
 import userModel, { IUser } from 'common/types/user.model';
 import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
@@ -22,7 +22,6 @@ import appService from 'services/appService';
 import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
 
 export const Account = () => {
-  const [userInfoFromDB, setUserInfoFromDB] = useState<IUser>();
   const [snackbarType, setSnackbarType] = useState<AlertColor>();
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [response, setResponse] = useState('');
@@ -31,7 +30,6 @@ export const Account = () => {
   const submitAccountForm = async (values: IUser) => {
     const accountObj = {
       email: values.email,
-      password: userInfoFromDB?.password as string,
       firstName: values.firstName,
       lastName: values.lastName,
       phone: values.phone,
@@ -53,18 +51,6 @@ export const Account = () => {
       setShowSnackbar(true);
     }
   };
-
-  useEffect(() => {
-    const fetchUserInfoAPI = async () => {
-      try {
-        const response = await appService.getUserById(userInfo.id as number);
-        setUserInfoFromDB(response);
-      } catch (error) {
-        console.log('error when get user info', error);
-      }
-    };
-    fetchUserInfoAPI();
-  }, [userInfo.id]);
 
   return (
     <Container className="px-4 py-12">

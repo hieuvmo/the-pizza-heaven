@@ -14,11 +14,10 @@ import { ProductDetailPage } from 'pages/admin/ProductManagement/ProductDetailPa
 import { NewProductPage } from 'pages/admin/ProductManagement/NewProductPage';
 import { CartPage } from 'pages/app/Cart/CartPage';
 import { PageNotFound } from 'pages/error/PageNotFound';
-import { HomePage } from 'pages/home/PageHome';
+import { HomePage } from 'pages/home/HomePage';
 
 const staticRoute: IRoute[] = [
   //common
-
   {
     path: routerPath.common.HOME,
     element: <HomePage />,
