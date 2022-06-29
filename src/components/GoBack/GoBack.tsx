@@ -14,7 +14,7 @@ export const GoBack: React.FC<GoBackProps> = ({ pageLink }) => {
           sx={{
             marginTop: '2rem',
           }}
-          color="secondary"
+          color="primary"
           variant="contained"
           startIcon={<ArrowBack />}
         >

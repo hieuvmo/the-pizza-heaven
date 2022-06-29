@@ -1,9 +1,13 @@
-import { Grid } from '@mui/material';
+import { AlertColor, Grid } from '@mui/material';
 import { convertNumberToVND } from 'common/helper/convertToVND';
+import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
 import { IFood } from 'common/types/food.model';
 import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
-import React, { useEffect, useState } from 'react';
+import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { addToCart } from 'redux/features/cartSlice';
+import { RootState } from 'redux/store';
 import appService from 'services/appService';
 import './FoodDetail.style.scss';
 
@@ -16,7 +20,21 @@ export const FoodDetail: React.FC<FoodDetailProps> = ({
   foodId,
   randomNumberOfStock,
 }) => {
-  const [productById, setProductById] = useState<IFood>();
+  const dispatch = useAppDispatch();
+  const { snackbarRes } = useAppSelector((state: RootState) => state.cart);
+
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [snackbarType, setSnackbarType] = useState<AlertColor>();
+  const [productById, setProductById] = useState<IFood>({
+    categoryId: 0,
+    id: 0,
+    name: '',
+    thumbnail: '',
+    description: '',
+    price: 0,
+    isStock: false,
+  });
+  const [productQuantity, setProductQuantity] = useState(1);
 
   useEffect(() => {
     const fetchProductByIdAPI = async () => {
@@ -31,73 +49,98 @@ export const FoodDetail: React.FC<FoodDetailProps> = ({
     if (foodId !== undefined) fetchProductByIdAPI();
   }, [foodId]);
 
+  const handleChangeProductQuantity = (e: ChangeEvent<HTMLInputElement>) => {
+    setProductQuantity(parseInt(e.target.value));
+  };
+
+  const handleClickAddToCartBtn = (product: IFood) => {
+    dispatch(addToCart({ ...product, quantity: productQuantity }));
+    setSnackbarType('success');
+    setShowSnackbar(true);
+  };
+
   return (
-    <Grid
-      container
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-      spacing={2}
-    >
+    <>
       <Grid
-        item
-        xs={12}
-        md={6}
+        container
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          width: '100%',
           alignItems: 'center',
-          flexDirection: 'column',
         }}
+        spacing={2}
       >
-        <img
-          className="food_detail-thumbnail"
-          src={productById?.thumbnail}
-          alt={productById?.name}
-        />
-        <h2 className="food_detail-price">
-          {convertNumberToVND(productById?.price as number)}
-        </h2>
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <div className="food_detail-line"></div>
-        <h3 className="food_detail-title">{productById?.name}</h3>
-        <p className="food_detail-description">{productById?.description}</p>
-        <div className="food_detail-quantity">
-          <div>
-            Product Number: <span>{randomNumberOfStock}</span>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            width: '100%',
+            alignItems: 'center',
+            flexDirection: 'column',
+          }}
+        >
+          <img
+            className="food_detail-thumbnail"
+            src={productById.thumbnail}
+            alt={productById.name}
+          />
+          <h2 className="food_detail-price">
+            {convertNumberToVND(productById.price)}
+          </h2>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <div className="food_detail-line"></div>
+          <h3 className="food_detail-title">{productById.name}</h3>
+          <p className="food_detail-description">{productById.description}</p>
+          <div className="food_detail-quantity">
+            <div>
+              Product Quantity: <span>{randomNumberOfStock}</span>
+            </div>
+            <CustomTextField
+              id="product-quantity"
+              label="Quantity"
+              type="number"
+              InputProps={{
+                inputProps: { min: 1, max: randomNumberOfStock },
+              }}
+              value={productQuantity}
+              onChange={handleChangeProductQuantity}
+            />
           </div>
           <CustomTextField
-            id="number-product"
-            label="Number"
-            type="number"
-            InputProps={{
-              inputProps: { min: 1, max: randomNumberOfStock },
-            }}
-            defaultValue={1}
+            fullWidth
+            multiline
+            minRows={3}
+            maxRows={5}
+            id="note"
+            name="note"
+            label="Note"
+            type="text"
+            placeholder="Enter your note here"
+            variant="outlined"
           />
-        </div>
-        <CustomTextField
-          fullWidth
-          multiline
-          minRows={3}
-          maxRows={5}
-          id="note"
-          name="note"
-          label="Note"
-          type="text"
-          placeholder="Enter your note here"
-          variant="outlined"
-        />
-        <div className="mt-8">
-          <ConfirmButton fullWidth type="submit" variant="contained">
-            Add to cart
-          </ConfirmButton>
-        </div>
+          <div className="mt-8">
+            <ConfirmButton
+              fullWidth
+              type="submit"
+              variant="contained"
+              onClick={() => handleClickAddToCartBtn(productById)}
+            >
+              Add to cart
+            </ConfirmButton>
+          </div>
+        </Grid>
       </Grid>
-    </Grid>
+
+      <CustomSnackbar
+        snackbarColor={snackbarType}
+        res={snackbarRes}
+        open={showSnackbar}
+        setOpen={setShowSnackbar}
+      />
+    </>
   );
 };

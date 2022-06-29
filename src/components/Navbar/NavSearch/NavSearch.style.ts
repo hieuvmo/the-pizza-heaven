@@ -34,10 +34,11 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
+    cursor: 'pointer',
     [theme.breakpoints.up('xs')]: {
       width: '0ch',
       '&:focus': {
-        width: '20ch',
+        width: '21ch',
       },
     },
   },

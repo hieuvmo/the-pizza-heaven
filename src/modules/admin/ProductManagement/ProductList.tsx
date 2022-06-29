@@ -13,7 +13,8 @@ import {
 import { Container } from '@mui/system';
 import { routerPath } from 'common/config/router/router.path';
 import { PRODUCT_TABLE_HEAD } from 'common/constants';
-import { capitalizeFirstLetter, shortcutSentence } from 'common/helper/string';
+import { convertNumberToVND } from 'common/helper/convertToVND';
+import { capitalizeFirstLetter } from 'common/helper/string';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
 import {
   IdFoodType,
@@ -22,6 +23,7 @@ import {
 } from 'common/types/table.mui.model';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getCategoryList } from 'redux/features/categorySlice';
 import {
   deleteFoodById,
   getFoodDetailById,
@@ -33,14 +35,20 @@ export const ProductList = () => {
   const { foodList, isLoading } = useAppSelector(
     (state: RootState) => state.food,
   );
+  const { categoryList } = useAppSelector((state: RootState) => state.category);
   const dispatch = useAppDispatch();
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   useEffect(() => {
+    dispatch(getCategoryList());
     dispatch(getFoodList());
   }, [dispatch]);
+
+  const getCategoryNameById = (categoryId: number) => {
+    return categoryList[categoryId - 1].categoryName;
+  };
 
   const foodColumns = PRODUCT_TABLE_HEAD.map((item): IFoodColumn => {
     const foodLabel =
@@ -50,24 +58,24 @@ export const ProductList = () => {
 
   function createFoodData(
     id: number,
-    categoryId: number,
+    categoryName: string,
     thumbnail: string,
     name: string,
     description: string,
-    price: number,
+    price: string,
     isStock: boolean,
   ): IFoodDataTable {
-    return { id, categoryId, thumbnail, name, description, price, isStock };
+    return { id, categoryName, thumbnail, name, description, price, isStock };
   }
 
   const foodRows = foodList?.map((item) => {
     return createFoodData(
       item.id,
-      item.categoryId,
+      getCategoryNameById(item.categoryId),
       item.thumbnail,
       item.name,
       item.description,
-      item.price,
+      convertNumberToVND(item.price),
       item.isStock,
     );
   });
@@ -159,9 +167,9 @@ export const ProductList = () => {
                               }
                               return (
                                 <TableCell key={column.id}>
-                                  {typeof value === 'number'
-                                    ? value
-                                    : shortcutSentence(value, 25)}
+                                  {column.format && typeof value === 'number'
+                                    ? column.format(value)
+                                    : value}
                                 </TableCell>
                               );
                             }
@@ -174,6 +182,7 @@ export const ProductList = () => {
                                   <Button
                                     sx={{
                                       marginRight: '1rem',
+                                      minWidth: '7rem',
                                     }}
                                     color="info"
                                     variant="contained"
@@ -183,6 +192,7 @@ export const ProductList = () => {
                                   </Button>
                                 </Link>
                                 <Button
+                                  sx={{ minWidth: '7rem' }}
                                   onClick={() =>
                                     handleClickDeleteButton(row.id)
                                   }

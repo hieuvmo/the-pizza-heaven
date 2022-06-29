@@ -1,12 +1,13 @@
 import { Container, Grid } from '@mui/material';
 import React from 'react';
-import { PizzaLogo } from '../Logo/PizzaLogo';
+import { PizzaLogo } from '../../Logo/PizzaLogo';
 import Iframe from 'react-iframe';
 import { Box } from '@mui/system';
+import './FooterBottom.style.scss';
 
-export const Footer = () => {
+export const FooterBottom = () => {
   return (
-    <div className="bg-[#2b2f31] px-4 py-12" id="footer">
+    <div className="footer_bottom-container" id="footer">
       <Container maxWidth="lg">
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={4}>
@@ -22,7 +23,7 @@ export const Footer = () => {
                 colorText="text-white"
               />
             </Box>
-            <ul className="text-white text-center">
+            <ul className="footer_bottom-description ">
               <li>Địa chỉ: Số 69 Phú Diễn, Bắc Từ Liêm, Hà Nội</li>
               <li>Hotline: 0964 819 769</li>
               <li>Fanpage: The pizza heaven</li>

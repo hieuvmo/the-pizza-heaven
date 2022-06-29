@@ -67,8 +67,6 @@ export const FoodItem: React.FC<FoodItemProps> = ({
         container
         sx={{
           display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
         }}
         spacing={2}
       >

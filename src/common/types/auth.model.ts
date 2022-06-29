@@ -39,20 +39,20 @@ class AuthValidation {
         ),
       email: Yup.string()
         .email()
-        .min(16, 'Your email is too short')
-        .max(40, 'Your email is too long')
+        .min(16, 'Your email has at least 16 characters')
+        .max(40, 'Your email has maximum 30 characters')
         .required('This field can not be empty'),
       password: Yup.string()
-        .min(6, 'Incorrect password length')
-        .max(30, 'Incorrect password length')
+        .min(8, 'Password has at least 8 characters')
+        .max(30, 'Password has maximum 30 characters')
         .required('This field can not be empty')
         .matches(
           this.validatePasswordRegEx,
           'Must contain 8 characters, one uppercase, one lowercase, one number and one special case character',
         ),
       reTypePassword: Yup.string()
-        .min(6, 'Incorrect password length')
-        .max(30, 'Incorrect password length')
+        .min(8, 'Password has at least 8 characters')
+        .max(30, 'Password has maximum 30 characters')
         .required('This field can not be empty')
         .oneOf([Yup.ref('password')], "Password retype doesn't match "),
     });
@@ -60,12 +60,12 @@ class AuthValidation {
     this.loginSchema = Yup.object().shape({
       email: Yup.string()
         .email()
-        .min(16, 'Your email is too short')
-        .max(40, 'Your email is too long')
+        .min(16, 'Your email has at least 16 characters')
+        .max(40, 'Your email has maximum 30 characters')
         .required('This field can not be empty'),
       password: Yup.string()
-        .min(6, 'Incorrect password length')
-        .max(30, 'Incorrect password length')
+        .min(8, 'Password has at least 8 characters')
+        .max(30, 'Password has maximum 30 characters')
         .required('This field can not be empty'),
     });
   }
