@@ -14,12 +14,12 @@ import { PizzaLogo } from '../Logo/PizzaLogo';
 import { NavAccount } from './NavAccount/NavAccount';
 import { NavSearch } from './NavSearch/NavSearch';
 import { Outlet, useLocation } from 'react-router-dom';
-import { Footer } from 'components/Footer/Footer';
-import { FooterTop } from 'components/Footer/FooterTop';
 import { NAVBAR_ATTRIBUTE } from 'common/constants';
 import { NavCart } from './NavCart/NavCart';
 import { getLocalStorageItem } from 'common/helper/storage';
 import { routerPath } from 'common/config/router/router.path';
+import { FooterTop } from 'components/Footer/FooterTop/FooterTop';
+import { FooterBottom } from 'components/Footer/FooterBottom/FooterBottom';
 
 export const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -29,7 +29,8 @@ export const Navbar = () => {
   let location = useLocation();
   const isAdminPage: boolean = location.pathname.includes('/admin');
   const isHomePage: boolean = location.pathname === routerPath.common.HOME;
-  const isSearchPage: boolean = location.pathname.includes('/search');
+  const isSearchPage: boolean = location.pathname === routerPath.app.SEARCH;
+  const isCartPage: boolean = location.pathname === routerPath.app.CART;
   const isLoginPage: boolean = location.pathname === routerPath.auth.LOGIN;
   const isSignInPage: boolean =
     location.pathname === routerPath.auth.USER_REGISTER;
@@ -49,11 +50,11 @@ export const Navbar = () => {
   };
 
   const renderFooter = () => {
-    if (isHomePage || isSearchPage) {
+    if (isHomePage || isSearchPage || isCartPage) {
       return (
         <>
           <FooterTop />
-          <Footer />
+          <FooterBottom />
         </>
       );
     }

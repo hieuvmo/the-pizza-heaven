@@ -26,11 +26,13 @@ export const FooterTop = () => {
               md={3}
               sx={{ paddingInline: '0.5rem', paddingBlock: '3rem' }}
             >
-              <img className="m-auto mb-7" src={item.image} alt={item.title} />
-              <h1 className="text-center mb-5 uppercase text-xl text-[#008c7a] font-bold">
-                {item.title}
-              </h1>
-              <p className="text-center text-sm">{item.description}</p>
+              <img
+                className="footer_top-icon"
+                src={item.image}
+                alt={item.title}
+              />
+              <h1 className="footer_top-title">{item.title}</h1>
+              <p className="footer_top-description">{item.description}</p>
             </Grid>
           ))}
         </Grid>

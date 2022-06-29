@@ -80,7 +80,7 @@ export const CategoryList = () => {
     <>
       {/* <Navbar /> */}
       {!isLoading && (
-        <Container maxWidth="sm">
+        <Container maxWidth="lg">
           <Paper
             sx={{
               paddingBlock: '3rem',
@@ -103,7 +103,7 @@ export const CategoryList = () => {
                   </TableRow>
                   <TableRow>
                     {categoryColumns.map((column) => (
-                      <TableCell key={column.id} align="right">
+                      <TableCell key={column.id} align="center">
                         {column.label}
                       </TableCell>
                     ))}
@@ -124,7 +124,7 @@ export const CategoryList = () => {
                             const value = row[column.id];
                             if (value) {
                               return (
-                                <TableCell key={column.id} align="right">
+                                <TableCell key={column.id} align="center">
                                   {column.format && typeof value === 'number'
                                     ? column.format(value)
                                     : value}
@@ -132,7 +132,7 @@ export const CategoryList = () => {
                               );
                             } else {
                               return (
-                                <TableCell key={column.id} align="right">
+                                <TableCell key={column.id} align="center">
                                   <Link
                                     to={`${routerPath.admin.CATEGORY_LIST}/${row.id}`}
                                     onClick={() =>

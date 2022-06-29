@@ -1,16 +1,25 @@
 import { routerPath } from 'common/config/router/router.path';
 
-export const CATEGORY_TABLE_HEAD = ['id', 'name', 'status'];
+export const CATEGORY_TABLE_HEAD = ['id', 'name', ''];
 
 export const PRODUCT_TABLE_HEAD = [
   'id',
-  'categoryId',
+  'categoryName',
   'thumbnail',
   'name',
   'description',
   'price',
   'isStock',
-  'status',
+  '',
+];
+
+export const PRODUCT_IN_CART_TABLE_HEAD = [
+  'thumbnail',
+  'name',
+  'price',
+  'quantity',
+  'calculation',
+  '',
 ];
 
 export const PRODUCT_SELECT_IS_STOCK = [
@@ -89,19 +98,23 @@ export const FOOTER_TOP_ARR = [
 export const NAVBAR_ATTRIBUTE = {
   APP: [
     {
-      name: 'Trang chủ',
+      name: 'Home',
       path: routerPath.common.HOME,
     },
     {
-      name: 'Thực đơn',
+      name: 'Menu',
       path: '/#menu',
     },
     {
-      name: 'Liên hệ',
+      name: 'Contact',
       path: '/#footer',
     },
   ],
   ADMIN: [
+    {
+      name: 'Client Home',
+      path: routerPath.common.HOME,
+    },
     {
       name: 'Category',
       path: routerPath.admin.CATEGORY_LIST,
@@ -130,22 +143,22 @@ export const ACCOUNT_ATTRIBUTE = {
   ],
   CLIENT_ACCOUNT: [
     {
-      attribute: 'Log out',
-      path: routerPath.common.HOME,
-    },
-    {
       attribute: 'My Account',
       path: routerPath.app.MY_ACCOUNT,
+    },
+    {
+      attribute: 'Log out',
+      path: routerPath.common.HOME,
     },
   ],
   ADMIN_ACCOUNT: [
     {
-      attribute: 'Log out',
-      path: routerPath.common.HOME,
-    },
-    {
       attribute: 'Management',
       path: routerPath.admin.CATEGORY_LIST,
+    },
+    {
+      attribute: 'Log out',
+      path: routerPath.common.HOME,
     },
   ],
 };

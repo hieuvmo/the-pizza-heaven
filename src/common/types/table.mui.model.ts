@@ -15,7 +15,7 @@ export interface ICategoryDataTable {
 
 export type IdFoodType =
   | 'id'
-  | 'categoryId'
+  | 'categoryName'
   | 'name'
   | 'thumbnail'
   | 'description'
@@ -32,10 +32,33 @@ export interface IFoodColumn {
 
 export interface IFoodDataTable {
   id: number;
-  categoryId: number;
+  categoryName: string;
   thumbnail: string;
   name: string;
   description: string;
-  price: number;
+  price: string;
   isStock: boolean;
+}
+
+export type IdProductInCartType =
+  | 'thumbnail'
+  | 'name'
+  | 'price'
+  | 'quantity'
+  | 'calculation';
+
+export interface IProductInCartColumn {
+  id: IdProductInCartType;
+  label: string;
+  minWidth?: number;
+  align?: 'right';
+  format?: (value: number) => string;
+}
+
+export interface IProductInCartDataTable {
+  thumbnail: string;
+  name: string;
+  price: string;
+  quantity: string;
+  calculation: string;
 }

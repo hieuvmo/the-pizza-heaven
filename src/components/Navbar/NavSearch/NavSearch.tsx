@@ -39,7 +39,7 @@ export const NavSearch: React.FC<NavSearchProps> = ({ isAdminPage }) => {
             <Search />
           </SearchIconWrapper>
           <StyledInputBase
-            placeholder="Nhập đồ ăn bạn muốn…"
+            placeholder="Enter the food you want…"
             inputProps={{ 'aria-label': 'search' }}
             value={searchValue}
             onChange={handleChangeSearchBar}

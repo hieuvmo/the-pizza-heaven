@@ -1,0 +1,9 @@
+.footer_bottom {
+  &-container {
+    @apply bg-[#2b2f31] px-4 py-12;
+  }
+
+  &-description {
+    @apply text-white text-center;
+  }
+}

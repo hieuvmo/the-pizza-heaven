@@ -2,6 +2,9 @@ export const routerPath = {
   app: {
     MY_ACCOUNT: '/app/my-account',
     SEARCH: '/search',
+    CART: '/cart',
+    CHECKOUT: '/checkout',
+    CHECKOUT_SUCCESS: '/checkout/success',
   },
   admin: {
     CATEGORY_LIST: '/admin/categories',
@@ -18,6 +21,7 @@ export const routerPath = {
   },
   common: {
     HOME: '/',
+    NOT_FOUND: '/page-not-found',
   },
   test: {
     TEST: '/test',

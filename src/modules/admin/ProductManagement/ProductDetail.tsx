@@ -213,22 +213,21 @@ export const ProductDetail = () => {
                     <Grid item xs={10} sm={12} md={6}>
                       <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">
-                          Category ID
+                          Category Name
                         </InputLabel>
                         <Select
                           required
                           id="category-id"
                           name="categoryId"
                           value={foodDetail.categoryId}
-                          label="Category Id"
+                          label="Category Name"
                           onChange={handleChangeSelectCategory}
                         >
                           {categoryListAPI.map((item) => {
                             return (
-                              <MenuItem
-                                key={item.id}
-                                value={item.id}
-                              >{`${item.id}-${item.categoryName}`}</MenuItem>
+                              <MenuItem key={item.id} value={item.id}>
+                                {item.categoryName}
+                              </MenuItem>
                             );
                           })}
                         </Select>

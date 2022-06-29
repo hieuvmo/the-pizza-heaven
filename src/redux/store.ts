@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import cartSlice from './features/cartSlice';
 import categorySlice from './features/categorySlice';
 import foodSlice from './features/foodSlice';
 import searchSlice from './features/searchSlice';
@@ -6,6 +7,7 @@ import searchSlice from './features/searchSlice';
 export const store = configureStore({
   reducer: {
     search: searchSlice,
+    cart: cartSlice,
     category: categorySlice,
     food: foodSlice,
   },

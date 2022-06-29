@@ -16,18 +16,18 @@ import { IRoute } from './common/types/router.model';
 
 const ListRoute: React.FC = () => {
   const location = useLocation();
-  const temp = useMemo(() => {
+  const routeList = useMemo(() => {
     return renderRoute();
   }, [location.pathname]);
 
   return (
     <Routes>
-      {temp.map((route: IRoute, index: number) => (
+      {routeList.map((route: IRoute, index: number) => (
         <Route path={route.path} element={<Navbar />} key={index}>
           <Route path={route.path} element={route.element} />;
         </Route>
       ))}
-      <Route path="*" element={<Navigate to={routerPath.common.HOME} />} />
+      <Route path="*" element={<Navigate to={routerPath.common.NOT_FOUND} />} />
     </Routes>
   );
 };
