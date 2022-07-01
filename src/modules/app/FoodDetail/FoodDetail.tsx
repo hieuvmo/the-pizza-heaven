@@ -6,7 +6,7 @@ import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
 import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { addToCart } from 'redux/features/cartSlice';
+import { addToCart } from 'redux/features/app/cartSlice';
 import { RootState } from 'redux/store';
 import appService from 'services/appService';
 import './FoodDetail.style.scss';

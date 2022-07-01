@@ -5,7 +5,7 @@ import foodModel, { IFood, IFoodWithoutId } from 'common/types/food.model';
 import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { addNewFoodToDB } from 'redux/features/foodSlice';
+import { addNewFoodToDB } from 'redux/features/admin/foodSlice';
 import { RootState } from 'redux/store';
 import { GoBack } from 'components/GoBack/GoBack';
 import {

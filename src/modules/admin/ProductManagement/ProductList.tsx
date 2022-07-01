@@ -23,12 +23,12 @@ import {
 } from 'common/types/table.mui.model';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getCategoryList } from 'redux/features/categorySlice';
+import { getCategoryList } from 'redux/features/admin/categorySlice';
 import {
   deleteFoodById,
   getFoodDetailById,
   getFoodList,
-} from 'redux/features/foodSlice';
+} from 'redux/features/admin/foodSlice';
 import { RootState } from 'redux/store';
 
 export const ProductList = () => {

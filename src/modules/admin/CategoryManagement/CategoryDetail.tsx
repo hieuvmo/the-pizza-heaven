@@ -6,7 +6,7 @@ import categoryModel, { ICategory } from 'common/types/category.model';
 import { GoBack } from 'components/GoBack/GoBack';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { updateCategoryById } from 'redux/features/categorySlice';
+import { updateCategoryById } from 'redux/features/admin/categorySlice';
 import { RootState } from 'redux/store';
 import { Form, Formik as FormValidation } from 'formik';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';

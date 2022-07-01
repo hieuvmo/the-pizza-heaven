@@ -3,7 +3,7 @@ import { routerPath } from 'common/config/router/router.path';
 import { useAppDispatch } from 'common/hooks/ReduxHook';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { searchProductFullText } from 'redux/features/searchSlice';
+import { searchProductFullText } from 'redux/features/app/searchSlice';
 import {
   CustomSearch,
   SearchIconWrapper,

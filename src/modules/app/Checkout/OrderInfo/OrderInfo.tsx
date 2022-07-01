@@ -1,5 +1,4 @@
 import { CircularProgress, Container, Grid } from '@mui/material';
-import { routerPath } from 'common/config/router/router.path';
 import { getLocalStorageItem } from 'common/helper/storage';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
 import { IOrder, IOrderStatus } from 'common/types/order.model';
@@ -9,8 +8,8 @@ import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
 import { Formik as FormValidation, Form } from 'formik';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { deleteAllCart } from 'redux/features/cartSlice';
-import { addNewOrder } from 'redux/features/orderSlice';
+import { deleteAllCart } from 'redux/features/app/cartSlice';
+import { addNewOrder } from 'redux/features/app/orderSlice';
 import { RootState } from 'redux/store';
 import appService from 'services/appService';
 

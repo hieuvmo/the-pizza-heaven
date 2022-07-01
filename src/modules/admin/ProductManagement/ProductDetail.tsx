@@ -22,7 +22,7 @@ import {
   changeFoodImageUrl,
   changeIsStockSelect,
   updateFoodById,
-} from 'redux/features/foodSlice';
+} from 'redux/features/admin/foodSlice';
 import { RootState } from 'redux/store';
 import { Check, CloudUpload } from '@mui/icons-material';
 import appService from 'services/appService';

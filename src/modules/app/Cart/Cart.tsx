@@ -31,9 +31,9 @@ import { useNavigate } from 'react-router-dom';
 import {
   changeProductQuantityInCart,
   deleteProductInCart,
-} from 'redux/features/cartSlice';
-import { addNewOrderDetail } from 'redux/features/orderDetailSlice';
-import { setTotalPriceForOrder } from 'redux/features/orderSlice';
+} from 'redux/features/app/cartSlice';
+import { addNewOrderDetail } from 'redux/features/app/orderDetailSlice';
+import { setTotalPriceForOrder } from 'redux/features/app/orderSlice';
 import { RootState } from 'redux/store';
 import './Cart.style.scss';
 

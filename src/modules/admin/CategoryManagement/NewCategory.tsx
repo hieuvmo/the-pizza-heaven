@@ -9,7 +9,7 @@ import categoryModel, {
 import { GoBack } from 'components/GoBack/GoBack';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { addNewCategoryToDB } from 'redux/features/categorySlice';
+import { addNewCategoryToDB } from 'redux/features/admin/categorySlice';
 import { RootState } from 'redux/store';
 import { Check } from '@mui/icons-material';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';

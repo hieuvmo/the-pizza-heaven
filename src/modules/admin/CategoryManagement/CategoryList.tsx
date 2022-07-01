@@ -26,7 +26,7 @@ import {
   deleteCategoryById,
   getCategoryDetailById,
   getCategoryList,
-} from 'redux/features/categorySlice';
+} from 'redux/features/admin/categorySlice';
 import { RootState } from 'redux/store';
 
 export const CategoryList = () => {
