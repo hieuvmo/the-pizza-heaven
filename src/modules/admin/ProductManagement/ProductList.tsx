@@ -13,7 +13,7 @@ import {
 import { Container } from '@mui/system';
 import { routerPath } from 'common/config/router/router.path';
 import { PRODUCT_TABLE_HEAD } from 'common/constants';
-import { convertNumberToVND } from 'common/helper/convertToVND';
+import { convertNumberToVND } from 'common/helper/convertMoney';
 import { capitalizeFirstLetter } from 'common/helper/string';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
 import {

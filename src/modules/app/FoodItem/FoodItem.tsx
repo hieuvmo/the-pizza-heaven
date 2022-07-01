@@ -11,7 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 import { Container } from '@mui/system';
-import { convertNumberToVND } from 'common/helper/convertToVND';
+import { convertNumberToVND } from 'common/helper/convertMoney';
 import { ColorSchema } from 'common/types/color.model';
 import { IFood } from 'common/types/food.model';
 import { CustomModal } from 'components/Modal/CustomModal';
@@ -159,12 +159,13 @@ export const FoodItem: React.FC<FoodItemProps> = ({
         setIsOpen={setOpenModal}
         newStyled={{
           overlay: {},
-          content: {},
+          content: { maxHeight: '80vh', maxWidth: '90%' },
         }}
       >
         <FoodDetail
           foodId={foodId as number}
           randomNumberOfStock={randomNumberOfStock}
+          setOpenModal={setOpenModal}
         />
       </CustomModal>
     </Container>

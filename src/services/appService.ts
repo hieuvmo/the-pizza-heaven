@@ -1,6 +1,7 @@
 import { ENDPOINT_API } from 'common/constants/pathAPI';
 import { ICategory } from 'common/types/category.model';
 import { IFood } from 'common/types/food.model';
+import { IOrder, IOrderDetail } from 'common/types/order.model';
 import { IUser } from 'common/types/user.model';
 import { axiosClient } from './axiosConnection';
 
@@ -94,6 +95,38 @@ class AppService {
   async searchProductFullText(searchValue: string): Promise<IFood[]> {
     const { data } = await axiosClient.get(
       `${ENDPOINT_API.FOOD}?q=${searchValue}`,
+    );
+    return data;
+  }
+
+  //ORDER
+  async addNewOrderToDB(params: IOrder): Promise<IOrder> {
+    const { data } = await axiosClient.post(`${ENDPOINT_API.ORDER}`, params);
+    return data;
+  }
+  async getOrderById(id: number): Promise<IOrder> {
+    const { data } = await axiosClient.get(`${ENDPOINT_API.ORDER}/${id}`);
+    return data;
+  }
+  async changeStatusOrderById(id: number, params: IOrder): Promise<IOrder> {
+    const { data } = await axiosClient.patch(
+      `${ENDPOINT_API.ORDER}/${id}`,
+      params,
+    );
+    return data;
+  }
+
+  //ORDER-DETAIL
+  async addNewOrderDetailToDB(params: IOrderDetail): Promise<IOrderDetail> {
+    const { data } = await axiosClient.post(
+      `${ENDPOINT_API.ORDER_DETAIL}`,
+      params,
+    );
+    return data;
+  }
+  async getOrderDetailByOrderId(orderId: number): Promise<IOrderDetail[]> {
+    const { data } = await axiosClient.get(
+      `${ENDPOINT_API.ORDER_DETAIL}?orderId=${orderId}`,
     );
     return data;
   }

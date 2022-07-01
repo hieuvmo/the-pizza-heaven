@@ -157,7 +157,7 @@ export const NewProduct = () => {
                       {imageUrl === '' ? (
                         <img
                           className="m-auto py-4 w-2/5 sm:w-3/5"
-                          src="https://res.cloudinary.com/duitozhul/image/upload/v1655893058/the-pizza-heaven/other/add-new-thumbnail.svg"
+                          src="https://res.cloudinary.com/duitozhul/image/upload/v1656492494/the-pizza-heaven/other/upload-img.svg"
                           alt=""
                         />
                       ) : (

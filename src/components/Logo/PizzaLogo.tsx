@@ -1,13 +1,17 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 import { routerPath } from '../../common/config/router/router.path';
+import './PizzaLogo.style.scss';
 
 interface PizzaLogoProps {
   customDisplay: {};
   colorText: string;
 }
 
-export const PizzaLogo: React.FC<PizzaLogoProps> = ({ customDisplay, colorText }) => {
+export const PizzaLogo: React.FC<PizzaLogoProps> = ({
+  customDisplay,
+  colorText,
+}) => {
   return (
     <Typography
       variant="h6"
@@ -29,9 +33,9 @@ export const PizzaLogo: React.FC<PizzaLogoProps> = ({ customDisplay, colorText }
         width={48}
         src="https://res.cloudinary.com/duitozhul/image/upload/v1655806771/the-pizza-heaven/logo/pizza-logo.png"
       />
-      <div className={`ml-2 ${colorText}`}>
-        <div className="text-xl tracking-normal">The Pizza Heaven</div>
-        <p className="text-sm font-light tracking-tight">Everything about pizza</p>
+      <div className={`logo-container ${colorText}`}>
+        <div className="logo-title">The Pizza Heaven</div>
+        <p className="logo-description">Everything about pizza</p>
       </div>
     </Typography>
   );

@@ -1,5 +1,5 @@
 import { AlertColor, Grid } from '@mui/material';
-import { convertNumberToVND } from 'common/helper/convertToVND';
+import { convertNumberToVND } from 'common/helper/convertMoney';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
 import { IFood } from 'common/types/food.model';
 import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
@@ -14,11 +14,13 @@ import './FoodDetail.style.scss';
 interface FoodDetailProps {
   foodId: number;
   randomNumberOfStock: number;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const FoodDetail: React.FC<FoodDetailProps> = ({
   foodId,
   randomNumberOfStock,
+  setOpenModal,
 }) => {
   const dispatch = useAppDispatch();
   const { snackbarRes } = useAppSelector((state: RootState) => state.cart);
@@ -57,6 +59,7 @@ export const FoodDetail: React.FC<FoodDetailProps> = ({
     dispatch(addToCart({ ...product, quantity: productQuantity }));
     setSnackbarType('success');
     setShowSnackbar(true);
+    setOpenModal(false);
   };
 
   return (

@@ -29,7 +29,6 @@ export const Account = () => {
 
   const submitAccountForm = async (values: IUser) => {
     const accountObj = {
-      email: values.email,
       firstName: values.firstName,
       lastName: values.lastName,
       phone: values.phone,
@@ -57,7 +56,6 @@ export const Account = () => {
       <p className="text-guild-line">profile</p>
       <FormValidation
         initialValues={{
-          email: userInfo.email,
           firstName: userInfo.firstName,
           lastName: userInfo.lastName,
           phone: userInfo.phone,
@@ -77,28 +75,12 @@ export const Account = () => {
           values,
           handleSubmit,
         }) => (
-          <Form onSubmit={handleSubmit} className="login-form px-8">
+          <Form onSubmit={handleSubmit} className="px-8">
             <div className="mb-8">
-              <p className="text-support">Info</p>
+              <p className="text-support">
+                Email: <strong className="ml-2">{userInfo.email}</strong>
+              </p>
               <Stepper orientation="vertical">
-                <CustomStep active={true}>
-                  <StepLabel color={ColorSchema.LightGreen}>
-                    <p className="font-semibold">Your email</p>
-                  </StepLabel>
-                  <StepContent>
-                    <CustomTextField
-                      fullWidth
-                      id="email"
-                      className="email"
-                      name="email"
-                      type="text"
-                      variant="outlined"
-                      value={values.email}
-                      disabled
-                    />
-                  </StepContent>
-                </CustomStep>
-
                 <CustomStep active={true}>
                   <StepLabel color={ColorSchema.LightGreen}>
                     <p className="font-semibold">Enter your first name</p>

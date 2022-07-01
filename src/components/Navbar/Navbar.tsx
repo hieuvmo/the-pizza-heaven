@@ -30,7 +30,6 @@ export const Navbar = () => {
   const isAdminPage: boolean = location.pathname.includes('/admin');
   const isHomePage: boolean = location.pathname === routerPath.common.HOME;
   const isSearchPage: boolean = location.pathname === routerPath.app.SEARCH;
-  const isCartPage: boolean = location.pathname === routerPath.app.CART;
   const isLoginPage: boolean = location.pathname === routerPath.auth.LOGIN;
   const isSignInPage: boolean =
     location.pathname === routerPath.auth.USER_REGISTER;
@@ -50,7 +49,7 @@ export const Navbar = () => {
   };
 
   const renderFooter = () => {
-    if (isHomePage || isSearchPage || isCartPage) {
+    if (isHomePage || isSearchPage) {
       return (
         <>
           <FooterTop />

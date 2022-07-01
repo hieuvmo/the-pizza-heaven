@@ -1,0 +1,38 @@
+.checkout_success {
+  &-container {
+    @apply px-4 py-12;
+  }
+
+  &-order_no {
+    .done-img {
+      @apply px-4 pt-8 pb-4 m-auto w-[27.5%] sm:w-[20%] md:w-[15%] lg:w-[10%];
+    }
+
+    h3 {
+      @apply text-center uppercase text-lg font-medium my-2;
+
+      span {
+        @apply text-[#ff9c00] font-bold;
+      }
+    }
+  }
+  &-total_price {
+    @apply ml-2 text-lg font-black text-[#d30e15];
+  }
+
+  &-product_order_list {
+    .confirm-order {
+      @apply flex justify-end my-4;
+    }
+  }
+}
+.success_order {
+  &-bg {
+    box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
+    @apply rounded-2xl py-4 px-8 my-8 mx-0 sm:mx-8;
+  }
+
+  &-title {
+    @apply font-medium text-lg mb-6;
+  }
+}

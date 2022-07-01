@@ -15,6 +15,8 @@ import { NewProductPage } from 'pages/admin/ProductManagement/NewProductPage';
 import { CartPage } from 'pages/app/Cart/CartPage';
 import { PageNotFound } from 'pages/error/PageNotFound';
 import { HomePage } from 'pages/home/HomePage';
+import { OrderInfoPage } from 'pages/app/Checkout/OrderInfo/OrderInfoPage';
+import { CheckoutSuccessPage } from 'pages/app/Checkout/CheckoutSuccess/CheckoutSuccessPage';
 
 const staticRoute: IRoute[] = [
   //common
@@ -33,6 +35,14 @@ const staticRoute: IRoute[] = [
   {
     path: routerPath.app.CART,
     element: <CartPage />,
+  },
+  {
+    path: routerPath.app.CHECKOUT_ORDER,
+    element: <OrderInfoPage />,
+  },
+  {
+    path: routerPath.app.CHECKOUT_SUCCESS,
+    element: <CheckoutSuccessPage />,
   },
 
   //test
