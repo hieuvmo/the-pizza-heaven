@@ -6,11 +6,10 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Container } from '@mui/system';
-import './Test.style.scss';
+import './CheckoutStep.style.scss';
+import { CHECKOUT_STEP } from 'common/constants';
 
-const steps = ['Order form', 'Order information', 'Payment information'];
-
-export const Test = () => {
+export const CheckoutStep = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   console.log('activeStep', activeStep);
 
@@ -21,12 +20,11 @@ export const Test = () => {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
   return (
     <Container maxWidth="md">
       <Box sx={{ width: '100%', paddingTop: '5rem' }}>
         <Stepper activeStep={activeStep}>
-          {steps.map((label) => {
+          {CHECKOUT_STEP.map((label) => {
             const stepProps: { completed?: boolean } = {};
             const labelProps: {
               optional?: React.ReactNode;

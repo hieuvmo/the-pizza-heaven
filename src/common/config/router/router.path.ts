@@ -3,8 +3,8 @@ export const routerPath = {
     MY_ACCOUNT: '/app/my-account',
     SEARCH: '/search',
     CART: '/cart',
-    CHECKOUT: '/checkout',
-    CHECKOUT_SUCCESS: '/checkout/success',
+    CHECKOUT_ORDER: '/checkout/order-info',
+    CHECKOUT_SUCCESS: '/checkout/success/:orderId',
   },
   admin: {
     CATEGORY_LIST: '/admin/categories',

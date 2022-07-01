@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
+  destroyLocalStorageItem,
   getLocalStorageItem,
   setLocalStorageItem,
 } from 'common/helper/storage';
-import { IProductInCart } from 'common/types/food.model';
+import { ICart } from 'common/types/cart.model';
 
 interface ChangeProductQuantityProps {
   changeValue: string;
@@ -11,7 +12,7 @@ interface ChangeProductQuantityProps {
 }
 
 export interface CartState {
-  productsInCart: IProductInCart[];
+  productsInCart: ICart[];
   snackbarRes: string;
 }
 
@@ -26,7 +27,7 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state: CartState, action: PayloadAction<IProductInCart>) => {
+    addToCart: (state: CartState, action: PayloadAction<ICart>) => {
       const productIndex = state.productsInCart.findIndex(
         (item) => item.id === action.payload.id, //return -1 when item.id !== action.payload.id
       );
@@ -58,10 +59,18 @@ export const cartSlice = createSlice({
       state.productsInCart = newProductInCart;
       setLocalStorageItem('cart-items', state.productsInCart);
     },
+    deleteAllCart: (state: CartState) => {
+      state.productsInCart = [];
+      destroyLocalStorageItem('cart-items');
+    },
   },
 });
 
-export const { addToCart, changeProductQuantityInCart, deleteProductInCart } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  changeProductQuantityInCart,
+  deleteProductInCart,
+  deleteAllCart,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -22,6 +22,16 @@ export const PRODUCT_IN_CART_TABLE_HEAD = [
   '',
 ];
 
+export const ORDER_DETAIL_TABLE_HEAD = [
+  'ordinalNumber',
+  'thumbnail',
+  'name',
+  'price',
+  'quantity',
+  'calculation',
+  '',
+];
+
 export const PRODUCT_SELECT_IS_STOCK = [
   {
     value: true,
@@ -192,4 +202,10 @@ export const ORDER_BY_ATTRIBUTE: ISelect[] = [
     value: 'desc',
     label: 'DESC',
   },
+];
+
+export const CHECKOUT_STEP = [
+  'Order form',
+  'Order information',
+  'Payment information',
 ];

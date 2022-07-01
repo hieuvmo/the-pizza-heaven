@@ -1,0 +1,13 @@
+.logo {
+  &-container {
+    @apply ml-2 hidden sm:block;
+  }
+
+  &-title {
+    @apply text-xl tracking-normal;
+  }
+
+  &-description {
+    @apply text-sm font-light tracking-tight;
+  }
+}

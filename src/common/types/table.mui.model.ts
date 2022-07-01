@@ -40,25 +40,50 @@ export interface IFoodDataTable {
   isStock: boolean;
 }
 
-export type IdProductInCartType =
+export type IdCartType =
   | 'thumbnail'
   | 'name'
   | 'price'
   | 'quantity'
   | 'calculation';
 
-export interface IProductInCartColumn {
-  id: IdProductInCartType;
+export interface ICartColumn {
+  id: IdCartType;
   label: string;
   minWidth?: number;
   align?: 'right';
   format?: (value: number) => string;
 }
 
-export interface IProductInCartDataTable {
+export interface ICartDataTable {
   thumbnail: string;
   name: string;
   price: string;
   quantity: string;
+  calculation: string;
+}
+
+export type IdOrderDetailType =
+  | 'ordinalNumber'
+  | 'thumbnail'
+  | 'name'
+  | 'price'
+  | 'quantity'
+  | 'calculation';
+
+export interface IOrderDetailColumn {
+  id: IdOrderDetailType;
+  label: string;
+  minWidth?: number;
+  align?: 'right';
+  format?: (value: number) => string;
+}
+
+export interface IOrderDetailDataTable {
+  ordinalNumber: number;
+  thumbnail: string;
+  name: string;
+  price: string;
+  quantity: number;
   calculation: string;
 }

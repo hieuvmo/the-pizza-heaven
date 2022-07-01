@@ -4,7 +4,7 @@
   }
 
   &-heading {
-    @apply font-medium flex justify-center mb-8 text-xl sm:text-2xl md:text-3xl;
+    @apply font-medium flex justify-center mb-6 text-xl sm:text-2xl md:text-3xl;
   }
 
   &-empty {
@@ -19,7 +19,7 @@
     @apply flex justify-evenly pt-4 pb-2;
 
     .total-price {
-      @apply ml-2 font-medium text-lg;
+      @apply ml-2 text-lg font-black text-[#d30e15];
     }
   }
 }

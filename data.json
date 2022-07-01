@@ -721,5 +721,119 @@
       "price": 90000,
       "isStock": true
     }
+  ],
+  "orders": [
+    {
+      "id": 1656603023086,
+      "userId": null,
+      "firstName": "Ben",
+      "lastName": "White",
+      "phone": "4979194649",
+      "address": "Brighton",
+      "totalPrice": 625000,
+      "status": "confirmed"
+    },
+    {
+      "id": 1656603584484,
+      "userId": 2,
+      "firstName": "Viet",
+      "lastName": "Hieu",
+      "phone": "0964819769",
+      "address": "Số 18",
+      "totalPrice": 725000,
+      "status": "confirmed"
+    },
+    {
+      "id": 1656641525008,
+      "userId": 1,
+      "firstName": "Bukayo",
+      "lastName": "Saka",
+      "phone": "2646546465",
+      "address": "Watford",
+      "totalPrice": 139000,
+      "status": "confirmed"
+    },
+    {
+      "id": 1656643278613,
+      "userId": 1,
+      "firstName": "Arron",
+      "lastName": "Ramsdale",
+      "phone": "063465464646",
+      "address": "Sheffield",
+      "totalPrice": 169000,
+      "status": "confirmed"
+    },
+    {
+      "id": 1656662875355,
+      "userId": 1,
+      "firstName": "Arron",
+      "lastName": "Ramsdale",
+      "phone": "0123456789",
+      "address": "London",
+      "totalPrice": 447000,
+      "status": "confirmed"
+    }
+  ],
+  "order-detail": [
+    {
+      "id": 1154470379056,
+      "orderId": 1656603023086,
+      "foodId": 23,
+      "quantity": 1
+    },
+    {
+      "id": 1239867602807,
+      "orderId": 1656603023086,
+      "foodId": 72,
+      "quantity": 2
+    },
+    {
+      "id": 1450064974657,
+      "orderId": 1656603023086,
+      "foodId": 58,
+      "quantity": 4
+    },
+    {
+      "id": 1380607304568,
+      "orderId": 1656603584484,
+      "foodId": 2,
+      "quantity": 1
+    },
+    {
+      "id": 518570411527,
+      "orderId": 1656603584484,
+      "foodId": 4,
+      "quantity": 4
+    },
+    {
+      "id": 1070548755353,
+      "orderId": 1656641525008,
+      "foodId": 3,
+      "quantity": 1
+    },
+    {
+      "id": 50624235703,
+      "orderId": 1656642890546,
+      "foodId": 57,
+      "quantity": 3
+    },
+    {
+      "id": 1305811459711,
+      "orderId": 1656643278613,
+      "foodId": 1,
+      "quantity": 1
+    },
+    {
+      "id": 133457246514,
+      "orderId": 1656662875355,
+      "foodId": 3,
+      "quantity": 1
+    },
+    {
+      "id": 1298947360478,
+      "orderId": 1656662875355,
+      "foodId": 4,
+      "quantity": 1
+    }
   ]
 }

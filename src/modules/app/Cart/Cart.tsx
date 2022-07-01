@@ -12,22 +12,28 @@ import {
   Typography,
 } from '@mui/material';
 import { Container } from '@mui/system';
+import { routerPath } from 'common/config/router/router.path';
 import { PRODUCT_IN_CART_TABLE_HEAD } from 'common/constants';
-import { convertNumberToVND } from 'common/helper/convertToVND';
+import { convertNumberToVND } from 'common/helper/convertMoney';
 import { capitalizeFirstLetter } from 'common/helper/string';
+import { uid } from 'common/helper/uid';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
 import {
-  IdProductInCartType,
-  IProductInCartColumn,
-  IProductInCartDataTable,
+  ICartColumn,
+  ICartDataTable,
+  IdCartType,
 } from 'common/types/table.mui.model';
+
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
 import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   changeProductQuantityInCart,
   deleteProductInCart,
 } from 'redux/features/cartSlice';
+import { addNewOrderDetail } from 'redux/features/orderDetailSlice';
+import { setTotalPriceForOrder } from 'redux/features/orderSlice';
 import { RootState } from 'redux/store';
 import './Cart.style.scss';
 
@@ -37,13 +43,15 @@ export const Cart = () => {
   );
   const dispatch = useAppDispatch();
 
+  const navigate = useNavigate();
+
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [snackbarType, setSnackbarType] = useState<AlertColor>();
 
   const productInCartColumns = PRODUCT_IN_CART_TABLE_HEAD.map(
-    (item): IProductInCartColumn => {
+    (item): ICartColumn => {
       const productInCartLabel = capitalizeFirstLetter(item);
-      return { id: item as IdProductInCartType, label: productInCartLabel };
+      return { id: item as IdCartType, label: productInCartLabel };
     },
   );
 
@@ -53,7 +61,7 @@ export const Cart = () => {
     price: string,
     quantity: string,
     calculation: string,
-  ): IProductInCartDataTable {
+  ): ICartDataTable {
     return { thumbnail, name, price, quantity, calculation };
   }
 
@@ -90,6 +98,20 @@ export const Cart = () => {
     setShowSnackbar(true);
   };
 
+  const handleClickMakePayment = () => {
+    const newOrderDetail = productsInCart.map((item, index) => {
+      return {
+        id: uid(),
+        orderId: Date.now(),
+        foodId: item.id,
+        quantity: item.quantity,
+      };
+    });
+    dispatch(addNewOrderDetail(newOrderDetail));
+    dispatch(setTotalPriceForOrder(totalPrice));
+    navigate(routerPath.app.CHECKOUT_ORDER);
+  };
+
   return (
     <Container maxWidth="lg">
       <div className="cart-container">
@@ -99,7 +121,7 @@ export const Cart = () => {
         {productsInCart.length === 0 ? (
           <div className="cart-empty">
             <img
-              src="https://res.cloudinary.com/duitozhul/image/upload/v1656383537/the-pizza-heaven/other/empty-cart.svg"
+              src="https://res.cloudinary.com/duitozhul/image/upload/v1656383537/the-pizza-heaven/cart/empty-cart.svg"
               alt=""
             />
             <p className="cart-empty_text">You have no products</p>
@@ -194,20 +216,22 @@ export const Cart = () => {
             <div className="cart-payment">
               <Typography
                 sx={{
-                  fontWeight: 400,
+                  fontWeight: 500,
                   textAlign: 'center',
-                  fontSize: '1rem',
+                  fontSize: '1.125rem',
                 }}
               >
                 Total price:{' '}
-                <span className="total-price">
+                <strong className="total-price">
                   {convertNumberToVND(totalPrice)}
-                </span>
+                </strong>
               </Typography>
               <Button
                 color="primary"
                 variant="contained"
                 startIcon={<Payment />}
+                onClick={handleClickMakePayment}
+                disabled={productsInCart.length === 0}
               >
                 Make payment
               </Button>

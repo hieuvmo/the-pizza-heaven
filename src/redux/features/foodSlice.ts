@@ -67,7 +67,7 @@ const initialState: FoodState = {
 };
 
 export const foodSlice = createSlice({
-  name: 'foods',
+  name: 'food',
   initialState,
   reducers: {
     changeCategoryIdSelect: (

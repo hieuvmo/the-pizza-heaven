@@ -11,7 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 import { Container } from '@mui/system';
-import { convertNumberToVND } from 'common/helper/convertToVND';
+import { convertNumberToVND } from 'common/helper/convertMoney';
 import { useAppSelector } from 'common/hooks/ReduxHook';
 import { ColorSchema } from 'common/types/color.model';
 import { IFood } from 'common/types/food.model';
@@ -173,6 +173,7 @@ export const ProductSearch = () => {
         <FoodDetail
           foodId={foodId as number}
           randomNumberOfStock={randomNumberOfStock}
+          setOpenModal={setOpenModal}
         />
       </CustomModal>
     </Container>

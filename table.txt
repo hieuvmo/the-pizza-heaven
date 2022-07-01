@@ -40,9 +40,6 @@
 	phone?:
 	address?:
 	totalPrice: string 	
-	food_id: int
-	quantity: int
-	note: string
 	status: new(add to cart) | confirm | success | cancel
 )
 
@@ -51,7 +48,6 @@
 	order_id: int
 	food_id: int
 	quantity: int
-	note: string
 	status: new(add to cart) | confirm | success | cancel
 )
 
