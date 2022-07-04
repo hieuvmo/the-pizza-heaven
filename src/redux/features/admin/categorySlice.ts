@@ -3,7 +3,7 @@ import { ICategory } from 'common/types/category.model';
 import appService from 'services/appService';
 
 export const getCategoryList = createAsyncThunk(
-  'category/getCategoryList',
+  'admin/category/getCategoryList',
   async () => {
     const response = await appService.getCategoryList();
     return response;
@@ -11,7 +11,7 @@ export const getCategoryList = createAsyncThunk(
 );
 
 export const deleteCategoryById = createAsyncThunk(
-  'category/deleteCategoryById',
+  'admin/category/deleteCategoryById',
   async (categoryId: number) => {
     const response = await appService.deleteCategoryById(categoryId);
     return response;
@@ -19,7 +19,7 @@ export const deleteCategoryById = createAsyncThunk(
 );
 
 export const getCategoryDetailById = createAsyncThunk(
-  'category/getCategoryDetailById',
+  'admin/category/getCategoryDetailById',
   async (categoryId: number) => {
     const response = await appService.getCategoryDetailById(categoryId);
     return response;
@@ -27,7 +27,7 @@ export const getCategoryDetailById = createAsyncThunk(
 );
 
 export const updateCategoryById = createAsyncThunk(
-  'category/updateCategoryById',
+  'admin/category/updateCategoryById',
   async (params: { updatedCategory: ICategory; categoryId: number }) => {
     const response = await appService.updateCategoryById(
       params.updatedCategory,
@@ -38,7 +38,7 @@ export const updateCategoryById = createAsyncThunk(
 );
 
 export const addNewCategoryToDB = createAsyncThunk(
-  'category/addNewCategoryToDB',
+  'admin/category/addNewCategoryToDB',
   async (newCategory: ICategory) => {
     const response = await appService.addNewCategory(newCategory);
     return response;
@@ -65,7 +65,7 @@ const initialState: CategoryState = {
 };
 
 export const categorySlice = createSlice({
-  name: 'category',
+  name: 'admin/category',
   initialState,
   reducers: {},
   extraReducers: {

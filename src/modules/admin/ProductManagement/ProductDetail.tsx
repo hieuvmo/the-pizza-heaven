@@ -34,12 +34,13 @@ import adminService from 'services/adminService';
 
 export const ProductDetail = () => {
   const { foodDetail, isLoading } = useAppSelector(
-    (state: RootState) => state.food,
+    (state: RootState) => state.adminFood,
   );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const [categoryListAPI, setCategoryListAPI] = useState<ICategory[]>([]);
+  console.log('categoryListAPI', categoryListAPI);
   const [imageSelected, setImageSelected] = useState<File>();
   const [isImageLoading, setIsImageLoading] = useState<boolean>(false);
 
