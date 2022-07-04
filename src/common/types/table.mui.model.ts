@@ -87,3 +87,32 @@ export interface IOrderDetailDataTable {
   quantity: number;
   calculation: string;
 }
+
+export type IdOrderType =
+  | 'id'
+  | 'userId'
+  | 'firstName'
+  | 'lastName'
+  | 'phone'
+  | 'address'
+  | 'totalPrice'
+  | 'status';
+
+export interface IOrderColumn {
+  id: IdOrderType;
+  label: string;
+  minWidth?: number;
+  align?: 'right';
+  format?: (value: number) => string;
+}
+
+export interface IOrderDataTable {
+  id: number;
+  userId: number | string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  address: string;
+  totalPrice: string;
+  status: string;
+}

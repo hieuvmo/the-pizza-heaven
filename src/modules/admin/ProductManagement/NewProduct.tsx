@@ -29,7 +29,7 @@ import { PRODUCT_SELECT_IS_STOCK } from 'common/constants';
 
 export const NewProduct = () => {
   const { foodList, isLoading } = useAppSelector(
-    (state: RootState) => state.food,
+    (state: RootState) => state.adminFood,
   );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

@@ -23,7 +23,7 @@ import {
   IOrderDetailColumn,
   IOrderDetailDataTable,
 } from 'common/types/table.mui.model';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import appService from 'services/appService';
 import './CheckoutSuccess.style.scss';
@@ -87,7 +87,7 @@ export const CheckoutSuccess = () => {
       }
     };
     fetchFoodListAPI();
-  }, [orderDetailByOrderId]);
+  }, [orderDetailByOrderId.length]);
 
   const orderDetailColumns = ORDER_DETAIL_TABLE_HEAD.map(
     (item): IOrderDetailColumn => {
@@ -96,31 +96,35 @@ export const CheckoutSuccess = () => {
     },
   );
 
-  function createProductInCartData(
-    ordinalNumber: number,
-    thumbnail: string,
-    name: string,
-    price: string,
-    quantity: number,
-    calculation: string,
-  ): IOrderDetailDataTable {
-    return { ordinalNumber, thumbnail, name, price, quantity, calculation };
-  }
-
-  const orderDetailRows = foodByIdInOrderDetail.map((item, index) => {
-    return createProductInCartData(
-      index + 1,
-      item.thumbnail,
-      item.name,
-      convertNumberToVND(item.price),
-      orderDetailByOrderId[index].quantity,
-      convertNumberToVND(item.price * orderDetailByOrderId[index].quantity),
-    );
-  });
+  const orderDetailRows = useMemo(() => {
+    function createProductInCartData(
+      ordinalNumber: number,
+      thumbnail: string,
+      name: string,
+      price: string,
+      quantity: number,
+      calculation: string,
+    ): IOrderDetailDataTable {
+      return { ordinalNumber, thumbnail, name, price, quantity, calculation };
+    }
+    if (orderDetailByOrderId.length > 0) {
+      return foodByIdInOrderDetail.map((item, index) => {
+        return createProductInCartData(
+          index + 1,
+          item.thumbnail,
+          item.name,
+          convertNumberToVND(item.price),
+          orderDetailByOrderId[index].quantity,
+          convertNumberToVND(item.price * orderDetailByOrderId[index].quantity),
+        );
+      });
+    }
+    return [];
+  }, [foodByIdInOrderDetail, orderDetailByOrderId]);
 
   const handleClickCompleteOrder = async () => {
     try {
-      const response = await appService.changeStatusOrderById(
+      const response = await appService.changeOrderStatusById(
         parseInt(orderId as string),
         {
           ...orderById,
@@ -129,13 +133,13 @@ export const CheckoutSuccess = () => {
       );
       setOrderById(response);
     } catch (error) {
-      console.log('Error when ', error);
+      console.log('Error when changeOrderStatusById', error);
     }
   };
 
   const handleClickCancelOrder = async () => {
     try {
-      const response = await appService.changeStatusOrderById(
+      const response = await appService.changeOrderStatusById(
         parseInt(orderId as string),
         {
           ...orderById,
@@ -144,7 +148,7 @@ export const CheckoutSuccess = () => {
       );
       setOrderById(response);
     } catch (error) {
-      console.log('Error when ', error);
+      console.log('Error when changeOrderStatusById', error);
     }
   };
 
@@ -226,57 +230,59 @@ export const CheckoutSuccess = () => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {orderDetailRows.map((row, index) => {
-                      return (
-                        <TableRow
-                          hover
-                          role="checkbox"
-                          tabIndex={-1}
-                          key={index}
-                        >
-                          {orderDetailColumns.map((column) => {
-                            const value = row[column.id];
-                            if (value !== undefined) {
-                              if (
-                                typeof value === 'string' &&
-                                value.includes('https')
-                              ) {
+                    {orderDetailRows.length > 0 &&
+                      orderDetailRows.map((row, index) => {
+                        return (
+                          <TableRow
+                            hover
+                            role="checkbox"
+                            tabIndex={-1}
+                            key={index}
+                          >
+                            {orderDetailColumns.map((column) => {
+                              const value = row[column.id];
+                              if (value !== undefined) {
+                                if (
+                                  typeof value === 'string' &&
+                                  value.includes('https')
+                                ) {
+                                  return (
+                                    <TableCell
+                                      key={column.id}
+                                      sx={{ width: '7rem' }}
+                                    >
+                                      <img src={`${value}`} alt="123" />
+                                    </TableCell>
+                                  );
+                                }
                                 return (
-                                  <TableCell
-                                    key={column.id}
-                                    sx={{ width: '7rem' }}
-                                  >
-                                    <img src={`${value}`} alt="123" />
+                                  <TableCell key={column.id}>
+                                    {column.format && typeof value === 'number'
+                                      ? column.format(value)
+                                      : value}
                                   </TableCell>
                                 );
                               }
                               return (
                                 <TableCell key={column.id}>
-                                  {column.format && typeof value === 'number'
-                                    ? column.format(value)
-                                    : value}
+                                  <Button
+                                    // onClick={() => handleClickDeleteButton(index)}
+                                    variant="contained"
+                                    startIcon={<Reviews />}
+                                    disabled={
+                                      orderById.status ===
+                                        IOrderStatus.CONFIRM ||
+                                      orderById.status === IOrderStatus.CANCEL
+                                    }
+                                  >
+                                    Review
+                                  </Button>
                                 </TableCell>
                               );
-                            }
-                            return (
-                              <TableCell key={column.id}>
-                                <Button
-                                  // onClick={() => handleClickDeleteButton(index)}
-                                  variant="contained"
-                                  startIcon={<Reviews />}
-                                  disabled={
-                                    orderById.status === IOrderStatus.CONFIRM ||
-                                    orderById.status === IOrderStatus.CANCEL
-                                  }
-                                >
-                                  Review
-                                </Button>
-                              </TableCell>
-                            );
-                          })}
-                        </TableRow>
-                      );
-                    })}
+                            })}
+                          </TableRow>
+                        );
+                      })}
                   </TableBody>
                 </Table>
               </TableContainer>

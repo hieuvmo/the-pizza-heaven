@@ -31,7 +31,7 @@ import { RootState } from 'redux/store';
 
 export const CategoryList = () => {
   const { categoryList, isLoading } = useAppSelector(
-    (state: RootState) => state.category,
+    (state: RootState) => state.adminCategory,
   );
   const dispatch = useAppDispatch();
 
@@ -78,7 +78,6 @@ export const CategoryList = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
       {!isLoading && (
         <Container maxWidth="lg">
           <Paper

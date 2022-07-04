@@ -1,4 +1,5 @@
 import { routerPath } from 'common/config/router/router.path';
+import { IOrderStatus } from 'common/types/order.model';
 
 export const CATEGORY_TABLE_HEAD = ['id', 'name', ''];
 
@@ -32,6 +33,27 @@ export const ORDER_DETAIL_TABLE_HEAD = [
   '',
 ];
 
+export const ADMIN_ORDER_DETAIL_TABLE_HEAD = [
+  'ordinalNumber',
+  'thumbnail',
+  'name',
+  'price',
+  'quantity',
+  'calculation',
+];
+
+export const ORDER_TABLE_HEAD = [
+  'id',
+  'userId',
+  'firstName',
+  'lastName',
+  'phone',
+  'address',
+  'totalPrice',
+  'status',
+  '',
+];
+
 export const PRODUCT_SELECT_IS_STOCK = [
   {
     value: true,
@@ -40,6 +62,21 @@ export const PRODUCT_SELECT_IS_STOCK = [
   {
     value: false,
     label: 'No',
+  },
+];
+
+export const ORDER_SELECT_STATUS = [
+  {
+    value: IOrderStatus.CONFIRM,
+    label: IOrderStatus.CONFIRM.toUpperCase(),
+  },
+  {
+    value: IOrderStatus.COMPLETE,
+    label: IOrderStatus.COMPLETE.toUpperCase(),
+  },
+  {
+    value: IOrderStatus.CANCEL,
+    label: IOrderStatus.CANCEL.toUpperCase(),
   },
 ];
 

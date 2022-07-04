@@ -8,7 +8,7 @@ export const getFoodList = createAsyncThunk('food/getFoodList', async () => {
 });
 
 export const deleteFoodById = createAsyncThunk(
-  'food/deleteFoodById',
+  'admin/food/deleteFoodById',
   async (foodID: number) => {
     const response = await appService.deleteFoodById(foodID);
     return response;
@@ -16,7 +16,7 @@ export const deleteFoodById = createAsyncThunk(
 );
 
 export const getFoodDetailById = createAsyncThunk(
-  'food/getFoodDetailById',
+  'admin/food/getFoodDetailById',
   async (foodID: number) => {
     const response = await appService.getFoodDetailById(foodID);
     return response;
@@ -24,7 +24,7 @@ export const getFoodDetailById = createAsyncThunk(
 );
 
 export const updateFoodById = createAsyncThunk(
-  'food/updateFoodById',
+  'admin/food/updateFoodById',
   async (params: { updatedFood: IFood; foodID: number }) => {
     const response = await appService.updateFoodById(
       params.updatedFood,
@@ -35,7 +35,7 @@ export const updateFoodById = createAsyncThunk(
 );
 
 export const addNewFoodToDB = createAsyncThunk(
-  'food/addNewFoodToDB',
+  'admin/food/addNewFoodToDB',
   async (newFood: IFood) => {
     const response = await appService.addNewFood(newFood);
     return response;
@@ -67,7 +67,7 @@ const initialState: FoodState = {
 };
 
 export const foodSlice = createSlice({
-  name: 'food',
+  name: 'admin/food',
   initialState,
   reducers: {
     changeCategoryIdSelect: (

@@ -17,7 +17,7 @@ import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
 
 export const NewCategory = () => {
   const { categoryList, isLoading } = useAppSelector(
-    (state: RootState) => state.category,
+    (state: RootState) => state.adminCategory,
   );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

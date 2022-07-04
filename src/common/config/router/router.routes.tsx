@@ -17,6 +17,8 @@ import { PageNotFound } from 'pages/error/PageNotFound';
 import { HomePage } from 'pages/home/HomePage';
 import { OrderInfoPage } from 'pages/app/Checkout/OrderInfo/OrderInfoPage';
 import { CheckoutSuccessPage } from 'pages/app/Checkout/CheckoutSuccess/CheckoutSuccessPage';
+import { OrderListPage } from 'pages/admin/OrderManagement/OrderListPage';
+import { OrderDetailPage } from 'pages/admin/OrderManagement/OrderDetailPage';
 
 const staticRoute: IRoute[] = [
   //common
@@ -94,6 +96,14 @@ const adminRoute: IRoute[] = [
   {
     path: routerPath.admin.FOOD_NEW,
     element: <NewProductPage />,
+  },
+  {
+    path: routerPath.admin.ORDER_LIST,
+    element: <OrderListPage />,
+  },
+  {
+    path: routerPath.admin.ORDER_DETAIL,
+    element: <OrderDetailPage />,
   },
 ];
 

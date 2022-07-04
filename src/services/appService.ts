@@ -100,6 +100,10 @@ class AppService {
   }
 
   //ORDER
+  async getOrderList(): Promise<IOrder[]> {
+    const { data } = await axiosClient.get(`${ENDPOINT_API.ORDER}`);
+    return data;
+  }
   async addNewOrderToDB(params: IOrder): Promise<IOrder> {
     const { data } = await axiosClient.post(`${ENDPOINT_API.ORDER}`, params);
     return data;
@@ -108,7 +112,7 @@ class AppService {
     const { data } = await axiosClient.get(`${ENDPOINT_API.ORDER}/${id}`);
     return data;
   }
-  async changeStatusOrderById(id: number, params: IOrder): Promise<IOrder> {
+  async changeOrderStatusById(id: number, params: IOrder): Promise<IOrder> {
     const { data } = await axiosClient.patch(
       `${ENDPOINT_API.ORDER}/${id}`,
       params,
@@ -117,6 +121,10 @@ class AppService {
   }
 
   //ORDER-DETAIL
+  async getOrderDetailList(): Promise<IOrderDetail[]> {
+    const { data } = await axiosClient.get(`${ENDPOINT_API.ORDER_DETAIL}`);
+    return data;
+  }
   async addNewOrderDetailToDB(params: IOrderDetail): Promise<IOrderDetail> {
     const { data } = await axiosClient.post(
       `${ENDPOINT_API.ORDER_DETAIL}`,

@@ -33,9 +33,11 @@ import { RootState } from 'redux/store';
 
 export const ProductList = () => {
   const { foodList, isLoading } = useAppSelector(
-    (state: RootState) => state.food,
+    (state: RootState) => state.adminFood,
   );
-  const { categoryList } = useAppSelector((state: RootState) => state.category);
+  const { categoryList } = useAppSelector(
+    (state: RootState) => state.adminCategory,
+  );
   const dispatch = useAppDispatch();
 
   const [page, setPage] = useState(0);
