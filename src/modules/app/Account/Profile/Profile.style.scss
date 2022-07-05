@@ -1,0 +1,11 @@
+.text-guild-line {
+  @apply text-center uppercase text-3xl font-semibold mb-10 text-[#008c7a];
+}
+
+.text-support {
+  @apply text-lg px-3 py-2 mb-4 text-white bg-[#008c7a];
+}
+
+.MuiStepConnector-line.MuiStepConnector-lineVertical {
+  min-height: 0;
+}

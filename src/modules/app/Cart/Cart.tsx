@@ -8,6 +8,7 @@ import {
   TableCell,
   TableContainer,
   TableHead,
+  TablePagination,
   TableRow,
   Typography,
 } from '@mui/material';
@@ -47,6 +48,8 @@ export const Cart = () => {
 
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [snackbarType, setSnackbarType] = useState<AlertColor>();
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const productInCartColumns = PRODUCT_IN_CART_TABLE_HEAD.map(
     (item): ICartColumn => {
@@ -112,6 +115,17 @@ export const Cart = () => {
     navigate(routerPath.app.CHECKOUT_ORDER);
   };
 
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
   return (
     <Container maxWidth="lg">
       <div className="cart-container">
@@ -134,7 +148,7 @@ export const Cart = () => {
               margin: 'auto',
             }}
           >
-            <TableContainer sx={{ maxHeight: 390 }}>
+            <TableContainer sx={{ maxHeight: '47vh' }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
@@ -144,72 +158,79 @@ export const Cart = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {productInCartRows.map((row, index) => {
-                    return (
-                      <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                        {productInCartColumns.map((column) => {
-                          const value = row[column.id];
-                          if (value !== undefined) {
-                            if (
-                              typeof value === 'string' &&
-                              value.includes('https')
-                            ) {
-                              return (
-                                <TableCell
-                                  key={column.id}
-                                  sx={{ width: '7rem' }}
-                                >
-                                  <img src={`${value}`} alt="123" />
-                                </TableCell>
-                              );
-                            }
-                            if (value === 'input-quantity') {
+                  {productInCartRows
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row, index) => {
+                      return (
+                        <TableRow
+                          hover
+                          role="checkbox"
+                          tabIndex={-1}
+                          key={index}
+                        >
+                          {productInCartColumns.map((column) => {
+                            const value = row[column.id];
+                            if (value !== undefined) {
+                              if (
+                                typeof value === 'string' &&
+                                value.includes('https')
+                              ) {
+                                return (
+                                  <TableCell
+                                    key={column.id}
+                                    sx={{ width: '7rem' }}
+                                  >
+                                    <img src={`${value}`} alt="123" />
+                                  </TableCell>
+                                );
+                              }
+                              if (value === 'input-quantity') {
+                                return (
+                                  <TableCell key={column.id}>
+                                    <CustomTextField
+                                      sx={{ maxWidth: '5rem' }}
+                                      id="product-quantity"
+                                      type="number"
+                                      InputProps={{
+                                        inputProps: { min: 1, max: 999 },
+                                      }}
+                                      value={productsInCart[index].quantity}
+                                      onChange={(
+                                        e: React.ChangeEvent<HTMLInputElement>,
+                                      ) =>
+                                        handleChangeProductQuantity(
+                                          e.target.value,
+                                          index,
+                                        )
+                                      }
+                                    />
+                                  </TableCell>
+                                );
+                              }
                               return (
                                 <TableCell key={column.id}>
-                                  <CustomTextField
-                                    sx={{ maxWidth: '5rem' }}
-                                    id="product-quantity"
-                                    type="number"
-                                    InputProps={{
-                                      inputProps: { min: 1, max: 999 },
-                                    }}
-                                    value={productsInCart[index].quantity}
-                                    onChange={(
-                                      e: React.ChangeEvent<HTMLInputElement>,
-                                    ) =>
-                                      handleChangeProductQuantity(
-                                        e.target.value,
-                                        index,
-                                      )
-                                    }
-                                  />
+                                  {column.format && typeof value === 'number'
+                                    ? column.format(value)
+                                    : value}
                                 </TableCell>
                               );
                             }
                             return (
                               <TableCell key={column.id}>
-                                {column.format && typeof value === 'number'
-                                  ? column.format(value)
-                                  : value}
+                                <Button
+                                  color="error"
+                                  onClick={() => handleClickDeleteButton(index)}
+                                  variant="contained"
+                                  startIcon={<Delete />}
+                                >
+                                  Remove
+                                </Button>
                               </TableCell>
                             );
-                          }
-                          return (
-                            <TableCell key={column.id}>
-                              <Button
-                                color="error"
-                                onClick={() => handleClickDeleteButton(index)}
-                                variant="contained"
-                                startIcon={<Delete />}
-                              >
-                                Remove
-                              </Button>
-                            </TableCell>
-                          );
-                        })}
-                      </TableRow>
-                    );
-                  })}
+                          })}
+                        </TableRow>
+                      );
+                    })}
                 </TableBody>
               </Table>
             </TableContainer>
@@ -236,6 +257,16 @@ export const Cart = () => {
                 Make payment
               </Button>
             </div>
+
+            <TablePagination
+              rowsPerPageOptions={[5, 25, 100]}
+              component="div"
+              count={productInCartRows.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
           </Paper>
         )}
       </div>

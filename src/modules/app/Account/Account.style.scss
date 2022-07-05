@@ -1,7 +1,39 @@
-.text-guild-line {
-  @apply text-center uppercase text-3xl font-semibold mb-10 text-[#008c7a];
-}
+.account {
+  &-avatar {
+    @apply w-4/5 text-center m-auto;
+  }
 
-.text-support {
-  @apply text-lg px-3 py-2 mb-4 text-white bg-[#008c7a];
+  &-info {
+    box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
+    max-width: 22rem;
+    @apply mt-4 mb-12 py-4 px-8 rounded-xl m-auto;
+
+    .full-name {
+      @apply text-2xl text-[#008c7a] font-bold text-center py-4;
+    }
+
+    .info-item {
+      @apply pt-4 pb-2 font-bold;
+
+      span {
+        @apply font-normal ml-2;
+      }
+    }
+  }
+
+  &-tabs {
+    .tab-item {
+      max-width: 20rem;
+      box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem rgba(0, 0, 0, 0.1);
+      border-bottom: 6px;
+      border-right: 6px;
+      @apply m-auto py-2 px-4 mb-4 cursor-pointer font-medium border-[6px];
+    }
+
+    .tab-item.active {
+      border-bottom: 6px;
+      border-right: 6px;
+      @apply border-[#008c7a];
+    }
+  }
 }

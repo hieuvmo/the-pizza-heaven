@@ -8,10 +8,10 @@
     {
       "email": "hieu1234@gmail.com",
       "password": "$2a$10$uDlFJmdocNkvbgKRNpek/u2kEuNDRm1yRDkGhRSlRG63ZCglTknEq",
-      "firstName": "Viet",
-      "lastName": "Hieu",
+      "firstName": "Granit",
+      "lastName": "Xhaka",
       "phone": "0964819769",
-      "address": "Số 18",
+      "address": "Swiss",
       "id": 2
     }
   ],
@@ -736,12 +736,12 @@
     {
       "id": 1656603584484,
       "userId": 2,
-      "firstName": "Viet",
-      "lastName": "Hieu",
+      "firstName": "Granit",
+      "lastName": "Xhaka",
       "phone": "0964819769",
-      "address": "Số 18",
+      "address": "Swiss",
       "totalPrice": 725000,
-      "status": "completed"
+      "status": "confirmed"
     },
     {
       "id": 1656641525008,
@@ -751,7 +751,7 @@
       "phone": "2646546465",
       "address": "Watford",
       "totalPrice": 139000,
-      "status": "cancel"
+      "status": "canceled"
     },
     {
       "id": 1656662875355,
@@ -760,7 +760,7 @@
       "lastName": "Ramsdale",
       "phone": "0123456789",
       "address": "London",
-      "totalPrice": 447000,
+      "totalPrice": 278000,
       "status": "completed"
     },
     {
@@ -771,17 +771,37 @@
       "phone": "16497416797",
       "address": "London",
       "totalPrice": 248000,
+      "status": "canceled"
+    },
+    {
+      "id": 1656994977711,
+      "userId": 2,
+      "firstName": "Granit",
+      "lastName": "Xhaka",
+      "phone": "0964819769",
+      "address": "Swiss",
+      "totalPrice": 714000,
       "status": "completed"
     },
     {
-      "id": 1656836087326,
+      "id": 1656995185194,
       "userId": null,
-      "firstName": "Gabriel",
-      "lastName": "Jesus",
-      "phone": "49871647467",
-      "address": "Manchester ",
-      "totalPrice": 229000,
-      "status": "cancel"
+      "firstName": "William",
+      "lastName": "Saliba",
+      "phone": "16761646794",
+      "address": "Frace",
+      "totalPrice": 725000,
+      "status": "completed"
+    },
+    {
+      "id": 1657002970400,
+      "userId": null,
+      "firstName": "Alex",
+      "lastName": "Lacazette",
+      "phone": "4671677167",
+      "address": "France",
+      "totalPrice": 1009000,
+      "status": "completed"
     }
   ],
   "order-detail": [
@@ -852,16 +872,34 @@
       "quantity": 1
     },
     {
-      "id": 923402315048,
-      "orderId": 1656836087326,
-      "foodId": 4,
-      "quantity": 1
+      "id": 558865203195,
+      "orderId": 1656994977711,
+      "foodId": 3,
+      "quantity": 4
     },
     {
-      "id": 53261507432,
-      "orderId": 1656836087326,
-      "foodId": 71,
-      "quantity": 1
+      "id": 1583349809474,
+      "orderId": 1656994977711,
+      "foodId": 57,
+      "quantity": 2
+    },
+    {
+      "id": 642173558098,
+      "orderId": 1656995185194,
+      "foodId": 65,
+      "quantity": 3
+    },
+    {
+      "id": 1478034770407,
+      "orderId": 1657002970400,
+      "foodId": 57,
+      "quantity": 3
+    },
+    {
+      "id": 534346501549,
+      "orderId": 1657002970400,
+      "foodId": 63,
+      "quantity": 2
     }
   ]
 }

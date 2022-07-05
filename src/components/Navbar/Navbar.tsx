@@ -13,13 +13,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { PizzaLogo } from '../Logo/PizzaLogo';
 import { NavAccount } from './NavAccount/NavAccount';
 import { NavSearch } from './NavSearch/NavSearch';
-import { Outlet, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { NAVBAR_ATTRIBUTE } from 'common/constants';
 import { NavCart } from './NavCart/NavCart';
 import { getLocalStorageItem } from 'common/helper/storage';
-import { routerPath } from 'common/config/router/router.path';
-import { FooterTop } from 'components/Footer/FooterTop/FooterTop';
-import { FooterBottom } from 'components/Footer/FooterBottom/FooterBottom';
 
 export const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -28,11 +25,6 @@ export const Navbar = () => {
 
   let location = useLocation();
   const isAdminPage: boolean = location.pathname.includes('/admin');
-  const isHomePage: boolean = location.pathname === routerPath.common.HOME;
-  const isSearchPage: boolean = location.pathname === routerPath.app.SEARCH;
-  const isLoginPage: boolean = location.pathname === routerPath.auth.LOGIN;
-  const isSignInPage: boolean =
-    location.pathname === routerPath.auth.USER_REGISTER;
 
   const token: string = getLocalStorageItem('access-token');
   const isLogged: boolean = token !== undefined;
@@ -46,17 +38,6 @@ export const Navbar = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const renderFooter = () => {
-    if (isHomePage || isSearchPage) {
-      return (
-        <>
-          <FooterTop />
-          <FooterBottom />
-        </>
-      );
-    }
   };
 
   return (
@@ -174,10 +155,6 @@ export const Navbar = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      <div className={`${!isLoginPage && !isSignInPage && 'pt-14'}`}>
-        <Outlet />
-      </div>
-      {renderFooter()}
     </>
   );
 };

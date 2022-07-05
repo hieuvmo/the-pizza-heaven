@@ -2,7 +2,7 @@ export enum IOrderStatus {
   NEW = 'new',
   CONFIRM = 'confirmed',
   COMPLETE = 'completed',
-  CANCEL = 'cancel',
+  CANCEL = 'canceled',
 }
 
 export interface IOrder {
