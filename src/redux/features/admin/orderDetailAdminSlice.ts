@@ -35,7 +35,12 @@ const initialState: OrderDetailAdminState = {
 export const orderDetailAdminSlice = createSlice({
   name: 'admin/orderDetail',
   initialState,
-  reducers: {},
+  reducers: {
+    resetAdminOrderDetail: (detailState: OrderDetailAdminState) => {
+      detailState.orderDetailById = [];
+      detailState.foodListInOrderDetail = [];
+    },
+  },
   extraReducers: {
     //getOrderDetailByOrderId
     [getOrderDetailByOrderId.pending.toString()]: (
@@ -69,7 +74,10 @@ export const orderDetailAdminSlice = createSlice({
       state: OrderDetailAdminState,
       action: PayloadAction<IFood>,
     ) => {
-      state.foodListInOrderDetail.push(action.payload);
+      state.foodListInOrderDetail = [
+        ...state.foodListInOrderDetail,
+        action.payload,
+      ];
       state.isLoading = false;
     },
     [getFoodListByIdInOrderDetail.rejected.toString()]: (
@@ -79,5 +87,7 @@ export const orderDetailAdminSlice = createSlice({
     },
   },
 });
+
+export const { resetAdminOrderDetail } = orderDetailAdminSlice.actions;
 
 export default orderDetailAdminSlice.reducer;

@@ -23,14 +23,24 @@ export const changeOrderStatusById = createAsyncThunk(
   },
 );
 
+export const getTotalPriceInOrderTable = createAsyncThunk(
+  'admin/order/getTotalPriceInOrderTable',
+  async (id: number) => {
+    const response = await appService.getOrderById(id);
+    return response;
+  },
+);
+
 export interface OrderAdminState {
   orderList: IOrder[];
   isLoading: boolean;
+  totalPrice: number;
 }
 
 const initialState: OrderAdminState = {
   orderList: [],
   isLoading: true,
+  totalPrice: 0,
 };
 
 export const orderAdminSlice = createSlice({
@@ -50,6 +60,25 @@ export const orderAdminSlice = createSlice({
       state.isLoading = false;
     },
     [getOrderList.rejected.toString()]: (state: OrderAdminState) => {
+      state.isLoading = false;
+    },
+
+    //getTotalPriceInOrderTable
+    [getTotalPriceInOrderTable.pending.toString()]: (
+      state: OrderAdminState,
+    ) => {
+      state.isLoading = true;
+    },
+    [getTotalPriceInOrderTable.fulfilled.toString()]: (
+      state: OrderAdminState,
+      action: PayloadAction<IOrder>,
+    ) => {
+      state.totalPrice = action.payload.totalPrice;
+      state.isLoading = false;
+    },
+    [getTotalPriceInOrderTable.rejected.toString()]: (
+      state: OrderAdminState,
+    ) => {
       state.isLoading = false;
     },
 

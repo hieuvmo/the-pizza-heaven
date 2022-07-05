@@ -21,8 +21,9 @@ import {
   IOrderDetailDataTable,
 } from 'common/types/table.mui.model';
 import { GoBack } from 'components/GoBack/GoBack';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { getTotalPriceInOrderTable } from 'redux/features/admin/orderAdminSlice';
 import {
   getFoodListByIdInOrderDetail,
   getOrderDetailByOrderId,
@@ -35,25 +36,21 @@ export const OrderDetail = () => {
   const { orderDetailById, foodListInOrderDetail, isLoading } = useAppSelector(
     (state: RootState) => state.adminOrderDetail,
   );
-  const { orderList } = useAppSelector((state: RootState) => state.adminOrder);
+  const { totalPrice } = useAppSelector((state: RootState) => state.adminOrder);
   const dispatch = useAppDispatch();
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   useEffect(() => {
-    const fetchOrderDetailById = async () => {
-      await dispatch(getOrderDetailByOrderId(parseInt(id as string)));
-    };
-    fetchOrderDetailById();
+    dispatch(getOrderDetailByOrderId(parseInt(id as string)));
+    dispatch(getTotalPriceInOrderTable(parseInt(id as string)));
   }, [dispatch, id]);
 
   useEffect(() => {
     const foodIdArr = orderDetailById.map((item) => item.foodId);
-    console.log('foodIdArr', foodIdArr);
-    foodIdArr.forEach(async (item, index) => {
-      console.log('index', index);
-      await dispatch(getFoodListByIdInOrderDetail(item));
+    foodIdArr.forEach((item) => {
+      dispatch(getFoodListByIdInOrderDetail(item));
     });
   }, [dispatch, orderDetailById.length]);
 
@@ -64,29 +61,34 @@ export const OrderDetail = () => {
     },
   );
 
-  function createProductInCartData(
-    ordinalNumber: number,
-    thumbnail: string,
-    name: string,
-    price: string,
-    quantity: number,
-    calculation: string,
-  ): IOrderDetailDataTable {
-    return { ordinalNumber, thumbnail, name, price, quantity, calculation };
-  }
+  const orderDetailRows = useMemo(() => {
+    function createOrderDetailData(
+      ordinalNumber: number,
+      thumbnail: string,
+      name: string,
+      price: string,
+      quantity: number,
+      calculation: string,
+    ): IOrderDetailDataTable {
+      return { ordinalNumber, thumbnail, name, price, quantity, calculation };
+    }
 
-  const orderDetailRows = orderDetailById.map((item, index) => {
-    console.log('orderDetailById', orderDetailById);
-    return createProductInCartData(
-      index + 1,
-      foodListInOrderDetail[index].thumbnail,
-      foodListInOrderDetail[index].name,
-      convertNumberToVND(foodListInOrderDetail[index].price),
-      item.quantity,
-      convertNumberToVND(foodListInOrderDetail[index].price * item.quantity),
-    );
-  });
-  console.log('orderDetailRows', orderDetailRows);
+    if (orderDetailById.length === foodListInOrderDetail.length) {
+      return orderDetailById.map((item, index) => {
+        return createOrderDetailData(
+          index + 1,
+          foodListInOrderDetail[index].thumbnail,
+          foodListInOrderDetail[index].name,
+          convertNumberToVND(foodListInOrderDetail[index].price),
+          item.quantity,
+          convertNumberToVND(
+            foodListInOrderDetail[index].price * item.quantity,
+          ),
+        );
+      });
+    }
+    return [];
+  }, [orderDetailById, foodListInOrderDetail]);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -112,7 +114,7 @@ export const OrderDetail = () => {
               marginBlock: '2.5rem',
             }}
           >
-            <TableContainer sx={{ maxHeight: '62vh' }}>
+            <TableContainer sx={{ maxHeight: '47vh' }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
@@ -131,44 +133,46 @@ export const OrderDetail = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {orderDetailRows
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row, index) => {
-                      return (
-                        <TableRow
-                          hover
-                          role="checkbox"
-                          tabIndex={-1}
-                          key={index}
-                        >
-                          {orderDetailColumns.map((column) => {
-                            const value = row[column.id];
-                            // if (value !== undefined) {
-                            if (
-                              typeof value === 'string' &&
-                              value.includes('https')
-                            ) {
+                  {orderDetailRows.length === orderDetailById.length &&
+                    orderDetailRows
+                      .slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage,
+                      )
+                      .map((row, index) => {
+                        return (
+                          <TableRow
+                            hover
+                            role="checkbox"
+                            tabIndex={-1}
+                            key={index}
+                          >
+                            {orderDetailColumns.map((column) => {
+                              const value = row[column.id];
+                              if (
+                                typeof value === 'string' &&
+                                value.includes('https')
+                              ) {
+                                return (
+                                  <TableCell
+                                    key={column.id}
+                                    sx={{ width: '7rem' }}
+                                  >
+                                    <img src={`${value}`} alt="123" />
+                                  </TableCell>
+                                );
+                              }
                               return (
-                                <TableCell
-                                  key={column.id}
-                                  sx={{ width: '7rem' }}
-                                >
-                                  <img src={`${value}`} alt="123" />
+                                <TableCell key={column.id}>
+                                  {column.format && typeof value === 'number'
+                                    ? column.format(value)
+                                    : value}
                                 </TableCell>
                               );
-                            }
-                            return (
-                              <TableCell key={column.id}>
-                                {column.format && typeof value === 'number'
-                                  ? column.format(value)
-                                  : value}
-                              </TableCell>
-                            );
-                            // }
-                          })}
-                        </TableRow>
-                      );
-                    })}
+                            })}
+                          </TableRow>
+                        );
+                      })}
                 </TableBody>
               </Table>
             </TableContainer>
@@ -181,9 +185,9 @@ export const OrderDetail = () => {
               }}
             >
               Total price:{' '}
-              {/* <strong className="checkout_success-total_price">
-          {convertNumberToVND(orderList)}
-        </strong> */}
+              <strong className="checkout_success-total_price">
+                {convertNumberToVND(totalPrice)}
+              </strong>
             </Typography>
             <TablePagination
               rowsPerPageOptions={[5, 25, 100]}

@@ -8,10 +8,12 @@ import {
   TableCell,
   TableContainer,
   TableHead,
+  TablePagination,
   TableRow,
   Typography,
 } from '@mui/material';
 import { Container } from '@mui/system';
+import { routerPath } from 'common/config/router/router.path';
 import { ORDER_DETAIL_TABLE_HEAD } from 'common/constants';
 import { convertDateNowToDayMonthYear } from 'common/helper/convertDate';
 import { convertNumberToVND } from 'common/helper/convertMoney';
@@ -23,6 +25,7 @@ import {
   IOrderDetailColumn,
   IOrderDetailDataTable,
 } from 'common/types/table.mui.model';
+import { GoBack } from 'components/GoBack/GoBack';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import appService from 'services/appService';
@@ -30,6 +33,9 @@ import './CheckoutSuccess.style.scss';
 
 export const CheckoutSuccess = () => {
   const { orderId } = useParams();
+
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [orderById, setOrderById] = useState<IOrder>({
     id: 0,
@@ -88,6 +94,17 @@ export const CheckoutSuccess = () => {
     };
     fetchFoodListAPI();
   }, [orderDetailByOrderId.length]);
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
   const orderDetailColumns = ORDER_DETAIL_TABLE_HEAD.map(
     (item): IOrderDetailColumn => {
@@ -154,6 +171,7 @@ export const CheckoutSuccess = () => {
 
   return (
     <Container maxWidth="lg">
+      <GoBack pageLink={routerPath.common.HOME} />
       <div className="checkout_success-container">
         <div className="checkout_success-order_no">
           <img
@@ -220,7 +238,7 @@ export const CheckoutSuccess = () => {
                 margin: 'auto',
               }}
             >
-              <TableContainer sx={{ maxHeight: 390 }}>
+              <TableContainer sx={{ maxHeight: '32vh' }}>
                 <Table stickyHeader aria-label="sticky table">
                   <TableHead>
                     <TableRow>
@@ -231,58 +249,64 @@ export const CheckoutSuccess = () => {
                   </TableHead>
                   <TableBody>
                     {orderDetailRows.length > 0 &&
-                      orderDetailRows.map((row, index) => {
-                        return (
-                          <TableRow
-                            hover
-                            role="checkbox"
-                            tabIndex={-1}
-                            key={index}
-                          >
-                            {orderDetailColumns.map((column) => {
-                              const value = row[column.id];
-                              if (value !== undefined) {
-                                if (
-                                  typeof value === 'string' &&
-                                  value.includes('https')
-                                ) {
+                      orderDetailRows
+                        .slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage,
+                        )
+                        .map((row, index) => {
+                          return (
+                            <TableRow
+                              hover
+                              role="checkbox"
+                              tabIndex={-1}
+                              key={index}
+                            >
+                              {orderDetailColumns.map((column) => {
+                                const value = row[column.id];
+                                if (value !== undefined) {
+                                  if (
+                                    typeof value === 'string' &&
+                                    value.includes('https')
+                                  ) {
+                                    return (
+                                      <TableCell
+                                        key={column.id}
+                                        sx={{ width: '7rem' }}
+                                      >
+                                        <img src={`${value}`} alt="123" />
+                                      </TableCell>
+                                    );
+                                  }
                                   return (
-                                    <TableCell
-                                      key={column.id}
-                                      sx={{ width: '7rem' }}
-                                    >
-                                      <img src={`${value}`} alt="123" />
+                                    <TableCell key={column.id}>
+                                      {column.format &&
+                                      typeof value === 'number'
+                                        ? column.format(value)
+                                        : value}
                                     </TableCell>
                                   );
                                 }
                                 return (
                                   <TableCell key={column.id}>
-                                    {column.format && typeof value === 'number'
-                                      ? column.format(value)
-                                      : value}
+                                    <Button
+                                      // onClick={() => handleClickDeleteButton(index)}
+                                      variant="contained"
+                                      startIcon={<Reviews />}
+                                      disabled={
+                                        orderById.status ===
+                                          IOrderStatus.CONFIRM ||
+                                        orderById.status === IOrderStatus.CANCEL
+                                      }
+                                    >
+                                      Review
+                                    </Button>
                                   </TableCell>
                                 );
-                              }
-                              return (
-                                <TableCell key={column.id}>
-                                  <Button
-                                    // onClick={() => handleClickDeleteButton(index)}
-                                    variant="contained"
-                                    startIcon={<Reviews />}
-                                    disabled={
-                                      orderById.status ===
-                                        IOrderStatus.CONFIRM ||
-                                      orderById.status === IOrderStatus.CANCEL
-                                    }
-                                  >
-                                    Review
-                                  </Button>
-                                </TableCell>
-                              );
-                            })}
-                          </TableRow>
-                        );
-                      })}
+                              })}
+                            </TableRow>
+                          );
+                        })}
                   </TableBody>
                 </Table>
               </TableContainer>
@@ -299,6 +323,15 @@ export const CheckoutSuccess = () => {
                   {convertNumberToVND(orderById.totalPrice)}
                 </strong>
               </Typography>
+              <TablePagination
+                rowsPerPageOptions={[5, 25, 100]}
+                component="div"
+                count={orderDetailRows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
             </Paper>
             <div className="confirm-order">
               <Button
@@ -324,7 +357,7 @@ export const CheckoutSuccess = () => {
                   orderById.status === IOrderStatus.CANCEL
                 }
               >
-                Cancel
+                Canceled
               </Button>
             </div>
           </div>

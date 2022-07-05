@@ -119,6 +119,12 @@ class AppService {
     );
     return data;
   }
+  async getOrderByUserId(userId: number): Promise<IOrder[]> {
+    const { data } = await axiosClient.get(
+      `${ENDPOINT_API.ORDER}?userId=${userId}`,
+    );
+    return data;
+  }
 
   //ORDER-DETAIL
   async getOrderDetailList(): Promise<IOrderDetail[]> {

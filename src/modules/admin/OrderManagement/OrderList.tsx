@@ -1,4 +1,4 @@
-import { Details } from '@mui/icons-material';
+import { Info } from '@mui/icons-material';
 import {
   Button,
   MenuItem,
@@ -31,6 +31,7 @@ import {
   changeOrderStatusById,
   getOrderList,
 } from 'redux/features/admin/orderAdminSlice';
+import { resetAdminOrderDetail } from 'redux/features/admin/orderDetailAdminSlice';
 import { RootState } from 'redux/store';
 import './OrderList.style.scss';
 
@@ -44,6 +45,7 @@ export const OrderList = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   useEffect(() => {
+    dispatch(resetAdminOrderDetail());
     dispatch(getOrderList());
   }, [dispatch]);
 
@@ -102,6 +104,7 @@ export const OrderList = () => {
   const handleChangeStatusSelect = (
     e: SelectChangeEvent,
     orderIndex: number,
+
     orderId: number,
   ) => {
     const newUpdatedOrder: IOrder = {
@@ -161,34 +164,40 @@ export const OrderList = () => {
                               if (value === 'input-select') {
                                 return (
                                   <TableCell key={column.id}>
-                                    <Select
-                                      fullWidth
-                                      required
-                                      id="status"
-                                      name="status"
-                                      value={orderList[rowIndex].status}
-                                      onChange={(e: SelectChangeEvent) =>
-                                        handleChangeStatusSelect(
-                                          e,
-                                          rowIndex,
-                                          row.id,
-                                        )
-                                      }
-                                    >
-                                      {ORDER_SELECT_STATUS.map(
-                                        (item, index) => {
-                                          return (
-                                            <MenuItem
-                                              sx={{ fontSize: '0.875rem' }}
-                                              key={index}
-                                              value={item.value}
-                                            >
-                                              {item.label}
-                                            </MenuItem>
-                                          );
-                                        },
-                                      )}
-                                    </Select>
+                                    <div className="admin-order-list">
+                                      <Select
+                                        fullWidth
+                                        required
+                                        id="status"
+                                        name="status"
+                                        value={
+                                          orderList[
+                                            rowIndex + page * rowsPerPage
+                                          ].status
+                                        }
+                                        onChange={(e: SelectChangeEvent) =>
+                                          handleChangeStatusSelect(
+                                            e,
+                                            rowIndex + page * rowsPerPage,
+                                            row.id,
+                                          )
+                                        }
+                                      >
+                                        {ORDER_SELECT_STATUS.map(
+                                          (item, index) => {
+                                            return (
+                                              <MenuItem
+                                                sx={{ fontSize: '0.875rem' }}
+                                                key={index}
+                                                value={item.value}
+                                              >
+                                                {item.label}
+                                              </MenuItem>
+                                            );
+                                          },
+                                        )}
+                                      </Select>
+                                    </div>
                                   </TableCell>
                                 );
                               }
@@ -204,11 +213,10 @@ export const OrderList = () => {
                               <TableCell key={column.id}>
                                 <Link
                                   to={`${routerPath.admin.ORDER_LIST}/${row.id}`}
-                                  //   onClick={() => handleClickEditButton(row.id)}
                                 >
                                   <Button
                                     variant="contained"
-                                    startIcon={<Details />}
+                                    startIcon={<Info />}
                                   >
                                     Detail
                                   </Button>
