@@ -19,6 +19,7 @@ import { OrderInfoPage } from 'pages/app/Checkout/OrderInfo/OrderInfoPage';
 import { CheckoutSuccessPage } from 'pages/app/Checkout/CheckoutSuccess/CheckoutSuccessPage';
 import { OrderListPage } from 'pages/admin/OrderManagement/OrderListPage';
 import { OrderDetailPage } from 'pages/admin/OrderManagement/OrderDetailPage';
+import { OrderSearchPage } from 'pages/app/Order/OrderSearchPage';
 
 const staticRoute: IRoute[] = [
   //common
@@ -45,6 +46,10 @@ const staticRoute: IRoute[] = [
   {
     path: routerPath.app.CHECKOUT_SUCCESS,
     element: <CheckoutSuccessPage />,
+  },
+  {
+    path: routerPath.app.ORDER,
+    element: <OrderSearchPage />,
   },
 
   //test
