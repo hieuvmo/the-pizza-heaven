@@ -802,6 +802,16 @@
       "address": "France",
       "totalPrice": 1009000,
       "status": "completed"
+    },
+    {
+      "id": 1657010240151,
+      "userId": 2,
+      "firstName": "Granit",
+      "lastName": "Xhaka",
+      "phone": "0964819769",
+      "address": "Swiss",
+      "totalPrice": 716000,
+      "status": "confirmed"
     }
   ],
   "order-detail": [
@@ -899,6 +909,18 @@
       "id": 534346501549,
       "orderId": 1657002970400,
       "foodId": 63,
+      "quantity": 2
+    },
+    {
+      "id": 1629654831982,
+      "orderId": 1657010240151,
+      "foodId": 39,
+      "quantity": 2
+    },
+    {
+      "id": 934777133363,
+      "orderId": 1657010240151,
+      "foodId": 57,
       "quantity": 2
     }
   ]
