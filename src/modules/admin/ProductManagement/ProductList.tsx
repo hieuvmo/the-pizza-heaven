@@ -1,5 +1,6 @@
 import { Add, Delete, Edit } from '@mui/icons-material';
 import {
+  AlertColor,
   Button,
   Paper,
   Table,
@@ -21,6 +22,7 @@ import {
   IFoodColumn,
   IFoodDataTable,
 } from 'common/types/table.mui.model';
+import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getCategoryList } from 'redux/features/admin/categorySlice';
@@ -42,6 +44,9 @@ export const ProductList = () => {
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [responseFromAPI, setResponseFromAPI] = useState('');
+  const [snackbarType, setSnackbarType] = useState<AlertColor>();
 
   useEffect(() => {
     dispatch(getCategoryList());
@@ -65,9 +70,9 @@ export const ProductList = () => {
     name: string,
     description: string,
     price: string,
-    isStock: boolean,
+    isStocked: boolean,
   ): IFoodDataTable {
-    return { id, categoryName, thumbnail, name, description, price, isStock };
+    return { id, categoryName, thumbnail, name, description, price, isStocked };
   }
 
   const foodRows = foodList?.map((item) => {
@@ -98,6 +103,12 @@ export const ProductList = () => {
   };
 
   const handleClickDeleteButton = async (foodId: number) => {
+    setSnackbarType('error');
+    setResponseFromAPI(
+      `You have deleted ${foodList[foodId - 1].name} from database`,
+    );
+    setShowSnackbar(true);
+
     await dispatch(deleteFoodById(foodId));
     await dispatch(getFoodList());
   };
@@ -114,7 +125,7 @@ export const ProductList = () => {
               marginBlock: '2.5rem',
             }}
           >
-            <TableContainer sx={{ maxHeight: 440 }}>
+            <TableContainer sx={{ maxHeight: '55vh' }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
@@ -234,6 +245,13 @@ export const ProductList = () => {
               onRowsPerPageChange={handleChangeRowsPerPage}
             />
           </Paper>
+
+          <CustomSnackbar
+            snackbarColor={snackbarType}
+            res={responseFromAPI}
+            open={showSnackbar}
+            setOpen={setShowSnackbar}
+          />
         </Container>
       )}
     </>

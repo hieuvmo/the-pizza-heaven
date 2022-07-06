@@ -1,5 +1,6 @@
 import { Add, Delete, Edit } from '@mui/icons-material';
 import {
+  AlertColor,
   Button,
   Container,
   Paper,
@@ -20,6 +21,7 @@ import {
   ICategoryDataTable,
   IdCategoryType,
 } from 'common/types/table.mui.model';
+import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -37,6 +39,9 @@ export const CategoryList = () => {
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [responseFromAPI, setResponseFromAPI] = useState('');
+  const [snackbarType, setSnackbarType] = useState<AlertColor>();
 
   useEffect(() => {
     dispatch(getCategoryList());
@@ -72,6 +77,13 @@ export const CategoryList = () => {
   };
 
   const handleClickDeleteButton = async (categoryId: number) => {
+    setSnackbarType('error');
+    setResponseFromAPI(
+      `You have deleted ${
+        categoryList[categoryId - 1].categoryName
+      } from database`,
+    );
+    setShowSnackbar(true);
     await dispatch(deleteCategoryById(categoryId));
     await dispatch(getCategoryList());
   };
@@ -88,7 +100,7 @@ export const CategoryList = () => {
               marginBlock: '2.5rem',
             }}
           >
-            <TableContainer sx={{ maxHeight: 390 }}>
+            <TableContainer sx={{ maxHeight: '56vh' }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
@@ -190,6 +202,13 @@ export const CategoryList = () => {
               onRowsPerPageChange={handleChangeRowsPerPage}
             />
           </Paper>
+
+          <CustomSnackbar
+            snackbarColor={snackbarType}
+            res={responseFromAPI}
+            open={showSnackbar}
+            setOpen={setShowSnackbar}
+          />
         </Container>
       )}
     </>

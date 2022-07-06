@@ -10,7 +10,7 @@ export const PRODUCT_TABLE_HEAD = [
   'name',
   'description',
   'price',
-  'isStock',
+  'isStocked',
   '',
 ];
 
@@ -19,7 +19,7 @@ export const PRODUCT_IN_CART_TABLE_HEAD = [
   'name',
   'price',
   'quantity',
-  'calculation',
+  'total',
   '',
 ];
 
@@ -29,7 +29,7 @@ export const ORDER_DETAIL_TABLE_HEAD = [
   'name',
   'price',
   'quantity',
-  'calculation',
+  'total',
   '',
 ];
 
@@ -39,12 +39,12 @@ export const ADMIN_ORDER_DETAIL_TABLE_HEAD = [
   'name',
   'price',
   'quantity',
-  'calculation',
+  'total',
 ];
 
 export const ORDER_TABLE_HEAD = [
   'id',
-  'userId',
+  'user',
   'firstName',
   'lastName',
   'phone',
@@ -219,7 +219,7 @@ export interface ISelect {
   label: string;
 }
 
-export const FILTER_ATTRIBUTE: ISelect[] = [
+export const PRODUCT_FILTER_ATTRIBUTE: ISelect[] = [
   {
     value: 'id',
     label: 'Best seller',
@@ -234,14 +234,44 @@ export const FILTER_ATTRIBUTE: ISelect[] = [
   },
 ];
 
-export const ORDER_BY_ATTRIBUTE: ISelect[] = [
+export const ORDER_FILTER_ATTRIBUTE: ISelect[] = [
+  {
+    value: 'all',
+    label: 'All',
+  },
+  {
+    value: 'confirmed',
+    label: 'Confirmed',
+  },
+  {
+    value: 'completed',
+    label: 'Completed',
+  },
+  {
+    value: 'canceled',
+    label: 'Canceled',
+  },
+];
+
+export const PRODUCT_ORDER_BY_ATTRIBUTE: ISelect[] = [
   {
     value: 'asc',
-    label: 'ASC',
+    label: 'Ascending',
   },
   {
     value: 'desc',
-    label: 'DESC',
+    label: 'Descending',
+  },
+];
+
+export const ORDER_ORDER_BY_ATTRIBUTE: ISelect[] = [
+  {
+    value: 'desc',
+    label: 'Latest',
+  },
+  {
+    value: 'asc',
+    label: 'Oldest',
   },
 ];
 

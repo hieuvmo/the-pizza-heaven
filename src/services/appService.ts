@@ -125,6 +125,18 @@ class AppService {
     );
     return data;
   }
+  async getOrderByStatus(status: string, orderBy: string): Promise<IOrder[]> {
+    if (status === 'all') {
+      const { data } = await axiosClient.get(
+        `${ENDPOINT_API.ORDER}?_sort=id&_order=${orderBy}`,
+      );
+      return data;
+    }
+    const { data } = await axiosClient.get(
+      `${ENDPOINT_API.ORDER}?_sort=id&_order=${orderBy}&status=${status}`,
+    );
+    return data;
+  }
 
   //ORDER-DETAIL
   async getOrderDetailList(): Promise<IOrderDetail[]> {

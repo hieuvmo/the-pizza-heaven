@@ -63,9 +63,9 @@ export const Cart = () => {
     name: string,
     price: string,
     quantity: string,
-    calculation: string,
+    total: string,
   ): ICartDataTable {
-    return { thumbnail, name, price, quantity, calculation };
+    return { thumbnail, name, price, quantity, total };
   }
 
   const productInCartRows = productsInCart.map((item) => {

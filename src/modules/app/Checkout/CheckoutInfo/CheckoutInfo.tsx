@@ -118,9 +118,9 @@ export const CheckoutInfo: React.FC<CheckoutInfoProps> = ({ orderId }) => {
       name: string,
       price: string,
       quantity: number,
-      calculation: string,
+      total: string,
     ): IOrderDetailDataTable {
-      return { ordinalNumber, thumbnail, name, price, quantity, calculation };
+      return { ordinalNumber, thumbnail, name, price, quantity, total };
     }
     if (orderDetailByOrderId.length > 0) {
       return foodByIdInOrderDetail.map((item, index) => {

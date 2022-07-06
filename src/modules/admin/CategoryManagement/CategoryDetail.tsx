@@ -68,20 +68,7 @@ export const CategoryDetail = () => {
             }) => (
               <Form onSubmit={handleSubmit}>
                 <Grid container spacing={2} justifyContent="center">
-                  <Grid item xs={10} sm={6} md={4}>
-                    <CustomTextField
-                      fullWidth
-                      id="category-id"
-                      className="category-id"
-                      name="categoryId"
-                      label="ID"
-                      type="text"
-                      variant="outlined"
-                      value={values.id}
-                      disabled
-                    />
-                  </Grid>
-                  <Grid item xs={10} sm={6} md={4}>
+                  <Grid item xs={12} sm={6} md={4}>
                     <CustomTextField
                       fullWidth
                       id="category-name"
@@ -100,7 +87,7 @@ export const CategoryDetail = () => {
                       helperText={touched.categoryName && errors.categoryName}
                     />
                   </Grid>
-                  <Grid item xs={10} sm={6} md={4}>
+                  <Grid item xs={12} sm={6} md={4}>
                     <ConfirmButton
                       fullWidth
                       type="submit"
