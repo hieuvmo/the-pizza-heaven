@@ -158,13 +158,13 @@ export const NAVBAR_ATTRIBUTE = {
     },
     {
       name: 'Order',
-      path: '/order',
+      path: routerPath.app.ORDER_SEARCH,
     },
   ],
   ADMIN: [
     {
-      name: 'Client Home',
-      path: routerPath.common.HOME,
+      name: 'Dashboard',
+      path: routerPath.admin.DASHBOARD,
     },
     {
       name: 'Category',
@@ -205,7 +205,7 @@ export const ACCOUNT_ATTRIBUTE = {
   ADMIN_ACCOUNT: [
     {
       attribute: 'Management',
-      path: routerPath.admin.CATEGORY_LIST,
+      path: routerPath.admin.DASHBOARD,
     },
     {
       attribute: 'Log out',

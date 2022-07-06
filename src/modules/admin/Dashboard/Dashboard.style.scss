@@ -1,0 +1,102 @@
+.dashboard {
+  &-container {
+    @apply py-12 px-4;
+  }
+
+  &-card_content {
+    &:hover .intro-icon {
+      transform: scale(0.8);
+      transition: 0.5s ease;
+    }
+
+    @apply text-white flex flex-col justify-between;
+
+    .card-introduction {
+      @apply flex justify-between;
+
+      .intro-title {
+        @apply flex flex-col;
+
+        span {
+          @apply text-base font-medium;
+        }
+
+        strong {
+          @apply font-bold text-2xl mb-4;
+        }
+      }
+
+      .intro-icon {
+        @apply w-12 h-12 rounded-[50%] bg-white;
+
+        .MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium {
+          @apply m-3;
+        }
+      }
+    }
+
+    .card-description {
+      @apply text-sm;
+
+      label {
+        @apply text-[0.675rem] mr-1;
+      }
+    }
+  }
+
+  &-card_body {
+    .card-header {
+      @apply py-4 font-serif font-semibold text-[0.925rem];
+    }
+
+    .line-break {
+      @apply w-14 h-[1px] bg-gray-300;
+    }
+
+    .new-customer-item {
+      @apply flex py-4;
+
+      .customer {
+        &-avatar {
+          @apply mr-4 my-auto;
+        }
+
+        &-email {
+          @apply mb-1;
+        }
+
+        &-name {
+          @apply text-sm;
+        }
+      }
+    }
+    .customer-status {
+      @apply w-2 h-2 rounded-[50%] bg-[#2ed8b6] my-auto;
+    }
+
+    .order-info {
+      @apply flex py-4 justify-between;
+
+      .customer {
+        &-name {
+          @apply mb-[0.415rem];
+        }
+
+        &-phone {
+          @apply text-sm mb-[0.125rem];
+        }
+
+        &-address {
+          @apply text-sm mb-[0.125rem];
+        }
+      }
+      .total-price {
+        @apply font-bold text-[#d30e15] mb-2;
+      }
+
+      .order-status {
+        @apply uppercase font-semibold;
+      }
+    }
+  }
+}

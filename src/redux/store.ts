@@ -7,6 +7,7 @@ import orderSlice from './features/app/orderSlice';
 import searchSlice from './features/app/searchSlice';
 import orderAdminSlice from './features/admin/orderAdminSlice';
 import orderDetailAdminSlice from './features/admin/orderDetailAdminSlice';
+import dashboardSlice from './features/admin/dashboardSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     cart: cartSlice,
     order: orderSlice,
     orderDetail: orderDetailSlice,
+    adminDashboard: dashboardSlice,
     adminCategory: categorySlice,
     adminFood: foodSlice,
     adminOrder: orderAdminSlice,

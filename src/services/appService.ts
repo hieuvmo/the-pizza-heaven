@@ -79,6 +79,12 @@ class AppService {
     const { data } = await axiosClient.get(`${ENDPOINT_API.USER}`);
     return data;
   }
+  async getLatestUserList(): Promise<IUser[]> {
+    const { data } = await axiosClient.get(
+      `${ENDPOINT_API.USER}?_sort=id&_order=desc&_limit=4`,
+    );
+    return data;
+  }
   async getUserById(id: number): Promise<IUser> {
     const { data } = await axiosClient.get(`${ENDPOINT_API.USER}/${id}`);
     return data;
@@ -102,6 +108,12 @@ class AppService {
   //ORDER
   async getOrderList(): Promise<IOrder[]> {
     const { data } = await axiosClient.get(`${ENDPOINT_API.ORDER}`);
+    return data;
+  }
+  async getLatestOrderList(): Promise<IOrder[]> {
+    const { data } = await axiosClient.get(
+      `${ENDPOINT_API.ORDER}?_sort=id&_order=desc&_limit=3`,
+    );
     return data;
   }
   async addNewOrderToDB(params: IOrder): Promise<IOrder> {

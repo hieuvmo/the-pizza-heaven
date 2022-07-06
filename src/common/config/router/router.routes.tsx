@@ -1,6 +1,5 @@
 import { IRoute } from '../../types/router.model';
 import { routerPath } from './router.path';
-import { TestPage } from '../../../pages/test/TestPage';
 import { SignUpPage } from '../../../pages/auth/SignUp/SignUpPage';
 import { LoginPage } from 'pages/auth/Login/LoginPage';
 import { CategoryListPage } from 'pages/admin/CategoryManagement/CategoryListPage';
@@ -20,9 +19,9 @@ import { CheckoutSuccessPage } from 'pages/app/Checkout/CheckoutSuccess/Checkout
 import { OrderListPage } from 'pages/admin/OrderManagement/OrderListPage';
 import { OrderDetailPage } from 'pages/admin/OrderManagement/OrderDetailPage';
 import { OrderSearchPage } from 'pages/app/Order/OrderSearchPage';
+import { DashboardPage } from 'pages/admin/Dashboard/DashboardPage';
 
 const staticRoute: IRoute[] = [
-  //common
   {
     path: routerPath.common.HOME,
     element: <HomePage />,
@@ -48,14 +47,8 @@ const staticRoute: IRoute[] = [
     element: <CheckoutSuccessPage />,
   },
   {
-    path: routerPath.app.ORDER,
+    path: routerPath.app.ORDER_SEARCH,
     element: <OrderSearchPage />,
-  },
-
-  //test
-  {
-    path: routerPath.test.TEST,
-    element: <TestPage />,
   },
 ];
 
@@ -78,6 +71,10 @@ const clientRoute: IRoute[] = [
 ];
 
 const adminRoute: IRoute[] = [
+  {
+    path: routerPath.admin.DASHBOARD,
+    element: <DashboardPage />,
+  },
   {
     path: routerPath.admin.CATEGORY_LIST,
     element: <CategoryListPage />,
