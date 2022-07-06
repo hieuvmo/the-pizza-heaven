@@ -204,16 +204,21 @@ export const NewProduct = () => {
                     <Grid item xs={10} sm={12} md={6}>
                       <CustomTextField
                         fullWidth
-                        id="id"
-                        className="id"
-                        name="foodID"
-                        label="ID"
+                        id="name"
+                        className="name"
+                        name="name"
+                        label="Name"
                         type="text"
                         variant="outlined"
-                        value={lastFoodId + 1}
-                        disabled
+                        value={values.name}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder="Pizza Hải Sản Đào"
+                        error={touched.name && Boolean(errors.name)}
+                        helperText={touched.name && errors.name}
                       />
                     </Grid>
+
                     <Grid item xs={10} sm={12} md={6}>
                       <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">
@@ -238,23 +243,6 @@ export const NewProduct = () => {
                         </Select>
                       </FormControl>
                     </Grid>
-                    <Grid item xs={10} sm={12} md={6}>
-                      <CustomTextField
-                        fullWidth
-                        id="name"
-                        className="name"
-                        name="name"
-                        label="Name"
-                        type="text"
-                        variant="outlined"
-                        value={values.name}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        placeholder="Pizza Hải Sản Đào"
-                        error={touched.name && Boolean(errors.name)}
-                        helperText={touched.name && errors.name}
-                      />
-                    </Grid>
 
                     <Grid item xs={10} sm={12} md={6}>
                       <CustomTextField
@@ -271,29 +259,6 @@ export const NewProduct = () => {
                         placeholder="169000"
                         error={touched.price && Boolean(errors.price)}
                         helperText={touched.price && errors.price}
-                      />
-                    </Grid>
-
-                    <Grid item xs={10} sm={12}>
-                      <CustomTextField
-                        fullWidth
-                        multiline
-                        minRows={2}
-                        maxRows={5}
-                        id="description"
-                        className="description"
-                        name="description"
-                        label="Description"
-                        type="text"
-                        variant="outlined"
-                        value={values.description}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        placeholder="Tôm, Giăm bông, Đào hoà quyện bùng nổ cùng sốt Thousand Island"
-                        error={
-                          touched.description && Boolean(errors.description)
-                        }
-                        helperText={touched.description && errors.description}
                       />
                     </Grid>
 
@@ -319,7 +284,30 @@ export const NewProduct = () => {
                       </FormControl>
                     </Grid>
 
-                    <Grid item xs={10} md={6}>
+                    <Grid item xs={10} sm={12}>
+                      <CustomTextField
+                        fullWidth
+                        multiline
+                        minRows={2}
+                        maxRows={5}
+                        id="description"
+                        className="description"
+                        name="description"
+                        label="Description"
+                        type="text"
+                        variant="outlined"
+                        value={values.description}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder="Tôm, Giăm bông, Đào hoà quyện bùng nổ cùng sốt Thousand Island"
+                        error={
+                          touched.description && Boolean(errors.description)
+                        }
+                        helperText={touched.description && errors.description}
+                      />
+                    </Grid>
+
+                    <Grid item xs={10} sm={12}>
                       <ConfirmButton
                         fullWidth
                         type="submit"

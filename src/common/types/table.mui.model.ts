@@ -20,7 +20,7 @@ export type IdFoodType =
   | 'thumbnail'
   | 'description'
   | 'price'
-  | 'isStock';
+  | 'isStocked';
 
 export interface IFoodColumn {
   id: IdFoodType;
@@ -37,15 +37,10 @@ export interface IFoodDataTable {
   name: string;
   description: string;
   price: string;
-  isStock: boolean;
+  isStocked: boolean;
 }
 
-export type IdCartType =
-  | 'thumbnail'
-  | 'name'
-  | 'price'
-  | 'quantity'
-  | 'calculation';
+export type IdCartType = 'thumbnail' | 'name' | 'price' | 'quantity' | 'total';
 
 export interface ICartColumn {
   id: IdCartType;
@@ -60,7 +55,7 @@ export interface ICartDataTable {
   name: string;
   price: string;
   quantity: string;
-  calculation: string;
+  total: string;
 }
 
 export type IdOrderDetailType =
@@ -69,7 +64,7 @@ export type IdOrderDetailType =
   | 'name'
   | 'price'
   | 'quantity'
-  | 'calculation';
+  | 'total';
 
 export interface IOrderDetailColumn {
   id: IdOrderDetailType;
@@ -85,12 +80,12 @@ export interface IOrderDetailDataTable {
   name: string;
   price: string;
   quantity: number;
-  calculation: string;
+  total: string;
 }
 
 export type IdOrderType =
   | 'id'
-  | 'userId'
+  | 'user'
   | 'firstName'
   | 'lastName'
   | 'phone'
@@ -108,7 +103,7 @@ export interface IOrderColumn {
 
 export interface IOrderDataTable {
   id: number;
-  userId: number | string;
+  user: string;
   firstName: string;
   lastName: string;
   phone: string;

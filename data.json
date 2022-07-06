@@ -730,7 +730,7 @@
       "lastName": "White",
       "phone": "4979194649",
       "address": "Brighton",
-      "totalPrice": 625000,
+      "totalPrice": 309000,
       "status": "completed"
     },
     {
@@ -781,7 +781,7 @@
       "phone": "0964819769",
       "address": "Swiss",
       "totalPrice": 714000,
-      "status": "completed"
+      "status": "canceled"
     },
     {
       "id": 1656995185194,
@@ -790,8 +790,8 @@
       "lastName": "Saliba",
       "phone": "16761646794",
       "address": "Frace",
-      "totalPrice": 725000,
-      "status": "completed"
+      "totalPrice": 147000,
+      "status": "confirmed"
     },
     {
       "id": 1657002970400,
@@ -800,7 +800,7 @@
       "lastName": "Lacazette",
       "phone": "4671677167",
       "address": "France",
-      "totalPrice": 1009000,
+      "totalPrice": 295000,
       "status": "completed"
     },
     {
@@ -811,6 +811,26 @@
       "phone": "0964819769",
       "address": "Swiss",
       "totalPrice": 716000,
+      "status": "confirmed"
+    },
+    {
+      "id": 1657081943831,
+      "userId": 1,
+      "firstName": "Sambi",
+      "lastName": "Lonkonga",
+      "phone": "1479879164916",
+      "address": "Belgium",
+      "totalPrice": 1588000,
+      "status": "confirmed"
+    },
+    {
+      "id": 1657082078038,
+      "userId": 1,
+      "firstName": "Gabriel",
+      "lastName": "Magahead",
+      "phone": "791645649879",
+      "address": "Brazil",
+      "totalPrice": 514000,
       "status": "confirmed"
     }
   ],
@@ -922,6 +942,42 @@
       "orderId": 1657010240151,
       "foodId": 57,
       "quantity": 2
+    },
+    {
+      "id": 1221728407775,
+      "orderId": 1657081943831,
+      "foodId": 2,
+      "quantity": 8
+    },
+    {
+      "id": 710854668011,
+      "orderId": 1657081943831,
+      "foodId": 52,
+      "quantity": 4
+    },
+    {
+      "id": 725861979528,
+      "orderId": 1657082078038,
+      "foodId": 4,
+      "quantity": 2
+    },
+    {
+      "id": 1170815319539,
+      "orderId": 1657082078038,
+      "foodId": 62,
+      "quantity": 1
+    },
+    {
+      "id": 1116802735779,
+      "orderId": 1657082078038,
+      "foodId": 56,
+      "quantity": 2
+    },
+    {
+      "id": 625965909774,
+      "orderId": 1657082078038,
+      "foodId": 64,
+      "quantity": 1
     }
   ]
 }

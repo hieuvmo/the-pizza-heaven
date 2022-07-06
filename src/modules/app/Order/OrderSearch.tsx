@@ -43,7 +43,7 @@ export const OrderSearch = () => {
       return <CheckoutInfo orderId={orderSearchRes} />;
     } else {
       if (orderSearchRes === '') {
-        return <h1>Empty</h1>;
+        return <></>;
       }
       return (
         <div className="order_search-empty">

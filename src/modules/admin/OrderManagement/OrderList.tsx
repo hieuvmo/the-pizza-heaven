@@ -1,9 +1,11 @@
 import { Info } from '@mui/icons-material';
 import {
+  AlertColor,
   Button,
+  Grid,
   MenuItem,
   Paper,
-  Select,
+  Select as MuiSelect,
   SelectChangeEvent,
   Table,
   TableBody,
@@ -13,9 +15,16 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
+import Select, { SingleValue } from 'react-select';
 import { Container } from '@mui/system';
 import { routerPath } from 'common/config/router/router.path';
-import { ORDER_SELECT_STATUS, ORDER_TABLE_HEAD } from 'common/constants';
+import {
+  ISelect,
+  ORDER_FILTER_ATTRIBUTE,
+  ORDER_ORDER_BY_ATTRIBUTE,
+  ORDER_SELECT_STATUS,
+  ORDER_TABLE_HEAD,
+} from 'common/constants';
 import { convertNumberToVND } from 'common/helper/convertMoney';
 import { capitalizeFirstLetter } from 'common/helper/string';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
@@ -25,11 +34,12 @@ import {
   IOrderColumn,
   IOrderDataTable,
 } from 'common/types/table.mui.model';
+import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   changeOrderStatusById,
-  getOrderList,
+  getOrderListByStatus,
 } from 'redux/features/admin/orderAdminSlice';
 import { resetAdminOrderDetail } from 'redux/features/admin/orderDetailAdminSlice';
 import { RootState } from 'redux/store';
@@ -43,11 +53,28 @@ export const OrderList = () => {
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [responseFromAPI, setResponseFromAPI] = useState('');
+  const [snackbarType, setSnackbarType] = useState<AlertColor>();
+  const [filterOrderSelect, setFilterOrderSelect] = useState<
+    SingleValue<ISelect>
+  >(ORDER_FILTER_ATTRIBUTE[0]);
+  const [orderByOrderSelect, setOrderByOrderSelect] = useState<
+    SingleValue<ISelect>
+  >(ORDER_ORDER_BY_ATTRIBUTE[0]);
 
   useEffect(() => {
     dispatch(resetAdminOrderDetail());
-    dispatch(getOrderList());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(
+      getOrderListByStatus({
+        status: filterOrderSelect?.value as string,
+        orderBy: orderByOrderSelect?.value as string,
+      }),
+    );
+  }, [dispatch, filterOrderSelect, orderByOrderSelect]);
 
   const orderColumns = ORDER_TABLE_HEAD.map((item): IOrderColumn => {
     const orderLabel =
@@ -57,7 +84,7 @@ export const OrderList = () => {
 
   function createOrderData(
     id: number,
-    userId: number | string,
+    user: string,
     firstName: string,
     lastName: string,
     phone: string,
@@ -67,7 +94,7 @@ export const OrderList = () => {
   ): IOrderDataTable {
     return {
       id,
-      userId,
+      user,
       firstName,
       lastName,
       phone,
@@ -80,7 +107,7 @@ export const OrderList = () => {
   const orderRows = orderList.map((item) => {
     return createOrderData(
       item.id,
-      item.userId === null ? 'Anonymous' : item.userId,
+      item.userId === null ? 'Anonymous' : 'Customer',
       item.firstName,
       item.lastName,
       item.phone,
@@ -111,6 +138,11 @@ export const OrderList = () => {
       ...orderList[orderIndex],
       status: e.target.value as IOrderStatus,
     };
+    setSnackbarType('info');
+    setResponseFromAPI(
+      `You have changed order status to ${e.target.value.toUpperCase()}`,
+    );
+    setShowSnackbar(true);
     dispatch(
       changeOrderStatusById({ updatedOrder: newUpdatedOrder, id: orderId }),
     );
@@ -128,7 +160,7 @@ export const OrderList = () => {
               marginBlock: '2.5rem',
             }}
           >
-            <TableContainer sx={{ maxHeight: '62vh' }}>
+            <TableContainer sx={{ maxHeight: '62.5vh' }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
@@ -141,12 +173,94 @@ export const OrderList = () => {
                     </TableCell>
                   </TableRow>
                   <TableRow>
-                    {orderColumns.map((column) => (
-                      <TableCell key={column.id}>{column.label}</TableCell>
-                    ))}
+                    <TableCell colSpan={9}>
+                      <Grid
+                        container
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
+                        spacing={4}
+                      >
+                        <Grid
+                          item
+                          xs={12}
+                          sm={6}
+                          sx={{
+                            paddingTop: '0.5rem',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                          }}
+                        >
+                          <div className="font-bold my-auto min-w-[5rem]">
+                            Filter by:
+                          </div>
+                          <div className="w-full">
+                            <Select
+                              theme={(theme) => ({
+                                ...theme,
+                                borderRadius: 0,
+                                colors: {
+                                  ...theme.colors,
+                                  primary25: '#e0e0e0',
+                                  primary: '#008c7a',
+                                },
+                              })}
+                              options={ORDER_FILTER_ATTRIBUTE}
+                              placeholder="Sort by"
+                              value={filterOrderSelect}
+                              onChange={(newValue: SingleValue<ISelect>) =>
+                                setFilterOrderSelect(newValue)
+                              }
+                            />
+                          </div>
+                        </Grid>
+                        <Grid
+                          item
+                          xs={12}
+                          sm={6}
+                          sx={{
+                            paddingTop: '0.5rem',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                          }}
+                        >
+                          <div className="font-bold my-auto min-w-[5rem]">
+                            Order by:
+                          </div>
+                          <div className="w-full">
+                            <Select
+                              theme={(theme) => ({
+                                ...theme,
+                                borderRadius: 0,
+                                colors: {
+                                  ...theme.colors,
+                                  primary25: '#e0e0e0',
+                                  primary: '#008c7a',
+                                },
+                              })}
+                              options={ORDER_ORDER_BY_ATTRIBUTE}
+                              placeholder="Oder by"
+                              value={orderByOrderSelect}
+                              onChange={(newValue: SingleValue<ISelect>) =>
+                                setOrderByOrderSelect(newValue)
+                              }
+                            />
+                          </div>
+                        </Grid>
+                      </Grid>
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
+                  <TableRow>
+                    {orderColumns.map((column) => (
+                      <TableCell sx={{ fontWeight: '500' }} key={column.id}>
+                        {column.label}
+                      </TableCell>
+                    ))}
+                  </TableRow>
                   {orderRows
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row, rowIndex) => {
@@ -165,7 +279,7 @@ export const OrderList = () => {
                                 return (
                                   <TableCell key={column.id}>
                                     <div className="admin-order-list">
-                                      <Select
+                                      <MuiSelect
                                         fullWidth
                                         required
                                         id="status"
@@ -196,7 +310,7 @@ export const OrderList = () => {
                                             );
                                           },
                                         )}
-                                      </Select>
+                                      </MuiSelect>
                                     </div>
                                   </TableCell>
                                 );
@@ -241,6 +355,13 @@ export const OrderList = () => {
               onRowsPerPageChange={handleChangeRowsPerPage}
             />
           </Paper>
+
+          <CustomSnackbar
+            snackbarColor={snackbarType}
+            res={responseFromAPI}
+            open={showSnackbar}
+            setOpen={setShowSnackbar}
+          />
         </Container>
       )}
     </>

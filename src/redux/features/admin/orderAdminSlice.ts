@@ -11,10 +11,20 @@ export const getOrderList = createAsyncThunk(
   },
 );
 
+export const getOrderListByStatus = createAsyncThunk(
+  'admin/order/getOrderListByStatus',
+  async (params: { status: string; orderBy: string }) => {
+    const response = await appService.getOrderByStatus(
+      params.status,
+      params.orderBy,
+    );
+    return response;
+  },
+);
+
 export const changeOrderStatusById = createAsyncThunk(
   'admin/order/changeOrderStatusById',
   async (params: { updatedOrder: IOrder; id: number }) => {
-    console.log('updatedOrder', params.updatedOrder, params.id);
     const response = await appService.changeOrderStatusById(
       params.id,
       params.updatedOrder,
@@ -60,6 +70,21 @@ export const orderAdminSlice = createSlice({
       state.isLoading = false;
     },
     [getOrderList.rejected.toString()]: (state: OrderAdminState) => {
+      state.isLoading = false;
+    },
+
+    //getOrderListByStatus
+    [getOrderListByStatus.pending.toString()]: (state: OrderAdminState) => {
+      state.isLoading = true;
+    },
+    [getOrderListByStatus.fulfilled.toString()]: (
+      state: OrderAdminState,
+      action: PayloadAction<IOrder[]>,
+    ) => {
+      state.orderList = [...action.payload];
+      state.isLoading = false;
+    },
+    [getOrderListByStatus.rejected.toString()]: (state: OrderAdminState) => {
       state.isLoading = false;
     },
 

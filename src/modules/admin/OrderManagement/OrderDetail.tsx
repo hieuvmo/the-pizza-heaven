@@ -68,9 +68,9 @@ export const OrderDetail = () => {
       name: string,
       price: string,
       quantity: number,
-      calculation: string,
+      total: string,
     ): IOrderDetailDataTable {
-      return { ordinalNumber, thumbnail, name, price, quantity, calculation };
+      return { ordinalNumber, thumbnail, name, price, quantity, total };
     }
 
     if (orderDetailById.length === foodListInOrderDetail.length) {
@@ -114,7 +114,7 @@ export const OrderDetail = () => {
               marginBlock: '2.5rem',
             }}
           >
-            <TableContainer sx={{ maxHeight: '47vh' }}>
+            <TableContainer sx={{ maxHeight: '42.5vh' }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>

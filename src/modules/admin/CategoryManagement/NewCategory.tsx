@@ -71,19 +71,6 @@ export const NewCategory = () => {
                   <Grid item xs={10} sm={6} md={4}>
                     <CustomTextField
                       fullWidth
-                      id="category-id"
-                      className="category-id"
-                      name="categoryId"
-                      label="ID"
-                      type="text"
-                      variant="outlined"
-                      value={lastCategoryId + 1}
-                      disabled
-                    />
-                  </Grid>
-                  <Grid item xs={10} sm={6} md={4}>
-                    <CustomTextField
-                      fullWidth
                       id="category-name"
                       className="category-name"
                       name="categoryName"

@@ -4,9 +4,9 @@ import { MENU_PRODUCT_NAME } from 'common/constants/menuList';
 import { FoodItem } from '../FoodItem/FoodItem';
 import Select, { SingleValue } from 'react-select';
 import {
-  FILTER_ATTRIBUTE,
   ISelect,
-  ORDER_BY_ATTRIBUTE,
+  PRODUCT_FILTER_ATTRIBUTE,
+  PRODUCT_ORDER_BY_ATTRIBUTE,
 } from 'common/constants';
 import { Container } from '@mui/system';
 import { Grid } from '@mui/material';
@@ -14,14 +14,25 @@ import { Grid } from '@mui/material';
 export const FoodMenu = () => {
   const [renderFoods, setRenderFoods] = useState<number>(1);
   const [filterSelect, setFilterSelect] = useState<SingleValue<ISelect>>(
-    FILTER_ATTRIBUTE[0],
+    PRODUCT_FILTER_ATTRIBUTE[0],
   );
-  const [oderBySelect, setOderBySelect] = useState<SingleValue<ISelect>>(
-    ORDER_BY_ATTRIBUTE[0],
+  const [orderBySelect, setOrderBySelect] = useState<SingleValue<ISelect>>(
+    PRODUCT_ORDER_BY_ATTRIBUTE[0],
   );
 
   const handleClickSetActiveFood = (foodName: number) => {
     setRenderFoods(foodName);
+  };
+
+  const handleChangeProductFilerSelect = (
+    productFilterValue: SingleValue<ISelect>,
+  ) => {
+    setFilterSelect(productFilterValue);
+  };
+  const handleChangeProductOrderBySelect = (
+    productOrderByValue: SingleValue<ISelect>,
+  ) => {
+    setOrderBySelect(productOrderByValue);
   };
 
   return (
@@ -55,47 +66,69 @@ export const FoodMenu = () => {
             justifyContent: 'center',
             alignItems: 'center',
           }}
-          spacing={2}
+          spacing={4}
         >
-          <Grid item xs={12} sm={6} sx={{ paddingTop: '0.5rem' }}>
-            <div className="font-bold mb-2">Filter by:</div>
-            <Select
-              theme={(theme) => ({
-                ...theme,
-                borderRadius: 0,
-                colors: {
-                  ...theme.colors,
-                  primary25: '#e0e0e0',
-                  primary: '#008c7a',
-                },
-              })}
-              options={FILTER_ATTRIBUTE}
-              placeholder="Sort by"
-              value={filterSelect}
-              onChange={(newValue: SingleValue<ISelect>) =>
-                setFilterSelect(newValue)
-              }
-            />
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            sx={{
+              paddingTop: '0.5rem',
+              display: 'flex',
+              justifyContent: 'space-between',
+            }}
+          >
+            <div className="font-bold my-auto min-w-[5rem]">Filter by:</div>
+            <div className="w-full">
+              <Select
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 0,
+                  colors: {
+                    ...theme.colors,
+                    primary25: '#e0e0e0',
+                    primary: '#008c7a',
+                  },
+                })}
+                options={PRODUCT_FILTER_ATTRIBUTE}
+                placeholder="Sort by"
+                value={filterSelect}
+                onChange={(newValue: SingleValue<ISelect>) =>
+                  handleChangeProductFilerSelect(newValue)
+                }
+              />
+            </div>
           </Grid>
-          <Grid item xs={12} sm={6} sx={{ paddingTop: '0.5rem' }}>
-            <div className="font-bold mb-2">Order by:</div>
-            <Select
-              theme={(theme) => ({
-                ...theme,
-                borderRadius: 0,
-                colors: {
-                  ...theme.colors,
-                  primary25: '#e0e0e0',
-                  primary: '#008c7a',
-                },
-              })}
-              options={ORDER_BY_ATTRIBUTE}
-              placeholder="Oder by"
-              value={oderBySelect}
-              onChange={(newValue: SingleValue<ISelect>) =>
-                setOderBySelect(newValue)
-              }
-            />
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            sx={{
+              paddingTop: '0.5rem',
+              display: 'flex',
+              justifyContent: 'space-between',
+            }}
+          >
+            <div className="font-bold my-auto min-w-[5rem]">Order by:</div>
+            <div className="w-full">
+              <Select
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 0,
+                  colors: {
+                    ...theme.colors,
+                    primary25: '#e0e0e0',
+                    primary: '#008c7a',
+                  },
+                })}
+                options={PRODUCT_ORDER_BY_ATTRIBUTE}
+                placeholder="Oder by"
+                value={orderBySelect}
+                onChange={(newValue: SingleValue<ISelect>) =>
+                  handleChangeProductOrderBySelect(newValue)
+                }
+              />
+            </div>
           </Grid>
         </Grid>
       </Container>
@@ -103,7 +136,7 @@ export const FoodMenu = () => {
       <FoodItem
         categoryId={renderFoods}
         filterValue={filterSelect?.value as string}
-        orderByValue={oderBySelect?.value as string}
+        orderByValue={orderBySelect?.value as string}
       />
     </div>
   );
