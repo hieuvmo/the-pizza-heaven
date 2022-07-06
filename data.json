@@ -13,6 +13,33 @@
       "phone": "0964819769",
       "address": "Swiss",
       "id": 2
+    },
+    {
+      "email": "tierney@gmail.com",
+      "password": "$2a$10$RGxisuUI/U2FvnLDSW6aJ.BTPfjE97Off.SJrjbIwHIKQAbx8iWDW",
+      "firstName": "Kiean",
+      "lastName": "Tireney",
+      "phone": "47891498743987",
+      "address": "Scotland",
+      "id": 3
+    },
+    {
+      "email": "patino@gmail.com",
+      "password": "$2a$10$E0dIYmvWbu2UKJZ0H/GdpePZblVXE0PI1AbHyzqboo2vkusWs44ii",
+      "firstName": "Chalier",
+      "lastName": "Patino",
+      "phone": "",
+      "address": "",
+      "id": 4
+    },
+    {
+      "email": "ramsey@gmail.com",
+      "password": "$2a$10$Gu4Wfgg5sf0T2qucxwl99OdW1EvZfKsjsUzFGDTr7L1PY1yOBtY6q",
+      "firstName": "Arron",
+      "lastName": "Ramsey",
+      "phone": "",
+      "address": "",
+      "id": 5
     }
   ],
   "categories": [
@@ -741,7 +768,7 @@
       "phone": "0964819769",
       "address": "Swiss",
       "totalPrice": 725000,
-      "status": "confirmed"
+      "status": "completed"
     },
     {
       "id": 1656641525008,
@@ -791,7 +818,7 @@
       "phone": "16761646794",
       "address": "Frace",
       "totalPrice": 147000,
-      "status": "confirmed"
+      "status": "completed"
     },
     {
       "id": 1657002970400,
@@ -811,7 +838,7 @@
       "phone": "0964819769",
       "address": "Swiss",
       "totalPrice": 716000,
-      "status": "confirmed"
+      "status": "canceled"
     },
     {
       "id": 1657081943831,
@@ -821,7 +848,7 @@
       "phone": "1479879164916",
       "address": "Belgium",
       "totalPrice": 1588000,
-      "status": "confirmed"
+      "status": "completed"
     },
     {
       "id": 1657082078038,
@@ -831,6 +858,76 @@
       "phone": "791645649879",
       "address": "Brazil",
       "totalPrice": 514000,
+      "status": "completed"
+    },
+    {
+      "id": 1657099003761,
+      "userId": null,
+      "firstName": "Nicolas",
+      "lastName": "Pepe",
+      "phone": "71649816465",
+      "address": "Ivory Coast",
+      "totalPrice": 545000,
+      "status": "canceled"
+    },
+    {
+      "id": 1657099235277,
+      "userId": null,
+      "firstName": "Cedric",
+      "lastName": "Soures",
+      "phone": "984816765746167",
+      "address": "Portugal",
+      "totalPrice": 234000,
+      "status": "completed"
+    },
+    {
+      "id": 1657099576180,
+      "userId": null,
+      "firstName": "Nuno",
+      "lastName": "Tavares",
+      "phone": "741564989879",
+      "address": "Portugal",
+      "totalPrice": 658000,
+      "status": "completed"
+    },
+    {
+      "id": 1657099755256,
+      "userId": null,
+      "firstName": "Rob",
+      "lastName": "Holding",
+      "phone": "7681679797",
+      "address": "Manchester ",
+      "totalPrice": 275000,
+      "status": "canceled"
+    },
+    {
+      "id": 1657099840288,
+      "userId": null,
+      "firstName": "Paulo",
+      "lastName": "Mari",
+      "phone": "7984198734984",
+      "address": "Spain",
+      "totalPrice": 631000,
+      "status": "completed"
+    },
+    {
+      "id": 1657099908468,
+      "userId": null,
+      "firstName": "Bernd",
+      "lastName": "Leno",
+      "phone": "4984165947498",
+      "address": "Germany",
+      "totalPrice": 1195000,
+      "status": "confirmed"
+    },
+    {
+      "id": 1657100174392,
+      "userId": 3,
+      "firstName": "Kiean",
+      "lastName": "Tireney",
+      "phone": "47891498743987",
+      "address": "Scotland",
+      "totalPrice": 531000,
       "status": "confirmed"
     }
   ],
@@ -978,6 +1075,108 @@
       "orderId": 1657082078038,
       "foodId": 64,
       "quantity": 1
+    },
+    {
+      "id": 1118886714677,
+      "orderId": 1657099003761,
+      "foodId": 42,
+      "quantity": 2
+    },
+    {
+      "id": 1592047548636,
+      "orderId": 1657099003761,
+      "foodId": 41,
+      "quantity": 1
+    },
+    {
+      "id": 1531842013714,
+      "orderId": 1657099235277,
+      "foodId": 51,
+      "quantity": 2
+    },
+    {
+      "id": 837307502190,
+      "orderId": 1657099235277,
+      "foodId": 62,
+      "quantity": 4
+    },
+    {
+      "id": 67978485932,
+      "orderId": 1657099576180,
+      "foodId": 52,
+      "quantity": 2
+    },
+    {
+      "id": 336866662864,
+      "orderId": 1657099576180,
+      "foodId": 72,
+      "quantity": 3
+    },
+    {
+      "id": 1316187684923,
+      "orderId": 1657099755256,
+      "foodId": 51,
+      "quantity": 1
+    },
+    {
+      "id": 1171751603213,
+      "orderId": 1657099755256,
+      "foodId": 66,
+      "quantity": 2
+    },
+    {
+      "id": 1282200547529,
+      "orderId": 1657099755256,
+      "foodId": 59,
+      "quantity": 2
+    },
+    {
+      "id": 356881074021,
+      "orderId": 1657099840288,
+      "foodId": 56,
+      "quantity": 2
+    },
+    {
+      "id": 189690790736,
+      "orderId": 1657099840288,
+      "foodId": 47,
+      "quantity": 2
+    },
+    {
+      "id": 791603645536,
+      "orderId": 1657099908468,
+      "foodId": 29,
+      "quantity": 3
+    },
+    {
+      "id": 1622583262333,
+      "orderId": 1657099908468,
+      "foodId": 74,
+      "quantity": 2
+    },
+    {
+      "id": 944431084317,
+      "orderId": 1657099908468,
+      "foodId": 54,
+      "quantity": 3
+    },
+    {
+      "id": 1430117044154,
+      "orderId": 1657100174392,
+      "foodId": 51,
+      "quantity": 3
+    },
+    {
+      "id": 630050098944,
+      "orderId": 1657100174392,
+      "foodId": 44,
+      "quantity": 3
+    },
+    {
+      "id": 31292531711,
+      "orderId": 1657100174392,
+      "foodId": 62,
+      "quantity": 3
     }
   ]
 }

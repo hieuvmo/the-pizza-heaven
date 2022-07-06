@@ -3,11 +3,12 @@ export const routerPath = {
     MY_ACCOUNT: '/app/my-account',
     SEARCH: '/search',
     CART: '/cart',
-    ORDER: '/order',
+    ORDER_SEARCH: '/order/search',
     CHECKOUT_ORDER: '/checkout/order-info',
     CHECKOUT_SUCCESS: '/checkout/success/:orderId',
   },
   admin: {
+    DASHBOARD: '/admin/dashboard',
     CATEGORY_LIST: '/admin/categories',
     CATEGORY_DETAIL: '/admin/categories/:id',
     CATEGORY_NEW: '/admin/new/category',
@@ -24,9 +25,6 @@ export const routerPath = {
   common: {
     HOME: '/',
     NOT_FOUND: '/page-not-found',
-  },
-  test: {
-    TEST: '/test',
   },
 };
 
