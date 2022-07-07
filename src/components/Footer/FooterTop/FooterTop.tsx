@@ -1,7 +1,8 @@
-import { Box, Grid } from '@mui/material';
-import { Container } from '@mui/system';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/system/Container';
+
 import { FOOTER_TOP_ARR } from 'common/constants';
-import React from 'react';
 import './FooterTop.style.scss';
 
 export const FooterTop = () => {

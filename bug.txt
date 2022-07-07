@@ -1,6 +1,4 @@
-1) Food admin 
-    - new food: not validate upload image
-    - food list: price not convert to vnd
-2) Home
-    - open model before call api successfully
+1) Navbar: Menu, contact
+2) Searchbar: order, product
+3) Snackbar 
 

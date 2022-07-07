@@ -1,9 +1,13 @@
+import { FC, useState } from 'react';
+import { Formik as FormValidation, Form } from 'formik';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   AlertColor,
   Checkbox,
   CircularProgress,
   FormControlLabel,
 } from '@mui/material';
+
 import { routerPath } from 'common/config/router/router.path';
 import { setLocalStorageItem } from 'common/helper/storage';
 import authModel, { ILogin } from 'common/types/auth.model';
@@ -13,13 +17,10 @@ import { AuthButton } from 'components/MuiStyling/AuthButton.style';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
 import { SubmitButtonStyle } from 'components/MuiStyling/MuiStyling.style';
 import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
-import { Formik as FormValidation, Form } from 'formik';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import authService from 'services/authService';
 import './Login.style.scss';
 
-export const Login: React.FC = () => {
+export const Login: FC = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [showSnackbar, setShowSnackbar] = useState(false);
@@ -36,7 +37,7 @@ export const Login: React.FC = () => {
       setLocalStorageItem('user-info', userInfo);
       navigate(routerPath.common.HOME);
     } catch (error: any) {
-      console.log('Error when registering account', error?.response?.data);
+      console.log('Error when loginAccount', error?.response?.data);
       setSnackbarType('error');
       setResponseFromAPI(error?.response?.data);
       setShowSnackbar(true);
@@ -129,7 +130,9 @@ export const Login: React.FC = () => {
                 {loading === false ? (
                   'Sign In'
                 ) : (
-                  <CircularProgress sx={{ color: '#fff', padding: '6px' }} />
+                  <CircularProgress
+                    sx={{ color: ColorSchema.White, padding: '0.375rem' }}
+                  />
                 )}
               </AuthButton>
 

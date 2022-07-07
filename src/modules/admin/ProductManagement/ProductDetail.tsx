@@ -1,36 +1,37 @@
+import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
 import { Form, Formik as FormValidation } from 'formik';
-import {
-  Button,
-  CircularProgress,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  Typography,
-} from '@mui/material';
-import { Container } from '@mui/system';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
+import FormControl from '@mui/material/FormControl';
+import Grid from '@mui/material/Grid';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Typography from '@mui/material/Typography';
+import CheckIcon from '@mui/icons-material/Check';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { routerPath } from 'common/config/router/router.path';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
 import foodModel, { IFood } from 'common/types/food.model';
 import { GoBack } from 'components/GoBack/GoBack';
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { RootState } from 'redux/store';
+import appService from 'services/appService';
+import { ICategory } from 'common/types/category.model';
+import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
+import { ConfirmButton } from 'components/MuiStyling/ConfirmButton.style';
+import { PRODUCT_SELECT_IS_STOCK } from 'common/constants';
+import adminService from 'services/adminService';
 import {
   changeCategoryIdSelect,
   changeFoodImageUrl,
   changeIsStockSelect,
   updateFoodById,
 } from 'redux/features/admin/foodSlice';
-import { RootState } from 'redux/store';
-import { Check, CloudUpload } from '@mui/icons-material';
-import appService from 'services/appService';
-import { ICategory } from 'common/types/category.model';
-import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
-import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
-import { PRODUCT_SELECT_IS_STOCK } from 'common/constants';
-import adminService from 'services/adminService';
+import { ColorSchema } from 'common/types/color.model';
+import { SyncLoading } from 'components/Loading/SyncLoader';
 
 export const ProductDetail = () => {
   const { foodDetail, isLoading } = useAppSelector(
@@ -40,7 +41,6 @@ export const ProductDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [categoryListAPI, setCategoryListAPI] = useState<ICategory[]>([]);
-  console.log('categoryListAPI', categoryListAPI);
   const [imageSelected, setImageSelected] = useState<File>();
   const [isImageLoading, setIsImageLoading] = useState<boolean>(false);
 
@@ -50,7 +50,7 @@ export const ProductDetail = () => {
         const response = await appService.getCategoryList();
         setCategoryListAPI(response);
       } catch (error) {
-        console.log('Error when get category API', error);
+        console.log('Error when getCategoryList', error);
       }
     };
     fetchCategoryAPI();
@@ -75,13 +75,11 @@ export const ProductDetail = () => {
     !isLoading && navigate(routerPath.admin.FOOD_LIST);
   };
 
-  const handleGetImageInfo = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleGetImageInfo = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget.files) setImageSelected(e.currentTarget.files[0]);
   };
 
-  const handleUploadImageToCloudinary = async (
-    e: React.MouseEvent<HTMLElement>,
-  ) => {
+  const handleUploadImageToCloudinary = async (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('file', imageSelected as File);
@@ -92,7 +90,7 @@ export const ProductDetail = () => {
       const response = await adminService.uploadImageToCloudinary(formData);
       dispatch(changeFoodImageUrl(response));
     } catch (error) {
-      console.log('Error when uploading image to cloudinary', error);
+      console.log('Error when uploading image to Cloudinary', error);
     } finally {
       setIsImageLoading(false);
     }
@@ -110,19 +108,24 @@ export const ProductDetail = () => {
   return (
     <>
       <GoBack pageLink={routerPath.admin.FOOD_LIST} />
-      {!isLoading && (
-        <Container maxWidth="lg" className="py-12">
-          <Typography
-            sx={{
-              fontWeight: 700,
-              letterSpacing: '.1rem',
-              textAlign: 'center',
-              marginBottom: '3rem',
-              fontSize: '2rem',
-            }}
-          >
-            Edit Product
-          </Typography>
+
+      <Container maxWidth="lg" className="py-12">
+        <Typography
+          sx={{
+            fontWeight: 700,
+            letterSpacing: '.1rem',
+            textAlign: 'center',
+            marginBottom: '3rem',
+            fontSize: '2rem',
+          }}
+        >
+          Edit Product
+        </Typography>
+        {isLoading ? (
+          <div className="py-40">
+            <SyncLoading loading={isLoading} />
+          </div>
+        ) : (
           <FormValidation
             initialValues={{
               id: foodDetail.id,
@@ -176,14 +179,14 @@ export const ProductDetail = () => {
                       sx={{ width: '80%', marginBottom: '2rem' }}
                       color="inherit"
                       variant="contained"
-                      startIcon={<CloudUpload />}
+                      startIcon={<CloudUploadIcon />}
                       type="submit"
                       onClick={handleUploadImageToCloudinary}
                       disabled={isImageLoading || imageSelected === undefined}
                     >
                       {isImageLoading ? (
                         <CircularProgress
-                          sx={{ color: '#fff', padding: '6px' }}
+                          sx={{ color: ColorSchema.White, padding: '0.375rem' }}
                         />
                       ) : (
                         'Upload image'
@@ -308,7 +311,7 @@ export const ProductDetail = () => {
                         fullWidth
                         type="submit"
                         variant="contained"
-                        startIcon={<Check />}
+                        startIcon={<CheckIcon />}
                       >
                         Confirm edit food
                       </ConfirmButton>
@@ -318,8 +321,8 @@ export const ProductDetail = () => {
               </Form>
             )}
           </FormValidation>
-        </Container>
-      )}
+        )}
+      </Container>
     </>
   );
 };

@@ -1,11 +1,19 @@
+import {
+  ChangeEvent,
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 import { AlertColor, Grid } from '@mui/material';
+
 import { convertNumberToVND } from 'common/helper/convertMoney';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
 import { IFood } from 'common/types/food.model';
-import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
+import { ConfirmButton } from 'components/MuiStyling/ConfirmButton.style';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
 import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
-import React, { ChangeEvent, useEffect, useState } from 'react';
 import { addToCart } from 'redux/features/app/cartSlice';
 import { RootState } from 'redux/store';
 import appService from 'services/appService';
@@ -14,10 +22,10 @@ import './FoodDetail.style.scss';
 interface FoodDetailProps {
   foodId: number;
   randomNumberOfStock: number;
-  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenModal: Dispatch<SetStateAction<boolean>>;
 }
 
-export const FoodDetail: React.FC<FoodDetailProps> = ({
+export const FoodDetail: FC<FoodDetailProps> = ({
   foodId,
   randomNumberOfStock,
   setOpenModal,
@@ -44,7 +52,7 @@ export const FoodDetail: React.FC<FoodDetailProps> = ({
         const response = await appService.getFoodDetailById(foodId as number);
         setProductById(response);
       } catch (error) {
-        console.log('Error when fetch product by id', error);
+        console.log('Error when getFoodDetailById', error);
       }
     };
 

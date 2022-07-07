@@ -1,8 +1,9 @@
-import { Container, Grid } from '@mui/material';
-import React from 'react';
-import { PizzaLogo } from '../../Logo/PizzaLogo';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import Box from '@mui/system/Box';
 import Iframe from 'react-iframe';
-import { Box } from '@mui/system';
+
+import { PizzaLogo } from '../../Logo/PizzaLogo';
 import './FooterBottom.style.scss';
 
 export const FooterBottom = () => {

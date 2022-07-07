@@ -1,12 +1,13 @@
+import { useState } from 'react';
 import { AccountCircle } from '@mui/icons-material';
 import { Container, Grid } from '@mui/material';
+
 import { ColorSchema } from 'common/types/color.model';
 import { Profile } from './Profile/Profile';
-import './Account.style.scss';
 import { IUser } from 'common/types/user.model';
 import { getLocalStorageItem } from 'common/helper/storage';
-import { useState } from 'react';
 import { BoughtHistory } from './BoughtHistory/BoughtHistory';
+import './Account.style.scss';
 
 export enum AccountTabs {
   PROFILE = 'Profile',

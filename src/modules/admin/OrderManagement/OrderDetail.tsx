@@ -1,34 +1,34 @@
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
-  Typography,
-} from '@mui/material';
-import { Container } from '@mui/system';
+import { ChangeEvent, useEffect, useMemo, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
+import Container from '@mui/system/Container';
+
 import { routerPath } from 'common/config/router/router.path';
 import { ADMIN_ORDER_DETAIL_TABLE_HEAD } from 'common/constants';
 import { convertNumberToVND } from 'common/helper/convertMoney';
 import { capitalizeFirstLetter } from 'common/helper/string';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
+import { GoBack } from 'components/GoBack/GoBack';
+import { getTotalPriceInOrderTable } from 'redux/features/admin/orderAdminSlice';
+import { RootState } from 'redux/store';
 import {
   IdOrderDetailType,
   IOrderDetailColumn,
   IOrderDetailDataTable,
 } from 'common/types/table.mui.model';
-import { GoBack } from 'components/GoBack/GoBack';
-import React, { useEffect, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getTotalPriceInOrderTable } from 'redux/features/admin/orderAdminSlice';
 import {
   getFoodListByIdInOrderDetail,
   getOrderDetailByOrderId,
 } from 'redux/features/admin/orderDetailAdminSlice';
-import { RootState } from 'redux/store';
+import { ClipLoading } from 'components/Loading/ClipLoader';
 
 export const OrderDetail = () => {
   const { id } = useParams();
@@ -94,9 +94,7 @@ export const OrderDetail = () => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
@@ -104,103 +102,107 @@ export const OrderDetail = () => {
   return (
     <>
       <GoBack pageLink={routerPath.admin.ORDER_LIST} />
-      {!isLoading && (
-        <Container maxWidth="lg">
-          <Paper
-            sx={{
-              paddingBlock: '3rem',
-              paddingInline: '1rem',
-              margin: 'auto',
-              marginBlock: '2.5rem',
-            }}
-          >
-            <TableContainer sx={{ maxHeight: '42.5vh' }}>
-              <Table stickyHeader aria-label="sticky table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell
-                      sx={{ fontSize: '2rem' }}
-                      align="center"
-                      colSpan={6}
-                    >
-                      Order Detail
+
+      <Container maxWidth="lg">
+        <Paper
+          sx={{
+            paddingBlock: '3rem',
+            paddingInline: '1rem',
+            margin: 'auto',
+            marginBlock: '2.5rem',
+          }}
+        >
+          <TableContainer sx={{ maxHeight: '47vh' }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  <TableCell
+                    sx={{ fontSize: '2rem' }}
+                    align="center"
+                    colSpan={6}
+                  >
+                    Order Detail
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  {orderDetailColumns.map((column) => (
+                    <TableCell key={column.id}>{column.label}</TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {isLoading ? (
+                  <TableRow sx={{ height: '32vh' }}>
+                    <TableCell colSpan={6}>
+                      <ClipLoading loading={isLoading} />
                     </TableCell>
                   </TableRow>
-                  <TableRow>
-                    {orderDetailColumns.map((column) => (
-                      <TableCell key={column.id}>{column.label}</TableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {orderDetailRows.length === orderDetailById.length &&
-                    orderDetailRows
-                      .slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage,
-                      )
-                      .map((row, index) => {
-                        return (
-                          <TableRow
-                            hover
-                            role="checkbox"
-                            tabIndex={-1}
-                            key={index}
-                          >
-                            {orderDetailColumns.map((column) => {
-                              const value = row[column.id];
-                              if (
-                                typeof value === 'string' &&
-                                value.includes('https')
-                              ) {
-                                return (
-                                  <TableCell
-                                    key={column.id}
-                                    sx={{ width: '7rem' }}
-                                  >
-                                    <img src={`${value}`} alt="123" />
-                                  </TableCell>
-                                );
-                              }
+                ) : (
+                  orderDetailRows.length === orderDetailById.length &&
+                  orderDetailRows
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row, index) => {
+                      return (
+                        <TableRow
+                          hover
+                          role="checkbox"
+                          tabIndex={-1}
+                          key={index}
+                        >
+                          {orderDetailColumns.map((column) => {
+                            const value = row[column.id];
+                            if (
+                              typeof value === 'string' &&
+                              value.includes('https')
+                            ) {
                               return (
-                                <TableCell key={column.id}>
-                                  {column.format && typeof value === 'number'
-                                    ? column.format(value)
-                                    : value}
+                                <TableCell
+                                  key={column.id}
+                                  sx={{ width: '7rem' }}
+                                >
+                                  <img src={`${value}`} alt="123" />
                                 </TableCell>
                               );
-                            })}
-                          </TableRow>
-                        );
-                      })}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <Typography
-              sx={{
-                fontWeight: 500,
-                textAlign: 'center',
-                fontSize: '1.125rem',
-                paddingTop: '1rem',
-              }}
-            >
-              Total price:{' '}
-              <strong className="checkout_success-total_price">
-                {convertNumberToVND(totalPrice)}
-              </strong>
-            </Typography>
-            <TablePagination
-              rowsPerPageOptions={[5, 25, 100]}
-              component="div"
-              count={orderDetailRows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </Paper>
-        </Container>
-      )}
+                            }
+                            return (
+                              <TableCell key={column.id}>
+                                {column.format && typeof value === 'number'
+                                  ? column.format(value)
+                                  : value}
+                              </TableCell>
+                            );
+                          })}
+                        </TableRow>
+                      );
+                    })
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Typography
+            sx={{
+              fontWeight: 500,
+              textAlign: 'center',
+              fontSize: '1.125rem',
+              paddingTop: '1rem',
+            }}
+          >
+            Total price:{' '}
+            <strong className="checkout_success-total_price">
+              {convertNumberToVND(totalPrice)}
+            </strong>
+          </Typography>
+          <TablePagination
+            rowsPerPageOptions={[5, 25, 100]}
+            component="div"
+            count={orderDetailRows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Paper>
+      </Container>
     </>
   );
 };

@@ -1,7 +1,8 @@
+import { useEffect, useState } from 'react';
+
 import { getLocalStorageItem } from 'common/helper/storage';
 import { IOrder } from 'common/types/order.model';
 import { IUser } from 'common/types/user.model';
-import React, { useEffect, useState } from 'react';
 import appService from 'services/appService';
 
 export const BoughtHistory = () => {

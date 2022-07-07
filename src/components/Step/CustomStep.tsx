@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactNode, useState } from 'react';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -6,12 +6,12 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Container } from '@mui/system';
+
 import './CheckoutStep.style.scss';
 import { CHECKOUT_STEP } from 'common/constants';
 
 export const CheckoutStep = () => {
-  const [activeStep, setActiveStep] = React.useState(0);
-  console.log('activeStep', activeStep);
+  const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -27,7 +27,7 @@ export const CheckoutStep = () => {
           {CHECKOUT_STEP.map((label) => {
             const stepProps: { completed?: boolean } = {};
             const labelProps: {
-              optional?: React.ReactNode;
+              optional?: ReactNode;
             } = {};
             return (
               <Step key={label} {...stepProps}>

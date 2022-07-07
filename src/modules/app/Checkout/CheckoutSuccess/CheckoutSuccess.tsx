@@ -1,8 +1,8 @@
 import { Container } from '@mui/system';
-import { routerPath } from 'common/config/router/router.path';
-
-import { GoBack } from 'components/GoBack/GoBack';
 import { useParams } from 'react-router-dom';
+
+import { routerPath } from 'common/config/router/router.path';
+import { GoBack } from 'components/GoBack/GoBack';
 import { CheckoutInfo } from '../CheckoutInfo/CheckoutInfo';
 import './CheckoutSuccess.style.scss';
 

@@ -1,9 +1,10 @@
 import { Search } from '@mui/icons-material';
-import { routerPath } from 'common/config/router/router.path';
-import { useAppDispatch } from 'common/hooks/ReduxHook';
-import React, { useState } from 'react';
+import { ChangeEvent, FC, MouseEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { useAppDispatch } from 'common/hooks/ReduxHook';
 import { searchProductFullText } from 'redux/features/app/searchSlice';
+import { routerPath } from 'common/config/router/router.path';
 import {
   CustomSearch,
   SearchIconWrapper,
@@ -14,19 +15,17 @@ interface NavSearchProps {
   isAdminPage: boolean;
 }
 
-export const NavSearch: React.FC<NavSearchProps> = ({ isAdminPage }) => {
+export const NavSearch: FC<NavSearchProps> = ({ isAdminPage }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const [searchValue, setSearchValue] = useState<string>('');
 
-  const handleChangeSearchBar = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeSearchBar = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
-  const handleClickSearchProductBtn = (
-    e: React.MouseEvent<HTMLInputElement>,
-  ) => {
+  const handleClickSearchProductBtn = (e: MouseEvent<HTMLInputElement>) => {
     dispatch(searchProductFullText(searchValue));
     searchValue && navigate(routerPath.app.SEARCH);
   };

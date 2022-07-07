@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { IOrder, IOrderDetail } from 'common/types/order.model';
 import { IUser } from 'common/types/user.model';
 import appService from 'services/appService';

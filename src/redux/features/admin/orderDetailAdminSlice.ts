@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+
 import appService from 'services/appService';
 import { IOrderDetail } from 'common/types/order.model';
 import { IFood } from 'common/types/food.model';

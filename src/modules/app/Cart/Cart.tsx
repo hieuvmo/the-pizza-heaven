@@ -13,6 +13,7 @@ import {
   Typography,
 } from '@mui/material';
 import { Container } from '@mui/system';
+
 import { routerPath } from 'common/config/router/router.path';
 import { PRODUCT_IN_CART_TABLE_HEAD } from 'common/constants';
 import { convertNumberToVND } from 'common/helper/convertMoney';
@@ -27,7 +28,7 @@ import {
 
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
 import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   changeProductQuantityInCart,
@@ -119,9 +120,7 @@ export const Cart = () => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
@@ -196,7 +195,7 @@ export const Cart = () => {
                                       }}
                                       value={productsInCart[index].quantity}
                                       onChange={(
-                                        e: React.ChangeEvent<HTMLInputElement>,
+                                        e: ChangeEvent<HTMLInputElement>,
                                       ) =>
                                         handleChangeProductQuantity(
                                           e.target.value,

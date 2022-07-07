@@ -1,13 +1,14 @@
+import { useState } from 'react';
+import { Formik as FormValidation, Form } from 'formik';
 import { CircularProgress, Container, Grid } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
 import { getLocalStorageItem } from 'common/helper/storage';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
 import { IOrder, IOrderStatus } from 'common/types/order.model';
 import userModel, { IUser } from 'common/types/user.model';
-import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
+import { ConfirmButton } from 'components/MuiStyling/ConfirmButton.style';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
-import { Formik as FormValidation, Form } from 'formik';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { deleteAllCart } from 'redux/features/app/cartSlice';
 import { addNewOrder } from 'redux/features/app/orderSlice';
 import { RootState } from 'redux/store';
@@ -58,7 +59,7 @@ export const OrderInfo = () => {
       addNewOrderItem();
       dispatch(deleteAllCart());
     } catch (error: any) {
-      console.log('Error when registering account', error?.message);
+      console.log('Error when addNewOrderToDB', error?.message);
     } finally {
       setLoading(false);
     }
@@ -194,7 +195,7 @@ export const OrderInfo = () => {
               {loading === false ? (
                 'Order'
               ) : (
-                <CircularProgress sx={{ color: '#fff', padding: '6px' }} />
+                <CircularProgress sx={{ color: '#fff', padding: '0.375rem' }} />
               )}
             </ConfirmButton>
           </Form>

@@ -1,13 +1,11 @@
-import {
-  Fastfood,
-  Icecream,
-  LocalBar,
-  LocalPizza,
-  RamenDining,
-  RiceBowl,
-  SoupKitchen,
-} from '@mui/icons-material';
-import React, { ReactNode } from 'react';
+import FastfoodIcon from '@mui/icons-material/Fastfood';
+import IcecreamIcon from '@mui/icons-material/Icecream';
+import LocalBarIcon from '@mui/icons-material/LocalBar';
+import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
+import RamenDiningIcon from '@mui/icons-material/RamenDining';
+import RiceBowlIcon from '@mui/icons-material/RiceBowl';
+import SoupKitchenIcon from '@mui/icons-material/SoupKitchen';
+import { ReactNode } from 'react';
 
 interface MenuProductProps {
   name: string;
@@ -18,37 +16,37 @@ interface MenuProductProps {
 export const MENU_PRODUCT_NAME: MenuProductProps[] = [
   {
     name: 'Pizza',
-    iconName: <LocalPizza sx={{ fontSize: '2rem' }} />,
+    iconName: <LocalPizzaIcon sx={{ fontSize: '2rem' }} />,
     categoryId: 1,
   },
   {
     name: 'Khai vị',
-    iconName: <Fastfood sx={{ fontSize: '2rem' }} />,
+    iconName: <FastfoodIcon sx={{ fontSize: '2rem' }} />,
     categoryId: 2,
   },
   {
     name: 'Mỳ Ý',
-    iconName: <RamenDining sx={{ fontSize: '2rem' }} />,
+    iconName: <RamenDiningIcon sx={{ fontSize: '2rem' }} />,
     categoryId: 3,
   },
   {
     name: 'Nui bỏ lò',
-    iconName: <SoupKitchen sx={{ fontSize: '2rem' }} />,
+    iconName: <SoupKitchenIcon sx={{ fontSize: '2rem' }} />,
     categoryId: 4,
   },
   {
     name: 'Salad',
-    iconName: <RiceBowl sx={{ fontSize: '2rem' }} />,
+    iconName: <RiceBowlIcon sx={{ fontSize: '2rem' }} />,
     categoryId: 5,
   },
   {
     name: 'Thức uống',
-    iconName: <LocalBar sx={{ fontSize: '2rem' }} />,
+    iconName: <LocalBarIcon sx={{ fontSize: '2rem' }} />,
     categoryId: 6,
   },
   {
     name: 'Kem hộp',
-    iconName: <Icecream sx={{ fontSize: '2rem' }} />,
+    iconName: <IcecreamIcon sx={{ fontSize: '2rem' }} />,
     categoryId: 7,
   },
 ];

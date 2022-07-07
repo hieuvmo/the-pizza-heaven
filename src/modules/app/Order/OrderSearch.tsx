@@ -1,35 +1,40 @@
+import { ChangeEvent, useEffect, useState } from 'react';
 import { SearchOutlined } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import { Container } from '@mui/system';
+
+import { ClipLoading } from 'components/Loading/ClipLoader';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
-import React, { useEffect, useState } from 'react';
 import appService from 'services/appService';
 import { CheckoutInfo } from '../Checkout/CheckoutInfo/CheckoutInfo';
 import './OrderSearch.style.scss';
 
 export const OrderSearch = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [orderSearchValue, setOrderSearchValue] = useState('');
   const [orderSearchRes, setOrderSearchRes] = useState('');
-  const [existedOrderNo, setExistedOrderNo] = useState(false);
+  const [existedOrderNo, setExistedOrderNo] = useState<boolean>();
 
   useEffect(() => {
     const fetchOrderByIdAPI = async () => {
       if (orderSearchRes !== '') {
         try {
+          setIsLoading(true);
           await appService.getOrderById(parseInt(orderSearchRes));
           setExistedOrderNo(true);
         } catch (error) {
+          setIsLoading(true);
           console.log('Error when getOrderById', error);
           setExistedOrderNo(false);
+        } finally {
+          setIsLoading(false);
         }
       }
     };
     fetchOrderByIdAPI();
   }, [orderSearchRes]);
 
-  const handleChangeOrderSearchInput = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangeOrderSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
     setOrderSearchValue(e.target.value);
   };
 
@@ -39,12 +44,20 @@ export const OrderSearch = () => {
   };
 
   const renderOrderSearchRes = () => {
-    if (existedOrderNo) {
+    if (orderSearchRes === '') {
+      return <></>;
+    }
+    if (isLoading) {
+      return (
+        <div className="py-44">
+          <ClipLoading loading={isLoading} />;
+        </div>
+      );
+    }
+    if (existedOrderNo && !isLoading) {
       return <CheckoutInfo orderId={orderSearchRes} />;
-    } else {
-      if (orderSearchRes === '') {
-        return <></>;
-      }
+    }
+    if (!existedOrderNo && !isLoading) {
       return (
         <div className="order_search-empty">
           <img
@@ -79,11 +92,6 @@ export const OrderSearch = () => {
           />
         </div>
       </div>
-      {/* {existedOrderNo ? (
-        <CheckoutInfo orderId={orderSearchRes} />
-      ) : (
-        <h1>abc</h1>
-      )} */}
       {renderOrderSearchRes()}
     </Container>
   );

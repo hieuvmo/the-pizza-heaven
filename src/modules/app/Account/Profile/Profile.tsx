@@ -1,12 +1,13 @@
-import { Stepper, StepLabel, StepContent, AlertColor } from '@mui/material';
+import { useState } from 'react';
 import { Formik as FormValidation, Form } from 'formik';
+import { Stepper, StepLabel, StepContent, AlertColor } from '@mui/material';
+import { Check } from '@mui/icons-material';
+
 import { ColorSchema } from 'common/types/color.model';
 import { CustomStep } from 'components/MuiStyling/CustomStep.style';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
-import React, { useState } from 'react';
 import userModel, { IUser } from 'common/types/user.model';
-import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
-import { Check } from '@mui/icons-material';
+import { ConfirmButton } from 'components/MuiStyling/ConfirmButton.style';
 import {
   getLocalStorageItem,
   setLocalStorageItem,
