@@ -1,25 +1,32 @@
-import { Close } from '@mui/icons-material';
-import { ColorSchema } from 'common/types/color.model';
-import React from 'react';
-import ReactModal from 'react-modal';
+import CloseIcon from '@mui/icons-material/Close';
+import {
+  CSSProperties,
+  Dispatch,
+  FunctionComponent,
+  ReactNode,
+  SetStateAction,
+} from 'react';
+import { Styles } from 'react-modal';
 import Modal from 'react-modal';
 
+import { ColorSchema } from 'common/types/color.model';
+
 interface ModalProps {
-  children: React.ReactNode;
+  children: ReactNode;
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  newStyled?: ReactModal.Styles;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  newStyled?: Styles;
   requestCloseModal?: () => void;
 }
 
-export const CustomModal: React.FunctionComponent<ModalProps> = ({
+export const CustomModal: FunctionComponent<ModalProps> = ({
   children,
   isOpen,
   setIsOpen,
   newStyled,
   requestCloseModal,
 }) => {
-  const currentStyled: ReactModal.Styles = {
+  const currentStyled: Styles = {
     overlay: { marginTop: '3rem', backgroundColor: 'rgba(0,0,0, .8)' },
     content: {
       marginInline: 'auto',
@@ -31,18 +38,15 @@ export const CustomModal: React.FunctionComponent<ModalProps> = ({
     },
   };
 
-  const assignResultStyled: React.CSSProperties[] = [];
+  const assignResultStyled: CSSProperties[] = [];
   for (const [currentKey, currentValue] of Object.entries(currentStyled)) {
-    for (const [newKey, newValue] of Object.entries(
-      newStyled as ReactModal.Styles,
-    )) {
+    for (const [newKey, newValue] of Object.entries(newStyled as Styles)) {
       if (currentKey === newKey)
         assignResultStyled.push(Object.assign(currentValue, newValue));
     }
   }
 
-  //using memo
-  const finalStyled: ReactModal.Styles = {
+  const finalStyled: Styles = {
     overlay: assignResultStyled[0],
     content: assignResultStyled[1],
   };
@@ -62,7 +66,7 @@ export const CustomModal: React.FunctionComponent<ModalProps> = ({
         className="flex justify-end cursor-pointer text-[#e0e0e0]"
         onClick={handleCloseModal}
       >
-        <Close
+        <CloseIcon
           sx={{
             fontSize: '3rem',
             ':hover': {

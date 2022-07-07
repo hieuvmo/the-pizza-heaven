@@ -1,5 +1,6 @@
-import React from 'react';
-import { Typography } from '@mui/material';
+import { FC } from 'react';
+import Typography from '@mui/material/Typography';
+
 import { routerPath } from '../../common/config/router/router.path';
 import './PizzaLogo.style.scss';
 
@@ -8,10 +9,7 @@ interface PizzaLogoProps {
   colorText: string;
 }
 
-export const PizzaLogo: React.FC<PizzaLogoProps> = ({
-  customDisplay,
-  colorText,
-}) => {
+export const PizzaLogo: FC<PizzaLogoProps> = ({ customDisplay, colorText }) => {
   return (
     <Typography
       variant="h6"

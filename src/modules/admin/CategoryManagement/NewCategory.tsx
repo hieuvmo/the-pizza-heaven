@@ -1,5 +1,10 @@
 import { Form, Formik as FormValidation } from 'formik';
-import { Container, Grid, Typography } from '@mui/material';
+import CheckIcon from '@mui/icons-material/Check';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
+
 import { routerPath } from 'common/config/router/router.path';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
 import categoryModel, {
@@ -7,13 +12,11 @@ import categoryModel, {
   ICategoryWithoutId,
 } from 'common/types/category.model';
 import { GoBack } from 'components/GoBack/GoBack';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { addNewCategoryToDB } from 'redux/features/admin/categorySlice';
 import { RootState } from 'redux/store';
-import { Check } from '@mui/icons-material';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
-import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
+import { ConfirmButton } from 'components/MuiStyling/ConfirmButton.style';
+import { SyncLoading } from 'components/Loading/SyncLoader';
 
 export const NewCategory = () => {
   const { categoryList, isLoading } = useAppSelector(
@@ -35,19 +38,23 @@ export const NewCategory = () => {
   return (
     <>
       <GoBack pageLink={routerPath.admin.CATEGORY_LIST} />
-      {!isLoading && (
-        <Container maxWidth="lg" className="py-12">
-          <Typography
-            sx={{
-              fontWeight: 700,
-              letterSpacing: '.1rem',
-              textAlign: 'center',
-              marginBottom: '1rem',
-              fontSize: '2rem',
-            }}
-          >
-            Add New Category
-          </Typography>
+      <Container maxWidth="lg" className="py-12">
+        <Typography
+          sx={{
+            fontWeight: 700,
+            letterSpacing: '.1rem',
+            textAlign: 'center',
+            marginBottom: '1rem',
+            fontSize: '2rem',
+          }}
+        >
+          Add New Category
+        </Typography>
+        {isLoading ? (
+          <div className="py-5">
+            <SyncLoading loading={isLoading} />
+          </div>
+        ) : (
           <FormValidation
             initialValues={{
               categoryName: '',
@@ -92,7 +99,7 @@ export const NewCategory = () => {
                       fullWidth
                       type="submit"
                       variant="contained"
-                      startIcon={<Check />}
+                      startIcon={<CheckIcon />}
                     >
                       Confirm add new
                     </ConfirmButton>
@@ -101,8 +108,8 @@ export const NewCategory = () => {
               </Form>
             )}
           </FormValidation>
-        </Container>
-      )}
+        )}
+      </Container>
     </>
   );
 };

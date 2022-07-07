@@ -1,37 +1,39 @@
-import { Add, Delete, Edit } from '@mui/icons-material';
-import {
-  AlertColor,
-  Button,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
-} from '@mui/material';
-import { Container } from '@mui/system';
+import { ChangeEvent, useEffect, useState } from 'react';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import { AlertColor } from '@mui/material';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
+import { Link } from 'react-router-dom';
+
 import { routerPath } from 'common/config/router/router.path';
 import { PRODUCT_TABLE_HEAD } from 'common/constants';
 import { convertNumberToVND } from 'common/helper/convertMoney';
 import { capitalizeFirstLetter } from 'common/helper/string';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
+import { RootState } from 'redux/store';
+import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
+import { getCategoryList } from 'redux/features/admin/categorySlice';
 import {
   IdFoodType,
   IFoodColumn,
   IFoodDataTable,
 } from 'common/types/table.mui.model';
-import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getCategoryList } from 'redux/features/admin/categorySlice';
 import {
   deleteFoodById,
   getFoodDetailById,
   getFoodList,
 } from 'redux/features/admin/foodSlice';
-import { RootState } from 'redux/store';
+import { ClipLoading } from 'components/Loading/ClipLoader';
 
 export const ProductList = () => {
   const { foodList, isLoading } = useAppSelector(
@@ -91,9 +93,7 @@ export const ProductList = () => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
@@ -114,146 +114,144 @@ export const ProductList = () => {
   };
 
   return (
-    <>
-      {!isLoading && (
-        <Container maxWidth="lg">
-          <Paper
-            sx={{
-              paddingBlock: '3rem',
-              paddingInline: '1rem',
-              margin: 'auto',
-              marginBlock: '2.5rem',
-            }}
-          >
-            <TableContainer sx={{ maxHeight: '55vh' }}>
-              <Table stickyHeader aria-label="sticky table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell
-                      sx={{ fontSize: '2rem' }}
-                      align="center"
-                      colSpan={8}
-                    >
-                      Product Management
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    {foodColumns.map((column) => (
-                      <TableCell key={column.id}>{column.label}</TableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {foodRows
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row) => {
-                      return (
-                        <TableRow
-                          hover
-                          role="checkbox"
-                          tabIndex={-1}
-                          key={row.id}
-                        >
-                          {foodColumns.map((column) => {
-                            const value = row[column.id];
-                            if (value !== undefined) {
-                              if (
-                                typeof value === 'string' &&
-                                value.includes('https')
-                              ) {
-                                return (
-                                  <TableCell
-                                    key={column.id}
-                                    sx={{ width: '7rem' }}
-                                  >
-                                    <img src={`${value}`} alt="123" />
-                                  </TableCell>
-                                );
-                              }
+    <Container maxWidth="lg">
+      <Paper
+        sx={{
+          paddingBlock: '3rem',
+          paddingInline: '1rem',
+          margin: 'auto',
+          marginBlock: '2.5rem',
+        }}
+      >
+        <TableContainer sx={{ maxHeight: '55vh' }}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                <TableCell sx={{ fontSize: '2rem' }} align="center" colSpan={8}>
+                  Product Management
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                {foodColumns.map((column) => (
+                  <TableCell key={column.id}>{column.label}</TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {isLoading ? (
+                <TableRow sx={{ height: '39vh' }}>
+                  <TableCell colSpan={8}>
+                    <ClipLoading loading={isLoading} />
+                  </TableCell>
+                </TableRow>
+              ) : (
+                foodRows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => {
+                    return (
+                      <TableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={row.id}
+                      >
+                        {foodColumns.map((column) => {
+                          const value = row[column.id];
+                          if (value !== undefined) {
+                            if (
+                              typeof value === 'string' &&
+                              value.includes('https')
+                            ) {
+                              return (
+                                <TableCell
+                                  key={column.id}
+                                  sx={{ width: '7rem' }}
+                                >
+                                  <img src={`${value}`} alt="123" />
+                                </TableCell>
+                              );
+                            }
 
-                              if (typeof value === 'boolean') {
-                                return (
-                                  <TableCell key={column.id}>
-                                    {value ? <p>Yes</p> : <p>No</p>}
-                                  </TableCell>
-                                );
-                              }
+                            if (typeof value === 'boolean') {
                               return (
                                 <TableCell key={column.id}>
-                                  {column.format && typeof value === 'number'
-                                    ? column.format(value)
-                                    : value}
+                                  {value ? <p>Yes</p> : <p>No</p>}
                                 </TableCell>
                               );
                             }
                             return (
                               <TableCell key={column.id}>
-                                <Link
-                                  to={`${routerPath.admin.FOOD_LIST}/${row.id}`}
-                                  onClick={() => handleClickEditButton(row.id)}
-                                >
-                                  <Button
-                                    sx={{
-                                      marginRight: '1rem',
-                                      minWidth: '7rem',
-                                    }}
-                                    color="info"
-                                    variant="contained"
-                                    startIcon={<Edit />}
-                                  >
-                                    Edit
-                                  </Button>
-                                </Link>
-                                <Button
-                                  sx={{ minWidth: '7rem' }}
-                                  onClick={() =>
-                                    handleClickDeleteButton(row.id)
-                                  }
-                                  color="error"
-                                  variant="contained"
-                                  startIcon={<Delete />}
-                                >
-                                  Delete
-                                </Button>
+                                {column.format && typeof value === 'number'
+                                  ? column.format(value)
+                                  : value}
                               </TableCell>
                             );
-                          })}
-                        </TableRow>
-                      );
-                    })}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <Link to={routerPath.admin.FOOD_NEW}>
-              <Button
-                sx={{ marginLeft: '1rem', marginTop: '1rem' }}
-                color="success"
-                variant="contained"
-                startIcon={<Add />}
-              >
-                Add new
-              </Button>
-            </Link>
+                          }
+                          return (
+                            <TableCell key={column.id}>
+                              <Link
+                                to={`${routerPath.admin.FOOD_LIST}/${row.id}`}
+                                onClick={() => handleClickEditButton(row.id)}
+                              >
+                                <Button
+                                  sx={{
+                                    marginRight: '1rem',
+                                    minWidth: '7rem',
+                                  }}
+                                  color="info"
+                                  variant="contained"
+                                  startIcon={<EditIcon />}
+                                >
+                                  Edit
+                                </Button>
+                              </Link>
+                              <Button
+                                sx={{ minWidth: '7rem' }}
+                                onClick={() => handleClickDeleteButton(row.id)}
+                                color="error"
+                                variant="contained"
+                                startIcon={<DeleteIcon />}
+                              >
+                                Delete
+                              </Button>
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <Link to={routerPath.admin.FOOD_NEW}>
+          <Button
+            sx={{ marginLeft: '1rem', marginTop: '1rem' }}
+            color="success"
+            variant="contained"
+            startIcon={<AddIcon />}
+          >
+            Add new
+          </Button>
+        </Link>
 
-            <TablePagination
-              rowsPerPageOptions={[5, 25, 100]}
-              component="div"
-              count={foodRows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </Paper>
+        <TablePagination
+          rowsPerPageOptions={[5, 25, 100]}
+          component="div"
+          count={foodRows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
 
-          <CustomSnackbar
-            snackbarColor={snackbarType}
-            res={responseFromAPI}
-            open={showSnackbar}
-            setOpen={setShowSnackbar}
-          />
-        </Container>
-      )}
-    </>
+      <CustomSnackbar
+        snackbarColor={snackbarType}
+        res={responseFromAPI}
+        open={showSnackbar}
+        setOpen={setShowSnackbar}
+      />
+    </Container>
   );
 };

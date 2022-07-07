@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { ICategory } from 'common/types/category.model';
 import appService from 'services/appService';
 

@@ -1,23 +1,44 @@
-import { Info } from '@mui/icons-material';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import InfoIcon from '@mui/icons-material/Info';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import MenuItem from '@mui/material/MenuItem';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
 import {
   AlertColor,
-  Button,
-  Grid,
-  MenuItem,
-  Paper,
-  Select as MuiSelect,
   SelectChangeEvent,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
+  Select as MuiSelect,
 } from '@mui/material';
-import Select, { SingleValue } from 'react-select';
 import { Container } from '@mui/system';
+import Select, { SingleValue } from 'react-select';
+
 import { routerPath } from 'common/config/router/router.path';
+import { convertNumberToVND } from 'common/helper/convertMoney';
+import { capitalizeFirstLetter } from 'common/helper/string';
+import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
+import { IOrder, IOrderStatus } from 'common/types/order.model';
+import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
+import { resetAdminOrderDetail } from 'redux/features/admin/orderDetailAdminSlice';
+import { RootState } from 'redux/store';
+import { ColorSchema } from 'common/types/color.model';
+import './OrderList.style.scss';
+import {
+  IdOrderType,
+  IOrderColumn,
+  IOrderDataTable,
+} from 'common/types/table.mui.model';
+import {
+  changeOrderStatusById,
+  getOrderListByStatus,
+} from 'redux/features/admin/orderAdminSlice';
 import {
   ISelect,
   ORDER_FILTER_ATTRIBUTE,
@@ -25,25 +46,7 @@ import {
   ORDER_SELECT_STATUS,
   ORDER_TABLE_HEAD,
 } from 'common/constants';
-import { convertNumberToVND } from 'common/helper/convertMoney';
-import { capitalizeFirstLetter } from 'common/helper/string';
-import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
-import { IOrder, IOrderStatus } from 'common/types/order.model';
-import {
-  IdOrderType,
-  IOrderColumn,
-  IOrderDataTable,
-} from 'common/types/table.mui.model';
-import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import {
-  changeOrderStatusById,
-  getOrderListByStatus,
-} from 'redux/features/admin/orderAdminSlice';
-import { resetAdminOrderDetail } from 'redux/features/admin/orderDetailAdminSlice';
-import { RootState } from 'redux/store';
-import './OrderList.style.scss';
+import { ClipLoading } from 'components/Loading/ClipLoader';
 
 export const OrderList = () => {
   const { orderList, isLoading } = useAppSelector(
@@ -121,9 +124,7 @@ export const OrderList = () => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
@@ -150,118 +151,125 @@ export const OrderList = () => {
 
   return (
     <>
-      {!isLoading && (
-        <Container maxWidth="lg">
-          <Paper
-            sx={{
-              paddingBlock: '3rem',
-              paddingInline: '1rem',
-              margin: 'auto',
-              marginBlock: '2.5rem',
-            }}
-          >
-            <TableContainer sx={{ maxHeight: '62.5vh' }}>
-              <Table stickyHeader aria-label="sticky table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell
-                      sx={{ fontSize: '2rem' }}
-                      align="center"
-                      colSpan={9}
+      <Container maxWidth="lg">
+        <Paper
+          sx={{
+            paddingBlock: '3rem',
+            paddingInline: '1rem',
+            margin: 'auto',
+            marginBlock: '2.5rem',
+          }}
+        >
+          <TableContainer sx={{ maxHeight: '62.5vh' }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  <TableCell
+                    sx={{ fontSize: '2rem' }}
+                    align="center"
+                    colSpan={9}
+                  >
+                    Order Management
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell colSpan={9}>
+                    <Grid
+                      container
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                      spacing={4}
                     >
-                      Order Management
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell colSpan={9}>
                       <Grid
-                        container
+                        item
+                        xs={12}
+                        sm={6}
                         sx={{
+                          paddingTop: '0.5rem',
                           display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
+                          justifyContent: 'space-between',
                         }}
-                        spacing={4}
                       >
-                        <Grid
-                          item
-                          xs={12}
-                          sm={6}
-                          sx={{
-                            paddingTop: '0.5rem',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                          }}
-                        >
-                          <div className="font-bold my-auto min-w-[5rem]">
-                            Filter by:
-                          </div>
-                          <div className="w-full">
-                            <Select
-                              theme={(theme) => ({
-                                ...theme,
-                                borderRadius: 0,
-                                colors: {
-                                  ...theme.colors,
-                                  primary25: '#e0e0e0',
-                                  primary: '#008c7a',
-                                },
-                              })}
-                              options={ORDER_FILTER_ATTRIBUTE}
-                              placeholder="Sort by"
-                              value={filterOrderSelect}
-                              onChange={(newValue: SingleValue<ISelect>) =>
-                                setFilterOrderSelect(newValue)
-                              }
-                            />
-                          </div>
-                        </Grid>
-                        <Grid
-                          item
-                          xs={12}
-                          sm={6}
-                          sx={{
-                            paddingTop: '0.5rem',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                          }}
-                        >
-                          <div className="font-bold my-auto min-w-[5rem]">
-                            Order by:
-                          </div>
-                          <div className="w-full">
-                            <Select
-                              theme={(theme) => ({
-                                ...theme,
-                                borderRadius: 0,
-                                colors: {
-                                  ...theme.colors,
-                                  primary25: '#e0e0e0',
-                                  primary: '#008c7a',
-                                },
-                              })}
-                              options={ORDER_ORDER_BY_ATTRIBUTE}
-                              placeholder="Oder by"
-                              value={orderByOrderSelect}
-                              onChange={(newValue: SingleValue<ISelect>) =>
-                                setOrderByOrderSelect(newValue)
-                              }
-                            />
-                          </div>
-                        </Grid>
+                        <div className="font-bold my-auto min-w-[5rem]">
+                          Filter by:
+                        </div>
+                        <div className="w-full">
+                          <Select
+                            theme={(theme) => ({
+                              ...theme,
+                              borderRadius: 0,
+                              colors: {
+                                ...theme.colors,
+                                primary25: '#e0e0e0',
+                                primary: ColorSchema.LightGreen,
+                              },
+                            })}
+                            options={ORDER_FILTER_ATTRIBUTE}
+                            placeholder="Sort by"
+                            value={filterOrderSelect}
+                            onChange={(newValue: SingleValue<ISelect>) =>
+                              setFilterOrderSelect(newValue)
+                            }
+                          />
+                        </div>
                       </Grid>
+                      <Grid
+                        item
+                        xs={12}
+                        sm={6}
+                        sx={{
+                          paddingTop: '0.5rem',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                        }}
+                      >
+                        <div className="font-bold my-auto min-w-[5rem]">
+                          Order by:
+                        </div>
+                        <div className="w-full">
+                          <Select
+                            theme={(theme) => ({
+                              ...theme,
+                              borderRadius: 0,
+                              colors: {
+                                ...theme.colors,
+                                primary25: '#e0e0e0',
+                                primary: ColorSchema.LightGreen,
+                              },
+                            })}
+                            options={ORDER_ORDER_BY_ATTRIBUTE}
+                            placeholder="Oder by"
+                            value={orderByOrderSelect}
+                            onChange={(newValue: SingleValue<ISelect>) =>
+                              setOrderByOrderSelect(newValue)
+                            }
+                          />
+                        </div>
+                      </Grid>
+                    </Grid>
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  {orderColumns.map((column) => (
+                    <TableCell sx={{ fontWeight: '500' }} key={column.id}>
+                      {column.label}
+                    </TableCell>
+                  ))}
+                </TableRow>
+
+                {isLoading ? (
+                  <TableRow sx={{ height: '40vh' }}>
+                    <TableCell colSpan={9}>
+                      <ClipLoading loading={isLoading} />
                     </TableCell>
                   </TableRow>
-                </TableHead>
-                <TableBody>
-                  <TableRow>
-                    {orderColumns.map((column) => (
-                      <TableCell sx={{ fontWeight: '500' }} key={column.id}>
-                        {column.label}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                  {orderRows
+                ) : (
+                  orderRows
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row, rowIndex) => {
                       return (
@@ -330,7 +338,7 @@ export const OrderList = () => {
                                 >
                                   <Button
                                     variant="contained"
-                                    startIcon={<Info />}
+                                    startIcon={<InfoIcon />}
                                   >
                                     Detail
                                   </Button>
@@ -340,30 +348,30 @@ export const OrderList = () => {
                           })}
                         </TableRow>
                       );
-                    })}
-                </TableBody>
-              </Table>
-            </TableContainer>
+                    })
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
 
-            <TablePagination
-              rowsPerPageOptions={[5, 25, 100]}
-              component="div"
-              count={orderRows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </Paper>
-
-          <CustomSnackbar
-            snackbarColor={snackbarType}
-            res={responseFromAPI}
-            open={showSnackbar}
-            setOpen={setShowSnackbar}
+          <TablePagination
+            rowsPerPageOptions={[5, 25, 100]}
+            component="div"
+            count={orderRows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
           />
-        </Container>
-      )}
+        </Paper>
+
+        <CustomSnackbar
+          snackbarColor={snackbarType}
+          res={responseFromAPI}
+          open={showSnackbar}
+          setOpen={setShowSnackbar}
+        />
+      </Container>
     </>
   );
 };

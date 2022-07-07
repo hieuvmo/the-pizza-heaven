@@ -1,11 +1,11 @@
-import React from 'react';
+import { Dispatch, SetStateAction, SyntheticEvent } from 'react';
 import { Snackbar, Alert, AlertColor, SnackbarOrigin } from '@mui/material';
 
 interface SnackbarProps {
   snackbarColor?: AlertColor;
   res: string;
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen: Dispatch<SetStateAction<boolean>>;
   verticalPosition?: SnackbarOrigin['vertical'];
 }
 
@@ -16,10 +16,7 @@ export const CustomSnackbar = ({
   setOpen,
   verticalPosition,
 }: SnackbarProps) => {
-  const handleClose = (
-    _event: React.SyntheticEvent | Event,
-    reason?: string,
-  ) => {
+  const handleClose = (_event: SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }

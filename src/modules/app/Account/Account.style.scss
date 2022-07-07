@@ -25,14 +25,14 @@
     .tab-item {
       max-width: 20rem;
       box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem rgba(0, 0, 0, 0.1);
-      border-bottom: 6px;
-      border-right: 6px;
-      @apply m-auto py-2 px-4 mb-4 cursor-pointer font-medium border-[6px];
+      border-bottom: 0.375rem;
+      border-right: 0.375rem;
+      @apply m-auto py-2 px-4 mb-4 cursor-pointer font-medium border-[0.375rem];
     }
 
     .tab-item.active {
-      border-bottom: 6px;
-      border-right: 6px;
+      border-bottom: 0.375rem;
+      border-right: 0.375rem;
       @apply border-[#008c7a];
     }
   }

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+
 import { IOrderDetail } from 'common/types/order.model';
 
 export interface OrderDetailState {

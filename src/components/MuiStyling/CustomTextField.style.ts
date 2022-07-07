@@ -1,28 +1,30 @@
 import styled from '@emotion/styled';
 import { TextField } from '@mui/material';
 
+import { ColorSchema } from 'common/types/color.model';
+
 export const CustomTextField = styled(TextField)({
   '& label.Mui-focused': {
-    color: '#008c7a !important',
+    color: `${ColorSchema.LightGreen} !important`,
   },
   '& .MuiInput-underline:after': {
-    borderBottomColor: '#008c7a !important',
+    borderBottomColor: `${ColorSchema.LightGreen} !important`,
   },
   '& input:invalid + fieldset': {
     borderColor: '#ff8886 !important',
   },
   '& input:valid:focus + fieldset': {
     borderLeftWidth: 6,
-    padding: '4px !important',
-    borderColor: '#008c7a !important',
+    padding: '0.25rem !important',
+    borderColor: `${ColorSchema.LightGreen} !important`,
   },
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
       borderColor: '#909090',
     },
     '&.Mui-focused fieldset': {
-      borderColor: '#008c7a',
-      padding: '4px !important',
+      borderColor: ColorSchema.LightGreen,
+      padding: '0.25rem !important',
       borderLeftWidth: 6,
     },
   },

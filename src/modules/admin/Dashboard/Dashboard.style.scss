@@ -46,7 +46,7 @@
 
   &-card_body {
     .card-header {
-      @apply py-4 font-serif font-semibold text-[0.925rem];
+      @apply py-3 font-semibold text-xl;
     }
 
     .line-break {
@@ -62,11 +62,11 @@
         }
 
         &-email {
-          @apply mb-1;
+          @apply mb-1 font-medium;
         }
 
         &-name {
-          @apply text-sm;
+          @apply text-sm text-gray-500;
         }
       }
     }
@@ -74,28 +74,33 @@
       @apply w-2 h-2 rounded-[50%] bg-[#2ed8b6] my-auto;
     }
 
+    .customer-status-loading {
+      @apply bg-black;
+    }
+
     .order-info {
       @apply flex py-4 justify-between;
 
       .customer {
         &-name {
-          @apply mb-[0.415rem];
+          @apply mb-[0.415rem] font-medium;
         }
 
         &-phone {
-          @apply text-sm mb-[0.125rem];
+          @apply text-sm mb-[0.125rem] text-gray-500;
         }
 
         &-address {
-          @apply text-sm mb-[0.125rem];
+          @apply text-sm;
+          @apply text-sm mb-[0.125rem] text-gray-500;
         }
       }
       .total-price {
-        @apply font-bold text-[#d30e15] mb-2;
+        @apply font-bold text-[#d30e15];
       }
 
       .order-status {
-        @apply uppercase font-semibold;
+        @apply uppercase font-semibold mb-1;
       }
     }
   }

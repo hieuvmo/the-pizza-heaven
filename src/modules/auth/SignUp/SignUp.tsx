@@ -1,17 +1,18 @@
+import { useState } from 'react';
 import { Formik as FormValidation, Form } from 'formik';
 import { AlertColor, CircularProgress } from '@mui/material';
+import { Link } from 'react-router-dom';
+
 import { AuthForm, ImageSide } from 'components/AuthForm/AuthForm';
-import { useState } from 'react';
 import authModel, { ISignUp } from 'common/types/auth.model';
 import { routerPath } from 'common/config/router/router.path';
-import { Link } from 'react-router-dom';
 import { ColorSchema } from 'common/types/color.model';
 import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
-import './SignUp.style.scss';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
 import { AuthButton } from 'components/MuiStyling/AuthButton.style';
 import { SubmitButtonStyle } from 'components/MuiStyling/MuiStyling.style';
 import authService from 'services/authService';
+import './SignUp.style.scss';
 
 export const SignUp = () => {
   const [loading, setLoading] = useState(false);
@@ -30,7 +31,7 @@ export const SignUp = () => {
       setResponseFromAPI('You have created account successfully');
       setShowSnackbar(true);
     } catch (error: any) {
-      console.log('Error when registering account', error?.response?.data);
+      console.log('Error when registerClientAccount', error?.response?.data);
       setSnackbarType('error');
       setResponseFromAPI(error?.response?.data);
       setShowSnackbar(true);
@@ -158,7 +159,9 @@ export const SignUp = () => {
                 {loading === false ? (
                   'Sign up'
                 ) : (
-                  <CircularProgress sx={{ color: '#fff', padding: '6px' }} />
+                  <CircularProgress
+                    sx={{ color: ColorSchema.White, padding: '0.375rem' }}
+                  />
                 )}
               </AuthButton>
 

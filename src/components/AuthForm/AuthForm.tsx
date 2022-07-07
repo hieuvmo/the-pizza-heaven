@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
 import './AuthForm.style.scss';
 
@@ -13,7 +13,7 @@ interface AuthFormProps {
   imageLink: string;
 }
 
-export const AuthForm: React.FC<AuthFormProps> = ({
+export const AuthForm: FC<AuthFormProps> = ({
   children,
   imageSide,
   imageLink,

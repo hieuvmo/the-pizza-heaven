@@ -1,3 +1,4 @@
+import { ChangeEvent, FC, useEffect, useMemo, useState } from 'react';
 import { Cancel, CheckCircle, Reviews } from '@mui/icons-material';
 import {
   Button,
@@ -12,6 +13,7 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
+
 import { ORDER_DETAIL_TABLE_HEAD } from 'common/constants';
 import { convertDateNowToDayMonthYear } from 'common/helper/convertDate';
 import { convertNumberToVND } from 'common/helper/convertMoney';
@@ -23,7 +25,6 @@ import {
   IOrderDetailColumn,
   IOrderDetailDataTable,
 } from 'common/types/table.mui.model';
-import { useEffect, useMemo, useState } from 'react';
 import appService from 'services/appService';
 import './CheckoutInfo.style.scss';
 
@@ -31,7 +32,7 @@ interface CheckoutInfoProps {
   orderId: string;
 }
 
-export const CheckoutInfo: React.FC<CheckoutInfoProps> = ({ orderId }) => {
+export const CheckoutInfo: FC<CheckoutInfoProps> = ({ orderId }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -97,9 +98,7 @@ export const CheckoutInfo: React.FC<CheckoutInfoProps> = ({ orderId }) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };

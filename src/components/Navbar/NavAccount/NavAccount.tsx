@@ -1,23 +1,22 @@
+import { FC, MouseEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AccountCircle, NoAccounts } from '@mui/icons-material';
 import { IconButton, Menu, MenuItem } from '@mui/material';
+
 import { ACCOUNT_ATTRIBUTE } from 'common/constants';
 import { destroyLocalStorageItem } from 'common/helper/storage';
-import React from 'react';
-import { Link } from 'react-router-dom';
 
 interface AccountProps {
   isLogged: boolean;
   isAdminAccount: boolean;
 }
 
-export const NavAccount: React.FC<AccountProps> = ({
-  isLogged,
-  isAdminAccount,
-}) => {
-  const [anchorElAccount, setAnchorElAccount] =
-    React.useState<null | HTMLElement>(null);
+export const NavAccount: FC<AccountProps> = ({ isLogged, isAdminAccount }) => {
+  const [anchorElAccount, setAnchorElAccount] = useState<null | HTMLElement>(
+    null,
+  );
 
-  const handleOpenAccountMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenAccountMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElAccount(event.currentTarget);
   };
 

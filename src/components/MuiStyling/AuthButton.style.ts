@@ -1,12 +1,14 @@
 import styled from '@emotion/styled';
 import { Button } from '@mui/material';
 
+import { ColorSchema } from 'common/types/color.model';
+
 export const AuthButton = styled(Button)({
-  background: '#008c7a !important',
+  background: `${ColorSchema.LightGreen} !important`,
   border: 0,
-  borderRadius: '40px !important',
-  color: 'white',
-  fontSize: '18px !important',
-  height: '56px',
+  borderRadius: '2.5rem !important',
+  color: ColorSchema.White,
+  fontSize: '1.125rem !important',
+  height: '3.5rem',
   letterSpacing: '1px !important',
 });

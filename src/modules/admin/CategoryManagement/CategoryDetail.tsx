@@ -1,23 +1,28 @@
-import { Check } from '@mui/icons-material';
-import { Container, Grid, Typography } from '@mui/material';
+import { Form, Formik as FormValidation } from 'formik';
+import CheckIcon from '@mui/icons-material/Check';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { routerPath } from 'common/config/router/router.path';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
 import categoryModel, { ICategory } from 'common/types/category.model';
 import { GoBack } from 'components/GoBack/GoBack';
-import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import { updateCategoryById } from 'redux/features/admin/categorySlice';
 import { RootState } from 'redux/store';
-import { Form, Formik as FormValidation } from 'formik';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
-import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
+import { ConfirmButton } from 'components/MuiStyling/ConfirmButton.style';
+import { SyncLoading } from 'components/Loading/SyncLoader';
 
 export const CategoryDetail = () => {
   const { categoryDetail, isLoading } = useAppSelector(
     (state: RootState) => state.adminCategory,
   );
   const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
+
   const { id } = useParams();
 
   const handleSubmitUpdateCategoryList = async (values: ICategory) => {
@@ -33,19 +38,25 @@ export const CategoryDetail = () => {
   return (
     <>
       <GoBack pageLink={routerPath.admin.CATEGORY_LIST} />
-      {!isLoading && (
-        <Container maxWidth="lg" className="py-12">
-          <Typography
-            sx={{
-              fontWeight: 700,
-              letterSpacing: '.1rem',
-              textAlign: 'center',
-              marginBottom: '2rem',
-              fontSize: '2rem',
-            }}
-          >
-            Edit Category
-          </Typography>
+
+      <Container maxWidth="lg" className="py-12">
+        <Typography
+          sx={{
+            fontWeight: 700,
+            letterSpacing: '.1rem',
+            textAlign: 'center',
+            marginBottom: '2rem',
+            fontSize: '2rem',
+          }}
+        >
+          Edit Category
+        </Typography>
+
+        {isLoading ? (
+          <div className="py-5">
+            <SyncLoading loading={isLoading} />
+          </div>
+        ) : (
           <FormValidation
             initialValues={{
               id: categoryDetail.id,
@@ -53,7 +64,6 @@ export const CategoryDetail = () => {
             }}
             validationSchema={categoryModel.categorySchema}
             onSubmit={(values: ICategory, { setSubmitting }) => {
-              console.log('values', values);
               handleSubmitUpdateCategoryList(values);
               setSubmitting(false);
             }}
@@ -92,7 +102,7 @@ export const CategoryDetail = () => {
                       fullWidth
                       type="submit"
                       variant="contained"
-                      startIcon={<Check />}
+                      startIcon={<CheckIcon />}
                     >
                       Confirm edit category
                     </ConfirmButton>
@@ -101,8 +111,8 @@ export const CategoryDetail = () => {
               </Form>
             )}
           </FormValidation>
-        </Container>
-      )}
+        )}
+      </Container>
     </>
   );
 };

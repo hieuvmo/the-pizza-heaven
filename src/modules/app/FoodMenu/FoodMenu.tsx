@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
-import './FoodMenu.style.scss';
+import { useState } from 'react';
+import { Grid } from '@mui/material';
+import { Container } from '@mui/system';
+import Select, { SingleValue } from 'react-select';
+
 import { MENU_PRODUCT_NAME } from 'common/constants/menuList';
 import { FoodItem } from '../FoodItem/FoodItem';
-import Select, { SingleValue } from 'react-select';
 import {
   ISelect,
   PRODUCT_FILTER_ATTRIBUTE,
   PRODUCT_ORDER_BY_ATTRIBUTE,
 } from 'common/constants';
-import { Container } from '@mui/system';
-import { Grid } from '@mui/material';
+import { ColorSchema } from 'common/types/color.model';
+import './FoodMenu.style.scss';
 
 export const FoodMenu = () => {
   const [renderFoods, setRenderFoods] = useState<number>(1);
@@ -87,7 +89,7 @@ export const FoodMenu = () => {
                   colors: {
                     ...theme.colors,
                     primary25: '#e0e0e0',
-                    primary: '#008c7a',
+                    primary: ColorSchema.LightGreen,
                   },
                 })}
                 options={PRODUCT_FILTER_ATTRIBUTE}
@@ -118,7 +120,7 @@ export const FoodMenu = () => {
                   colors: {
                     ...theme.colors,
                     primary25: '#e0e0e0',
-                    primary: '#008c7a',
+                    primary: ColorSchema.LightGreen,
                   },
                 })}
                 options={PRODUCT_ORDER_BY_ATTRIBUTE}

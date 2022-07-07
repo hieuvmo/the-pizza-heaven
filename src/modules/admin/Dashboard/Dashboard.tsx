@@ -1,15 +1,18 @@
-import {
-  AccountCircle,
-  Group,
-  Inventory,
-  Paid,
-  Sell,
-} from '@mui/icons-material';
-import { Card, CardActionArea, CardContent, Grid } from '@mui/material';
-import { Container } from '@mui/system';
+import { ReactNode, useEffect } from 'react';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import GroupIcon from '@mui/icons-material/Group';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import PaidIcon from '@mui/icons-material/Paid';
+import SellIcon from '@mui/icons-material/Sell';
+import Skeleton from '@mui/material/Skeleton';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/system/Container';
+
 import { convertNumberToVND } from 'common/helper/convertMoney';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
-import React, { useEffect } from 'react';
+import { DashboardColor } from 'common/types/color.model';
 import {
   getLatestOrderList,
   getLatestUserList,
@@ -19,6 +22,14 @@ import {
 } from 'redux/features/admin/dashboardSlice';
 import { RootState } from 'redux/store';
 import './Dashboard.style.scss';
+
+interface DashboardDataAnalysisProps {
+  bgColor: DashboardColor;
+  analysisTitle: string;
+  analysisValue: number | string;
+  analysisIcon: ReactNode;
+  analysisPercent: string;
+}
 
 export const Dashboard = () => {
   const {
@@ -40,117 +51,194 @@ export const Dashboard = () => {
     dispatch(getLatestOrderList());
   }, [dispatch]);
 
+  const DASHBOARD_DATA_ANALYSIS: DashboardDataAnalysisProps[] = [
+    {
+      bgColor: DashboardColor.LightRed,
+      analysisTitle: 'Total Users',
+      analysisValue: totalUsers,
+      analysisIcon: <GroupIcon sx={{ color: DashboardColor.LightRed }} />,
+      analysisPercent: '+12%',
+    },
+    {
+      bgColor: DashboardColor.LightBlue,
+      analysisTitle: 'Total Orders',
+      analysisValue: totalOrders,
+      analysisIcon: <InventoryIcon sx={{ color: DashboardColor.LightBlue }} />,
+      analysisPercent: '+29%',
+    },
+    {
+      bgColor: DashboardColor.LightGreen,
+      analysisTitle: 'Product Sold',
+      analysisValue: productSold,
+      analysisIcon: <PaidIcon sx={{ color: DashboardColor.LightGreen }} />,
+      analysisPercent: '+35%',
+    },
+    {
+      bgColor: DashboardColor.LightYellow,
+      analysisTitle: 'Total Income',
+      analysisValue: convertNumberToVND(totalIncome),
+      analysisIcon: <SellIcon sx={{ color: DashboardColor.LightYellow }} />,
+      analysisPercent: '+61%',
+    },
+  ];
+
+  const renderNewCustomerSkeletonLoading = () => {
+    const newCustomerRenderQuantity = [1, 2, 3, 4];
+    return newCustomerRenderQuantity.map((item) => (
+      <div className="flex justify-between" key={item}>
+        <div className="new-customer-item">
+          <div className="customer-avatar">
+            <Skeleton
+              animation="wave"
+              variant="circular"
+              width={'2.5rem'}
+              height={'2.5rem'}
+            />
+          </div>
+          <div className="customer-info">
+            <div className="customer-email">
+              <Skeleton
+                variant="rectangular"
+                width={'10rem'}
+                height={'1.5rem'}
+                sx={{ marginBottom: '0.25rem' }}
+              />
+            </div>
+            <div className="customer-name">
+              <Skeleton
+                variant="rectangular"
+                width={'8rem'}
+                height={'1.25rem'}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col justify-center">
+          <Skeleton
+            animation="wave"
+            variant="circular"
+            width={'0.5rem'}
+            height={'0.5rem'}
+          />
+        </div>
+      </div>
+    ));
+  };
+
+  const renderNewOrderSkeletonLoading = () => {
+    const newOrderRenderQuantity = [1, 2, 3];
+    return newOrderRenderQuantity.map((item) => (
+      <div className="order-info" key={item}>
+        <div className="flex flex-col">
+          <div className="customer-name">
+            <Skeleton variant="rectangular" width={'10rem'} height={'1.5rem'} />
+          </div>
+          <div className="customer-phone">
+            <Skeleton variant="rectangular" width={'8rem'} height={'1.25rem'} />
+          </div>
+          <div className="customer-address">
+            <Skeleton variant="rectangular" width={'8rem'} height={'1.25rem'} />
+          </div>
+        </div>
+        <div className="flex flex-col justify-center">
+          <div className="order-status">
+            <Skeleton variant="rectangular" width={'8rem'} height={'1.5rem'} />
+          </div>
+          <div className="total-price">
+            <Skeleton variant="rectangular" width={'8rem'} height={'1.5rem'} />
+          </div>
+        </div>
+      </div>
+    ));
+  };
+
   return (
     <Container maxWidth="lg">
-      {!isLoading && (
-        <div className="dashboard-container">
-          <Grid container spacing={3} justifyContent="center">
-            <Grid item xs={12} sm={6} lg={3}>
-              <Card sx={{ backgroundColor: '#ff5370' }}>
+      <div className="dashboard-container">
+        <Grid container spacing={3} justifyContent="center">
+          {DASHBOARD_DATA_ANALYSIS.map((item, index) => (
+            <Grid item xs={12} sm={6} lg={3} key={index}>
+              <Card sx={{ backgroundColor: item.bgColor }}>
                 <CardContent
-                  sx={{ padding: '1.5rem' }}
+                  sx={{ padding: '1rem' }}
                   className="dashboard-card_content"
                 >
                   <div className="card-introduction">
                     <div className="intro-title">
-                      <span>Total Users</span>
-                      <strong>{totalUsers}</strong>
+                      {isLoading ? (
+                        <Skeleton
+                          variant="rectangular"
+                          width={'10rem'}
+                          height={'1.5rem'}
+                          sx={{ marginBottom: '0.25rem' }}
+                        />
+                      ) : (
+                        <span>{item.analysisTitle}</span>
+                      )}
+                      {isLoading ? (
+                        <Skeleton
+                          variant="rectangular"
+                          width={'10rem'}
+                          height={'1.75rem'}
+                          sx={{ marginBottom: '1rem' }}
+                        />
+                      ) : (
+                        <strong>{item.analysisValue}</strong>
+                      )}
                     </div>
                     <div className="intro-icon">
-                      <Group sx={{ color: '#ff5370' }} />
+                      {isLoading ? (
+                        <Skeleton
+                          variant="rectangular"
+                          width={'1.5rem'}
+                          height={'1.5rem'}
+                          sx={{ margin: '0.75rem' }}
+                        />
+                      ) : (
+                        <div>{item.analysisIcon}</div>
+                      )}
                     </div>
                   </div>
-                  <div className="card-description">
-                    <label>+12% </label>From Previous Month
-                  </div>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sm={6} lg={3}>
-              <Card sx={{ backgroundColor: '#4099ff' }}>
-                <CardContent
-                  sx={{ padding: '1.5rem' }}
-                  className="dashboard-card_content"
-                >
-                  <div className="card-introduction">
-                    <div className="intro-title">
-                      <span>Total Orders</span>
-                      <strong>{totalOrders}</strong>
-                    </div>
-                    <div className="intro-icon">
-                      <Inventory sx={{ color: '#4099ff' }} />
-                    </div>
-                  </div>
-                  <div className="card-description">
-                    <label>+29% </label>From Previous Month
-                  </div>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sm={6} lg={3}>
-              <Card sx={{ backgroundColor: '#2ed8b6' }}>
-                <CardContent
-                  sx={{ padding: '1.5rem' }}
-                  className="dashboard-card_content"
-                >
-                  <div className="card-introduction">
-                    <div className="intro-title">
-                      <span>Product Sold</span>
-                      <strong>{productSold}</strong>
-                    </div>
-                    <div className="intro-icon">
-                      <Sell sx={{ color: '#2ed8b6' }} />
-                    </div>
-                  </div>
-                  <div className="card-description">
-                    <label>+35% </label>From Previous Month
-                  </div>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sm={6} lg={3}>
-              <Card sx={{ backgroundColor: '#ffb64d' }}>
-                <CardContent
-                  sx={{ padding: '1.5rem' }}
-                  className="dashboard-card_content"
-                >
-                  <div className="card-introduction">
-                    <div className="intro-title">
-                      <span>Total Income</span>
-                      <strong>{convertNumberToVND(totalIncome)}</strong>
-                    </div>
-                    <div className="intro-icon">
-                      <Paid sx={{ color: '#ffb64d' }} />
-                    </div>
-                  </div>
-                  <div className="card-description">
-                    <label>+61% </label>From Previous Month
-                  </div>
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid>
 
-          <Grid
-            container
-            spacing={3}
-            justifyContent="center"
-            sx={{ marginTop: '1.5rem' }}
-          >
-            <Grid item xs={12} md={6}>
-              <Card>
-                <CardActionArea>
-                  <CardContent
-                    sx={{ paddingInline: '1.5rem' }}
-                    className="dashboard-card_body"
-                  >
-                    <div className="card-header">New customer</div>
-                    <div className="line-break"></div>
-                    {latestUserList.map((user) => (
-                      <div className="flex justify-between">
+                  {isLoading ? (
+                    <Skeleton
+                      variant="rectangular"
+                      width={'100%'}
+                      height={'1.35rem'}
+                    />
+                  ) : (
+                    <div className="card-description">
+                      <label>{item.analysisPercent}</label>From Previous Month
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+
+        <Grid
+          container
+          spacing={3}
+          justifyContent="center"
+          sx={{ marginTop: '1.5rem' }}
+        >
+          <Grid item xs={12} md={6}>
+            <Card>
+              <CardContent
+                sx={{ paddingInline: '1.5rem' }}
+                className="dashboard-card_body"
+              >
+                <div className="card-header">New customer</div>
+                <div className="line-break"></div>
+
+                {isLoading
+                  ? renderNewCustomerSkeletonLoading()
+                  : latestUserList.map((user) => (
+                      <div className="flex justify-between" key={user.id}>
                         <div className="new-customer-item">
                           <div className="customer-avatar">
-                            <AccountCircle sx={{ fontSize: '2.5rem' }} />
+                            <AccountCircleIcon sx={{ fontSize: '2.5rem' }} />
                           </div>
                           <div className="customer-info">
                             <div className="customer-email">{user.email}</div>
@@ -160,21 +248,21 @@ export const Dashboard = () => {
                         <div className="customer-status"></div>
                       </div>
                     ))}
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Card>
-                <CardActionArea>
-                  <CardContent
-                    sx={{ paddingInline: '1.5rem' }}
-                    className="dashboard-card_body"
-                  >
-                    <div className="card-header">New order</div>
-                    <div className="line-break"></div>
-                    {latestOrderList.map((order) => (
-                      <div className="order-info">
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Card>
+              <CardContent
+                sx={{ paddingInline: '1.5rem' }}
+                className="dashboard-card_body"
+              >
+                <div className="card-header">New order</div>
+                <div className="line-break"></div>
+                {isLoading
+                  ? renderNewOrderSkeletonLoading()
+                  : latestOrderList.map((order) => (
+                      <div className="order-info" key={order.id}>
                         <div className="flex flex-col">
                           <div className="customer-name">{`${order.firstName} ${order.lastName}`}</div>
                           <div className="customer-phone">{order.phone}</div>
@@ -190,13 +278,11 @@ export const Dashboard = () => {
                         </div>
                       </div>
                     ))}
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
+              </CardContent>
+            </Card>
           </Grid>
-        </div>
-      )}
+        </Grid>
+      </div>
     </Container>
   );
 };

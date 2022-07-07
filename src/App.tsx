@@ -1,9 +1,5 @@
+import { FC, useMemo } from 'react';
 import { ThemeProvider } from '@mui/material';
-import { renderRoute } from 'common/config/router/router.routes';
-import { theme } from 'common/config/theme/theme';
-import { Navbar } from 'components/Navbar/Navbar';
-import AppLayout from 'layouts/AppLayout';
-import React, { useMemo } from 'react';
 import {
   BrowserRouter,
   Navigate,
@@ -11,11 +7,15 @@ import {
   Routes,
   useLocation,
 } from 'react-router-dom';
-import './/common/sass/App.scss';
+
+import { renderRoute } from 'common/config/router/router.routes';
+import { theme } from 'common/config/theme/theme';
+import AppLayout from 'layouts/AppLayout';
 import { routerPath } from './common/config/router/router.path';
 import { IRoute } from './common/types/router.model';
+import './/common/sass/App.scss';
 
-const ListRoute: React.FC = () => {
+const ListRoute: FC = () => {
   const location = useLocation();
   const routeList = useMemo(() => {
     return renderRoute();

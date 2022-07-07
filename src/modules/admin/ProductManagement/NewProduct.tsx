@@ -1,31 +1,32 @@
+import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
 import { Form, Formik as FormValidation } from 'formik';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import CheckIcon from '@mui/icons-material/Check';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
+import FormControl from '@mui/material/FormControl';
+import Grid from '@mui/material/Grid';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Typography from '@mui/material/Typography';
+
 import { routerPath } from 'common/config/router/router.path';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
 import foodModel, { IFood, IFoodWithoutId } from 'common/types/food.model';
-import { ConfirmButton } from 'components/MuiStyling/ConfimButton.style';
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { ConfirmButton } from 'components/MuiStyling/ConfirmButton.style';
 import { addNewFoodToDB } from 'redux/features/admin/foodSlice';
 import { RootState } from 'redux/store';
 import { GoBack } from 'components/GoBack/GoBack';
-import {
-  Button,
-  CircularProgress,
-  Container,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  Typography,
-} from '@mui/material';
 import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
-import { Check, CloudUpload } from '@mui/icons-material';
-import axios from 'axios';
 import { ICategory } from 'common/types/category.model';
 import appService from 'services/appService';
 import { PRODUCT_SELECT_IS_STOCK } from 'common/constants';
+import { ColorSchema } from 'common/types/color.model';
+import { SyncLoading } from 'components/Loading/SyncLoader';
 
 export const NewProduct = () => {
   const { foodList, isLoading } = useAppSelector(
@@ -46,7 +47,7 @@ export const NewProduct = () => {
         const response = await appService.getCategoryList();
         setCategoryListAPI(response);
       } catch (error) {
-        console.log('Error when get category API', error);
+        console.log('Error when getCategoryList', error);
       }
     };
     fetchCategoryAPI();
@@ -67,13 +68,11 @@ export const NewProduct = () => {
     !isLoading && navigate(routerPath.admin.FOOD_LIST);
   };
 
-  const handleGetImageInfo = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleGetImageInfo = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget.files) setImageSelected(e.currentTarget.files[0]);
   };
 
-  const handleUploadImageToCloudinary = async (
-    e: React.MouseEvent<HTMLElement>,
-  ) => {
+  const handleUploadImageToCloudinary = async (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('file', imageSelected as File);
@@ -105,19 +104,24 @@ export const NewProduct = () => {
   return (
     <>
       <GoBack pageLink={routerPath.admin.FOOD_LIST} />
-      {!isLoading && (
-        <Container maxWidth="lg" className="py-12">
-          <Typography
-            sx={{
-              fontWeight: 700,
-              letterSpacing: '.1rem',
-              textAlign: 'center',
-              marginBottom: '1rem',
-              fontSize: '2rem',
-            }}
-          >
-            Add New Product
-          </Typography>
+
+      <Container maxWidth="lg" className="py-12">
+        <Typography
+          sx={{
+            fontWeight: 700,
+            letterSpacing: '.1rem',
+            textAlign: 'center',
+            marginBottom: '1rem',
+            fontSize: '2rem',
+          }}
+        >
+          Add New Product
+        </Typography>
+        {isLoading ? (
+          <div className="py-40">
+            <SyncLoading loading={isLoading} />
+          </div>
+        ) : (
           <FormValidation
             initialValues={{
               categoryId: 0,
@@ -179,14 +183,14 @@ export const NewProduct = () => {
                       sx={{ width: '80%', marginBottom: '2rem' }}
                       color="inherit"
                       variant="contained"
-                      startIcon={<CloudUpload />}
+                      startIcon={<CloudUploadIcon />}
                       type="submit"
                       onClick={handleUploadImageToCloudinary}
                       disabled={isImageLoading || imageSelected === undefined}
                     >
                       {isImageLoading ? (
                         <CircularProgress
-                          sx={{ color: '#fff', padding: '6px' }}
+                          sx={{ color: ColorSchema.White, padding: '0.375rem' }}
                         />
                       ) : (
                         'Upload image'
@@ -312,7 +316,7 @@ export const NewProduct = () => {
                         fullWidth
                         type="submit"
                         variant="contained"
-                        startIcon={<Check />}
+                        startIcon={<CheckIcon />}
                       >
                         Confirm edit food
                       </ConfirmButton>
@@ -322,8 +326,8 @@ export const NewProduct = () => {
               </Form>
             )}
           </FormValidation>
-        </Container>
-      )}
+        )}
+      </Container>
     </>
   );
 };

@@ -1,12 +1,14 @@
-import { ArrowBack } from '@mui/icons-material';
-import { Button, Container } from '@mui/material';
+import { FC } from 'react';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import { Link } from 'react-router-dom';
 
 interface GoBackProps {
   pageLink: string;
 }
 
-export const GoBack: React.FC<GoBackProps> = ({ pageLink }) => {
+export const GoBack: FC<GoBackProps> = ({ pageLink }) => {
   return (
     <Container maxWidth="lg">
       <Link to={pageLink}>
@@ -16,7 +18,7 @@ export const GoBack: React.FC<GoBackProps> = ({ pageLink }) => {
           }}
           color="primary"
           variant="contained"
-          startIcon={<ArrowBack />}
+          startIcon={<ArrowBackIcon />}
         >
           Back
         </Button>

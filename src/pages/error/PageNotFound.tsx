@@ -1,5 +1,5 @@
 import { Container } from '@mui/material';
-import React from 'react';
+
 import './PageNotFound.style.scss';
 
 export const PageNotFound = () => {
