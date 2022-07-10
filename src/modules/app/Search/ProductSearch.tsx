@@ -128,7 +128,7 @@ export const ProductSearch = () => {
                     color="text.secondary"
                     sx={{ marginRight: '1rem', fontSize: '0.875rem' }}
                   >
-                    Giá:{' '}
+                    Price:{' '}
                     <strong className="food_item-price">
                       {convertNumberToVND(item.price)}
                     </strong>
@@ -182,7 +182,7 @@ export const ProductSearch = () => {
         setIsOpen={setOpenModal}
         newStyled={{
           overlay: {},
-          content: {},
+          content: { maxHeight: '80vh', maxWidth: '90%' },
         }}
       >
         <FoodDetail

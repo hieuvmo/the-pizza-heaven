@@ -172,7 +172,7 @@ export const NAVBAR_ATTRIBUTE = {
     },
     {
       name: 'Product',
-      path: routerPath.admin.FOOD_LIST,
+      path: routerPath.admin.PRODUCT_LIST,
     },
     {
       name: 'Order',

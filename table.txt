@@ -1,54 +1,55 @@
 1. table category (
-    category_id: int (primary key auto_increment),
-    category_name: string,
+    id: number;
+    categoryName: string;
 )
 
 2. table food (
-	food_id:  int (primary key auto_increment),
-	category_id: int (references category (id)),
-	name: string
-    thumbnail: string
-	description: string 
-	price: Array[string]
-	size: Array[string]
-	is_stock: boolean
+	categoryId:  number;
+	id: number;
+	name: string;
+    thumbnail: string;
+	description: string;
+	price: number;
+	isStocked: boolean;
 )
 
 3 table rating(
-	rating_id: int
-	user_id: int (phải mua mới được đánh giá)
-	food_id: int
-	star: int
-	review: string
-	is_anonymous: boolean
+	id: number;
+	userId: number | null;
+	firstName: string;
+	lastName: string;
+	foodId: number;
+	star: number;
+	review: string;
+	isAnonymous: boolean;
 )
 
 4. table user (
-	user_id: int 
-	email: string  
-	password: string
-	firstName: string
-    lastName: string
-	phone: string 
-	address: string
+	id: number; 
+	email: string;  
+	password: string;
+	firstName: string;
+    lastName: string;
+	phone: string; 
+	address: string;
 )
 
 5. table order (
-	order_id: int
-	user_id?: int
-	name?:
-	phone?:
-	address?:
-	totalPrice: string 	
-	status: new(add to cart) | confirm | success | cancel
+	id: number;
+	userId: number | null;
+	firstName: string;
+	lastName: string;
+	phone: string;
+	address: string;
+	totalPrice: number; 	
+	status: new | confirmed | completed | canceled;
 )
 
 6. table order_detail (
-	oder_detail_id: int
-	order_id: int
-	food_id: int
-	quantity: int
-	status: new(add to cart) | confirm | success | cancel
+	id: number;
+	orderId: number;
+	foodId: number;
+	quantity: number;
 )
 
 

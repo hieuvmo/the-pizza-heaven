@@ -20,6 +20,7 @@ import { OrderListPage } from 'pages/admin/OrderManagement/OrderListPage';
 import { OrderDetailPage } from 'pages/admin/OrderManagement/OrderDetailPage';
 import { OrderSearchPage } from 'pages/app/Order/OrderSearchPage';
 import { DashboardPage } from 'pages/admin/Dashboard/DashboardPage';
+import FoodDetailReviewPage from 'pages/app/FoodDetailReview/FoodDetailReviewPage';
 
 const staticRoute: IRoute[] = [
   {
@@ -33,6 +34,10 @@ const staticRoute: IRoute[] = [
   {
     path: routerPath.app.SEARCH,
     element: <ProductSearchPage />,
+  },
+  {
+    path: routerPath.app.FOOD_DETAIL,
+    element: <FoodDetailReviewPage />,
   },
   {
     path: routerPath.app.CART,
@@ -88,15 +93,15 @@ const adminRoute: IRoute[] = [
     element: <NewCategoryPage />,
   },
   {
-    path: routerPath.admin.FOOD_LIST,
+    path: routerPath.admin.PRODUCT_LIST,
     element: <ProductListPage />,
   },
   {
-    path: routerPath.admin.FOOD_DETAIL,
+    path: routerPath.admin.PRODUCT_DETAIL,
     element: <ProductDetailPage />,
   },
   {
-    path: routerPath.admin.FOOD_NEW,
+    path: routerPath.admin.PRODUCT_NEW,
     element: <NewProductPage />,
   },
   {

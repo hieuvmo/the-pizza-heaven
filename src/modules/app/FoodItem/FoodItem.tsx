@@ -196,7 +196,7 @@ export const FoodItem: FC<FoodItemProps> = ({
                         color="text.secondary"
                         sx={{ marginRight: '1rem', fontSize: '0.875rem' }}
                       >
-                        Giá:{' '}
+                        Price:{' '}
                         <strong className="food_item-price">
                           {convertNumberToVND(item.price)}
                         </strong>

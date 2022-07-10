@@ -72,7 +72,7 @@ export const ProductDetail = () => {
         foodID: parseInt(id as string),
       }),
     );
-    !isLoading && navigate(routerPath.admin.FOOD_LIST);
+    !isLoading && navigate(routerPath.admin.PRODUCT_LIST);
   };
 
   const handleGetImageInfo = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -107,7 +107,7 @@ export const ProductDetail = () => {
 
   return (
     <>
-      <GoBack pageLink={routerPath.admin.FOOD_LIST} />
+      <GoBack pageLink={routerPath.admin.PRODUCT_LIST} />
 
       <Container maxWidth="lg" className="py-12">
         <Typography
