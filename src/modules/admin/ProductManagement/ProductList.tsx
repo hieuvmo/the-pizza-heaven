@@ -190,7 +190,7 @@ export const ProductList = () => {
                           return (
                             <TableCell key={column.id}>
                               <Link
-                                to={`${routerPath.admin.FOOD_LIST}/${row.id}`}
+                                to={`${routerPath.admin.PRODUCT_LIST}/${row.id}`}
                                 onClick={() => handleClickEditButton(row.id)}
                               >
                                 <Button
@@ -224,7 +224,7 @@ export const ProductList = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        <Link to={routerPath.admin.FOOD_NEW}>
+        <Link to={routerPath.admin.PRODUCT_NEW}>
           <Button
             sx={{ marginLeft: '1rem', marginTop: '1rem' }}
             color="success"

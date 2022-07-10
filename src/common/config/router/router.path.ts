@@ -1,6 +1,8 @@
 export const routerPath = {
   app: {
     MY_ACCOUNT: '/app/my-account',
+    FOOD: '/app/products',
+    FOOD_DETAIL: '/app/products/:id',
     SEARCH: '/search',
     CART: '/cart',
     ORDER_SEARCH: '/order/search',
@@ -12,9 +14,9 @@ export const routerPath = {
     CATEGORY_LIST: '/admin/categories',
     CATEGORY_DETAIL: '/admin/categories/:id',
     CATEGORY_NEW: '/admin/new/category',
-    FOOD_LIST: '/admin/foods',
-    FOOD_DETAIL: '/admin/foods/:id',
-    FOOD_NEW: '/admin/new/food',
+    PRODUCT_LIST: '/admin/products',
+    PRODUCT_DETAIL: '/admin/products/:id',
+    PRODUCT_NEW: '/admin/new/product',
     ORDER_LIST: '/admin/orders',
     ORDER_DETAIL: '/admin/orders/:id',
   },
