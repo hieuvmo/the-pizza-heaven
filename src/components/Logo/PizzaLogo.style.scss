@@ -1,6 +1,9 @@
 .logo {
   &-container {
-    @apply ml-2 hidden sm:block;
+    @apply ml-2 hidden  text-white;
+    @media screen and (min-width: 750px) {
+      @apply block;
+    }
   }
 
   &-title {

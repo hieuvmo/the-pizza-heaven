@@ -38,7 +38,7 @@ export const FoodMenu = () => {
   };
 
   return (
-    <div className="menu-container" id="menu">
+    <div className="menu-container">
       <div className="menu-heading">
         <h2 className="menu-title">
           <span className="menu-title-description">Our menu</span>
