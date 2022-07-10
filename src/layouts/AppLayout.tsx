@@ -2,6 +2,7 @@ import { routerPath } from 'common/config/router/router.path';
 import { FooterBottom } from 'components/Footer/FooterBottom/FooterBottom';
 import { FooterTop } from 'components/Footer/FooterTop/FooterTop';
 import { Navbar } from 'components/Navbar/Navbar';
+import { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 export default function AppLayout() {
@@ -11,6 +12,16 @@ export default function AppLayout() {
   const isLoginPage: boolean = location.pathname === routerPath.auth.LOGIN;
   const isSignInPage: boolean =
     location.pathname === routerPath.auth.USER_REGISTER;
+  const [hashSet, setHashSet] = useState<string>('');
+
+  useEffect(() => {
+    const hashDestination = location.hash;
+    if (hashDestination) {
+      setHashSet(hashDestination.replace('#', ''));
+    } else {
+      setHashSet('');
+    }
+  }, [location.hash]);
 
   const renderFooter = () => {
     if (isHomePage || isSearchPage) {
@@ -27,7 +38,11 @@ export default function AppLayout() {
     <div>
       <Navbar />
       <div className={`${!isLoginPage && !isSignInPage && 'pt-14'}`}>
-        <Outlet />
+        <Outlet
+          context={{
+            hashSet,
+          }}
+        />
       </div>
       {renderFooter()}
     </div>

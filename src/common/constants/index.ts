@@ -154,7 +154,7 @@ export const NAVBAR_ATTRIBUTE = {
     },
     {
       name: 'Contact',
-      path: '/#footer',
+      path: '/#contact',
     },
     {
       name: 'Order',

@@ -41,12 +41,9 @@ export const Navbar = () => {
       <AppBar position="fixed">
         <Container maxWidth="lg">
           <Toolbar disableGutters>
-            <PizzaLogo
-              customDisplay={{ xs: 'none', md: 'flex' }}
-              colorText="text-white"
-            />
+            <PizzaLogo customDisplay={{ xs: 'none', lg: 'flex' }} />
 
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', lg: 'none' } }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -72,46 +69,43 @@ export const Navbar = () => {
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
                 sx={{
-                  display: { xs: 'block', md: 'none' },
+                  display: { xs: 'block', lg: 'none' },
                 }}
               >
                 {!isAdminPage
                   ? NAVBAR_ATTRIBUTE.APP.map((item, index) => (
-                      <MenuItem key={index} onClick={handleCloseNavMenu}>
-                        <Link to={item.path} className="uppercase">
+                      <Link to={item.path} key={index} className="uppercase">
+                        <MenuItem onClick={handleCloseNavMenu}>
                           {item.name}
-                        </Link>
-                      </MenuItem>
+                        </MenuItem>
+                      </Link>
                     ))
                   : NAVBAR_ATTRIBUTE.ADMIN.map((item, index) => (
-                      <MenuItem key={index} onClick={handleCloseNavMenu}>
-                        <Link to={item.path} className="uppercase">
+                      <Link to={item.path} key={index} className="uppercase">
+                        <MenuItem onClick={handleCloseNavMenu}>
                           {item.name}
-                        </Link>
-                      </MenuItem>
+                        </MenuItem>
+                      </Link>
                     ))}
               </Menu>
-              <PizzaLogo
-                customDisplay={{ xs: 'flex', md: 'none' }}
-                colorText="text-white"
-              />
+              <PizzaLogo customDisplay={{ xs: 'flex', lg: 'none' }} />
             </Box>
 
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', lg: 'flex' } }}>
               {!isAdminPage
                 ? NAVBAR_ATTRIBUTE.APP.map((item, index) => (
-                    <MenuItem key={index} onClick={handleCloseNavMenu}>
-                      <Link to={item.path} className="uppercase">
+                    <Link to={item.path} key={index} className="uppercase">
+                      <MenuItem onClick={handleCloseNavMenu}>
                         {item.name}
-                      </Link>
-                    </MenuItem>
+                      </MenuItem>
+                    </Link>
                   ))
                 : NAVBAR_ATTRIBUTE.ADMIN.map((item, index) => (
-                    <MenuItem key={index} onClick={handleCloseNavMenu}>
-                      <Link to={item.path} className="uppercase">
+                    <Link to={item.path} key={index} className="uppercase">
+                      <MenuItem onClick={handleCloseNavMenu}>
                         {item.name}
-                      </Link>
-                    </MenuItem>
+                      </MenuItem>
+                    </Link>
                   ))}
             </Box>
 

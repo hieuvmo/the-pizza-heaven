@@ -1,5 +1,5 @@
 import { Search } from '@mui/icons-material';
-import { ChangeEvent, FC, MouseEvent, useState } from 'react';
+import { ChangeEvent, FC, KeyboardEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from 'common/hooks/ReduxHook';
@@ -25,9 +25,18 @@ export const NavSearch: FC<NavSearchProps> = ({ isAdminPage }) => {
     setSearchValue(e.target.value);
   };
 
-  const handleClickSearchProductBtn = (e: MouseEvent<HTMLInputElement>) => {
+  const handleClickSearchProductBtn = () => {
     dispatch(searchProductFullText(searchValue));
     searchValue && navigate(routerPath.app.SEARCH);
+    setSearchValue('');
+  };
+
+  const handleKeyDownEnter = (
+    event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    if (event.key === 'Enter' || event.code === 'Enter') {
+      handleClickSearchProductBtn();
+    }
   };
 
   return (
@@ -42,6 +51,7 @@ export const NavSearch: FC<NavSearchProps> = ({ isAdminPage }) => {
             inputProps={{ 'aria-label': 'search' }}
             value={searchValue}
             onChange={handleChangeSearchBar}
+            onKeyDown={handleKeyDownEnter}
           />
         </CustomSearch>
       )}

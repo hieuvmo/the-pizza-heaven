@@ -22,7 +22,7 @@
   }
 
   &-tabs {
-    @apply px-4 flex flex-wrap list-none justify-center cursor-pointer pb-4;
+    @apply pt-4 pb-8 flex flex-wrap list-none justify-center cursor-pointer;
 
     &-item {
       @apply px-4 flex flex-col;
@@ -30,6 +30,10 @@
       span {
         color: #ff9c00;
         font-family: 'Sriracha', cursive;
+        //Disable Text Selection
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
         @apply text-xl sm:text-xl lg:text-3xl;
       }
 

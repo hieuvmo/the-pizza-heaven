@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
 import { SearchOutlined } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import { Container } from '@mui/system';
@@ -43,10 +43,14 @@ export const OrderSearch = () => {
     setOrderSearchValue('');
   };
 
-  const renderOrderSearchRes = () => {
-    if (orderSearchRes === '') {
-      return <></>;
+  const handleKeyDownEnter = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' && e.code === 'Enter') {
+      handleSubmitOrderSearchBtn();
     }
+  };
+
+  const renderOrderSearchRes = () => {
+    if (orderSearchRes === '') return;
     if (isLoading) {
       return (
         <div className="py-44">
@@ -82,6 +86,7 @@ export const OrderSearch = () => {
             value={orderSearchValue}
             onChange={handleChangeOrderSearchInput}
             placeholder="Enter you order information no"
+            onKeyDown={handleKeyDownEnter}
             InputProps={{
               endAdornment: (
                 <IconButton onClick={handleSubmitOrderSearchBtn}>

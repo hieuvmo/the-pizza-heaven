@@ -8,7 +8,7 @@ import './FooterBottom.style.scss';
 
 export const FooterBottom = () => {
   return (
-    <div className="footer_bottom-container" id="footer">
+    <div className="footer_bottom-container">
       <Container maxWidth="lg">
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={4}>
@@ -19,10 +19,7 @@ export const FooterBottom = () => {
                 paddingBlock: '1.5rem',
               }}
             >
-              <PizzaLogo
-                customDisplay={{ xs: 'flex' }}
-                colorText="text-white"
-              />
+              <PizzaLogo customDisplay={{ xs: 'flex' }} />
             </Box>
             <ul className="footer_bottom-description ">
               <li>Địa chỉ: Số 69 Phú Diễn, Bắc Từ Liêm, Hà Nội</li>

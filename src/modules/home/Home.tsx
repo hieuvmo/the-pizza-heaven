@@ -1,11 +1,32 @@
 import { FoodMenu } from '../app/FoodMenu/FoodMenu';
 import { BannerSlider } from 'components/Slider/BannerSlider';
+import { useEffect, useRef } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
 export const Home = () => {
+  const divRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  const { hashSet } = useOutletContext<{
+    hashSet: string;
+  }>();
+
+  useEffect(() => {
+    if (hashSet === 'menu') {
+      menuRef.current?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      divRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [hashSet]);
+
   return (
-    <>
-      <BannerSlider />
-      <FoodMenu />;
-    </>
+    <div>
+      <div ref={divRef}>
+        <BannerSlider />
+      </div>
+      <div ref={menuRef}>
+        <FoodMenu />
+      </div>
+    </div>
   );
 };
