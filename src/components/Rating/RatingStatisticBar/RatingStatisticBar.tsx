@@ -1,12 +1,13 @@
-import * as React from 'react';
+import { FC, useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
-
 import LinearProgress, {
   linearProgressClasses,
 } from '@mui/material/LinearProgress';
-import { ColorSchema } from 'common/types/color.model';
 import { Star } from '@mui/icons-material';
+
+import { ColorSchema } from 'common/types/color.model';
 import './RatingStatisticBar.style.scss';
+import { IRating } from 'common/types/rating.model';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 8,
@@ -22,69 +23,69 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-export default function RatingStatisticBars() {
+interface RatingStatisticProps {
+  ratingList: IRating[];
+}
+
+interface RatingStarQuantityProps {
+  [index: number]: number;
+}
+
+interface RatingInfo {
+  startName: number;
+  starQuantity: number;
+  totalStar: number;
+}
+
+const RatingStatisticBars: FC<RatingStatisticProps> = ({ ratingList }) => {
+  const [countStar, setCountStar] = useState<RatingStarQuantityProps>({
+    5: 0,
+    4: 0,
+    3: 0,
+    2: 0,
+    1: 0,
+  });
+  const [ratingInfo, setRatingInfo] = useState<RatingInfo[]>([]);
+
+  useEffect(() => {
+    ratingList.forEach((item) => {
+      setCountStar({ ...countStar, [item.star]: ++countStar[item.star] });
+    });
+
+    const res: RatingInfo[] = [];
+    for (const [key, value] of Object.entries(countStar)) {
+      res.push({
+        startName: parseInt(key),
+        starQuantity: value,
+        totalStar: ratingList.length,
+      });
+    }
+    setRatingInfo(res);
+  }, [ratingList.length]);
+
   return (
     <>
-      <div className="custom-rating-bar">
-        <div className="star-quantity">
-          <span>5</span>
-          <Star sx={{ fontSize: '1.25rem', marginBottom: '0.25rem' }} />
+      {ratingInfo.map((item) => (
+        <div className="custom-rating-bar" key={item.startName}>
+          <div className="star-quantity">
+            <span>{item.startName}</span>
+            <Star sx={{ fontSize: '1.25rem', marginBottom: '0.25rem' }} />
+          </div>
+          <div className="rating-bar">
+            {ratingList.length === 0 ? (
+              <BorderLinearProgress variant="determinate" value={0} />
+            ) : (
+              <BorderLinearProgress
+                variant="determinate"
+                value={(item.starQuantity / item.totalStar) * 100}
+              />
+            )}
+          </div>
+          <div className="rating-quantity">{item.starQuantity}</div>
         </div>
-        <div className="rating-bar">
-          <BorderLinearProgress variant="determinate" value={50} />
-        </div>
-        <div className="rating-quantity">4</div>
-      </div>
-      <div className="custom-rating-bar">
-        <div className="star-quantity">
-          <span>5</span>
-          <Star sx={{ fontSize: '1.25rem', marginBottom: '0.25rem' }} />
-        </div>
-        <div className="rating-bar">
-          <BorderLinearProgress variant="determinate" value={50} />
-        </div>
-        <div className="rating-quantity">4</div>
-      </div>
-      <div className="custom-rating-bar">
-        <div className="star-quantity">
-          <span>5</span>
-          <Star sx={{ fontSize: '1.25rem', marginBottom: '0.25rem' }} />
-        </div>
-        <div className="rating-bar">
-          <BorderLinearProgress variant="determinate" value={50} />
-        </div>
-        <div className="rating-quantity">4</div>
-      </div>
-      <div className="custom-rating-bar">
-        <div className="star-quantity">
-          <span>5</span>
-          <Star sx={{ fontSize: '1.25rem', marginBottom: '0.25rem' }} />
-        </div>
-        <div className="rating-bar">
-          <BorderLinearProgress variant="determinate" value={50} />
-        </div>
-        <div className="rating-quantity">4</div>
-      </div>
-      <div className="custom-rating-bar">
-        <div className="star-quantity">
-          <span>5</span>
-          <Star sx={{ fontSize: '1.25rem', marginBottom: '0.25rem' }} />
-        </div>
-        <div className="rating-bar">
-          <BorderLinearProgress variant="determinate" value={50} />
-        </div>
-        <div className="rating-quantity">4</div>
-      </div>
-      <div className="custom-rating-bar">
-        <div className="star-quantity">
-          <span>5</span>
-          <Star sx={{ fontSize: '1.25rem', marginBottom: '0.25rem' }} />
-        </div>
-        <div className="rating-bar">
-          <BorderLinearProgress variant="determinate" value={50} />
-        </div>
-        <div className="rating-quantity">4</div>
-      </div>
+      ))}
     </>
   );
-}
+};
+
+export default RatingStatisticBars;

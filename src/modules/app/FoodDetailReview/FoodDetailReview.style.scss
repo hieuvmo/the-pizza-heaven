@@ -45,10 +45,10 @@
 
     .box-review {
       .review-item {
-        @apply pr-4 pb-4 my-4;
+        @apply pr-4 pb-4;
 
         .review-content {
-          @apply w-full;
+          @apply w-full my-6;
 
           .review-title {
             @apply flex justify-between px-2;

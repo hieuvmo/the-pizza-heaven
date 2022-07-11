@@ -17,8 +17,9 @@ export interface IOrder {
 }
 
 export interface IOrderDetail {
-  id: number;
+  id?: number;
   orderId: number;
   foodId: number;
   quantity: number;
+  isRated: boolean;
 }

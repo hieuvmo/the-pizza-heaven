@@ -1,5 +1,5 @@
 export interface IRating {
-  id: number;
+  id?: number;
   userId: number | null;
   firstName: string;
   lastName: string;
@@ -7,4 +7,5 @@ export interface IRating {
   star: number;
   review: string;
   isAnonymous: boolean;
+  date: string;
 }

@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { ArrowForward } from '@mui/icons-material';
+import { Container } from '@mui/system';
 import {
   Button,
   Card,
@@ -11,7 +12,6 @@ import {
   Skeleton,
   Typography,
 } from '@mui/material';
-import { Container } from '@mui/system';
 
 import { convertNumberToVND } from 'common/helper/convertMoney';
 import { ColorSchema } from 'common/types/color.model';
@@ -19,6 +19,8 @@ import { IFood } from 'common/types/food.model';
 import { CustomModal } from 'components/Modal/CustomModal';
 import appService from 'services/appService';
 import { FoodDetail } from '../FoodDetail/FoodDetail';
+import { IRating } from 'common/types/rating.model';
+import { handleCalculateAverageRating } from 'common/helper/averageRating';
 import './FoodItem.style.scss';
 
 interface FoodItemProps {
@@ -39,6 +41,24 @@ export const FoodItem: FC<FoodItemProps> = ({
   const [productFilterByCategoryId, setProductFilterByCategoryId] = useState<
     IFood[]
   >([]);
+  const [latestRatingByFoodId, setLatestRatingByFoodId] = useState<IRating[]>(
+    [],
+  );
+
+  useEffect(() => {
+    const fetchLatestRatingByFoodIdAPI = async () => {
+      try {
+        const response = await appService.getLatestReviewByFoodId(
+          foodId as number,
+        );
+        setLatestRatingByFoodId(response);
+      } catch (error) {
+        console.log('Error when getLatestReviewByFoodId', error);
+      }
+    };
+
+    fetchLatestRatingByFoodIdAPI();
+  }, [foodId]);
 
   useEffect(() => {
     const fetchProductFilterByCategoryIdAPI = async () => {
@@ -238,6 +258,7 @@ export const FoodItem: FC<FoodItemProps> = ({
           foodId={foodId as number}
           randomNumberOfStock={randomNumberOfStock}
           setOpenModal={setOpenModal}
+          averageStar={handleCalculateAverageRating(latestRatingByFoodId)}
         />
       </CustomModal>
     </Container>

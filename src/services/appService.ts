@@ -2,6 +2,7 @@ import { ENDPOINT_API } from 'common/constants/pathAPI';
 import { ICategory } from 'common/types/category.model';
 import { IFood } from 'common/types/food.model';
 import { IOrder, IOrderDetail } from 'common/types/order.model';
+import { IRating } from 'common/types/rating.model';
 import { IUser } from 'common/types/user.model';
 import { axiosClient } from './axiosConnection';
 
@@ -165,6 +166,28 @@ class AppService {
   async getOrderDetailByOrderId(orderId: number): Promise<IOrderDetail[]> {
     const { data } = await axiosClient.get(
       `${ENDPOINT_API.ORDER_DETAIL}?orderId=${orderId}`,
+    );
+    return data;
+  }
+  async ratedOrderDetailItem(
+    id: number,
+    params: IOrderDetail,
+  ): Promise<IOrderDetail> {
+    const { data } = await axiosClient.patch(
+      `${ENDPOINT_API.ORDER_DETAIL}/${id}`,
+      params,
+    );
+    return data;
+  }
+
+  //RATINGS
+  async addNewRatingToDB(params: IRating): Promise<IRating> {
+    const { data } = await axiosClient.post(`${ENDPOINT_API.RATING}`, params);
+    return data;
+  }
+  async getLatestReviewByFoodId(foodId: number): Promise<IRating[]> {
+    const { data } = await axiosClient.get(
+      `${ENDPOINT_API.RATING}?_sort=id&_order=desc&foodId=${foodId}`,
     );
     return data;
   }

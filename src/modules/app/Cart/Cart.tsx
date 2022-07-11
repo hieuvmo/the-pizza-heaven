@@ -1,4 +1,7 @@
+import { ChangeEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Delete, Payment } from '@mui/icons-material';
+import { Container } from '@mui/system';
 import {
   AlertColor,
   Button,
@@ -12,7 +15,6 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { Container } from '@mui/system';
 
 import { routerPath } from 'common/config/router/router.path';
 import { PRODUCT_IN_CART_TABLE_HEAD } from 'common/constants';
@@ -20,23 +22,21 @@ import { convertNumberToVND } from 'common/helper/convertMoney';
 import { capitalizeFirstLetter } from 'common/helper/string';
 import { uid } from 'common/helper/uid';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
+import { IOrderDetail } from 'common/types/order.model';
+import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
+import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
+import { addNewOrderDetail } from 'redux/features/app/orderDetailSlice';
+import { setTotalPriceForOrder } from 'redux/features/app/orderSlice';
+import { RootState } from 'redux/store';
 import {
   ICartColumn,
   ICartDataTable,
   IdCartType,
 } from 'common/types/table.mui.model';
-
-import { CustomTextField } from 'components/MuiStyling/CustomTextField.style';
-import { CustomSnackbar } from 'components/Snackbar/CustomSnackbar';
-import React, { ChangeEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
   changeProductQuantityInCart,
   deleteProductInCart,
 } from 'redux/features/app/cartSlice';
-import { addNewOrderDetail } from 'redux/features/app/orderDetailSlice';
-import { setTotalPriceForOrder } from 'redux/features/app/orderSlice';
-import { RootState } from 'redux/store';
 import './Cart.style.scss';
 
 export const Cart = () => {
@@ -103,12 +103,13 @@ export const Cart = () => {
   };
 
   const handleClickMakePayment = () => {
-    const newOrderDetail = productsInCart.map((item, index) => {
+    const newOrderDetail: IOrderDetail[] = productsInCart.map((item) => {
       return {
         id: uid(),
         orderId: Date.now(),
         foodId: item.id,
         quantity: item.quantity,
+        isRated: false,
       };
     });
     dispatch(addNewOrderDetail(newOrderDetail));

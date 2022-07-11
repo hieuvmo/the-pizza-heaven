@@ -26,12 +26,14 @@ interface FoodDetailProps {
   foodId: number;
   randomNumberOfStock: number;
   setOpenModal?: Dispatch<SetStateAction<boolean>>;
+  averageStar: number;
 }
 
 export const FoodDetail: FC<FoodDetailProps> = ({
   foodId,
   randomNumberOfStock,
   setOpenModal,
+  averageStar,
 }) => {
   const dispatch = useAppDispatch();
   const { snackbarRes } = useAppSelector((state: RootState) => state.cart);
@@ -64,9 +66,7 @@ export const FoodDetail: FC<FoodDetailProps> = ({
       } catch (error) {
         console.log('Error when getFoodDetailById', error);
       } finally {
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 500);
+        setIsLoading(false);
       }
     };
 
@@ -142,7 +142,7 @@ export const FoodDetail: FC<FoodDetailProps> = ({
               animation="wave"
               variant="text"
               width="100%"
-              height="3rem"
+              height="1.5rem"
             />
           </p>
           <div className="food_detail-rating w-full">
@@ -239,7 +239,10 @@ export const FoodDetail: FC<FoodDetailProps> = ({
             {!isProductDetailPage && (
               <Link to={`${routerPath.app.FOOD}/${foodId}`}>
                 <div className="food_detail-rating">
-                  <ReadOnlyRating starQuantity={3.6} showStarQuantity={true} />
+                  <ReadOnlyRating
+                    starQuantity={averageStar as number}
+                    showStarQuantity={true}
+                  />
                   <Button variant="text">See detail</Button>
                 </div>
               </Link>

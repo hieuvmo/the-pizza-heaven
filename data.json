@@ -757,7 +757,7 @@
       "lastName": "White",
       "phone": "4979194649",
       "address": "Brighton",
-      "totalPrice": 309000,
+      "totalPrice": 625000,
       "status": "completed"
     },
     {
@@ -767,7 +767,7 @@
       "lastName": "Xhaka",
       "phone": "0964819769",
       "address": "Swiss",
-      "totalPrice": 725000,
+      "totalPrice": 646000,
       "status": "completed"
     },
     {
@@ -887,7 +887,7 @@
       "lastName": "Tavares",
       "phone": "741564989879",
       "address": "Portugal",
-      "totalPrice": 658000,
+      "totalPrice": 338000,
       "status": "completed"
     },
     {
@@ -973,22 +973,12 @@
     {
       "id": 1657207148445,
       "userId": null,
-      "firstName": "dfsdfas",
-      "lastName": "Hiếu",
+      "firstName": "Ben",
+      "lastName": "Johnson",
       "phone": "0123456789",
       "address": "London",
       "totalPrice": 995000,
-      "status": "confirmed"
-    },
-    {
-      "id": 1657207249696,
-      "userId": null,
-      "firstName": "dfsdfas",
-      "lastName": "Hiếu",
-      "phone": "0123456789",
-      "address": "London",
-      "totalPrice": 338000,
-      "status": "confirmed"
+      "status": "completed"
     }
   ],
   "order-detail": [
@@ -996,301 +986,390 @@
       "id": 1154470379056,
       "orderId": 1656603023086,
       "foodId": 23,
-      "quantity": 1
+      "quantity": 1,
+      "isRated": true
     },
     {
       "id": 1239867602807,
       "orderId": 1656603023086,
       "foodId": 72,
-      "quantity": 2
+      "quantity": 2,
+      "isRated": true
     },
     {
       "id": 1450064974657,
       "orderId": 1656603023086,
       "foodId": 58,
-      "quantity": 4
+      "quantity": 4,
+      "isRated": false
     },
     {
       "id": 1380607304568,
       "orderId": 1656603584484,
-      "foodId": 2,
-      "quantity": 1
+      "foodId": 72,
+      "quantity": 1,
+      "isRated": true
     },
     {
       "id": 518570411527,
       "orderId": 1656603584484,
       "foodId": 4,
-      "quantity": 4
+      "quantity": 4,
+      "isRated": false
     },
     {
       "id": 1070548755353,
       "orderId": 1656641525008,
       "foodId": 3,
-      "quantity": 1
+      "quantity": 1,
+      "isRated": false
     },
     {
       "id": 50624235703,
       "orderId": 1656642890546,
       "foodId": 57,
-      "quantity": 3
+      "quantity": 3,
+      "isRated": false
     },
     {
       "id": 133457246514,
       "orderId": 1656662875355,
       "foodId": 3,
-      "quantity": 1
+      "quantity": 1,
+      "isRated": false
     },
     {
       "id": 1298947360478,
       "orderId": 1656662875355,
       "foodId": 4,
-      "quantity": 1
+      "quantity": 1,
+      "isRated": false
     },
     {
       "id": 131706936425,
       "orderId": 1656835980071,
       "foodId": 2,
-      "quantity": 1
+      "quantity": 1,
+      "isRated": false
     },
     {
       "id": 835321566642,
       "orderId": 1656835980071,
       "foodId": 57,
-      "quantity": 1
+      "quantity": 1,
+      "isRated": false
     },
     {
       "id": 558865203195,
       "orderId": 1656994977711,
       "foodId": 3,
-      "quantity": 4
+      "quantity": 4,
+      "isRated": false
     },
     {
       "id": 1583349809474,
       "orderId": 1656994977711,
       "foodId": 57,
-      "quantity": 2
+      "quantity": 2,
+      "isRated": false
     },
     {
       "id": 642173558098,
       "orderId": 1656995185194,
       "foodId": 65,
-      "quantity": 3
+      "quantity": 3,
+      "isRated": false
     },
     {
       "id": 1478034770407,
       "orderId": 1657002970400,
       "foodId": 57,
-      "quantity": 3
+      "quantity": 3,
+      "isRated": false
     },
     {
       "id": 534346501549,
       "orderId": 1657002970400,
       "foodId": 63,
-      "quantity": 2
+      "quantity": 2,
+      "isRated": false
     },
     {
       "id": 1629654831982,
       "orderId": 1657010240151,
       "foodId": 39,
-      "quantity": 2
+      "quantity": 2,
+      "isRated": false
     },
     {
       "id": 934777133363,
       "orderId": 1657010240151,
       "foodId": 57,
-      "quantity": 2
+      "quantity": 2,
+      "isRated": false
     },
     {
       "id": 1221728407775,
       "orderId": 1657081943831,
       "foodId": 2,
-      "quantity": 8
+      "quantity": 8,
+      "isRated": false
     },
     {
       "id": 710854668011,
       "orderId": 1657081943831,
       "foodId": 52,
-      "quantity": 4
+      "quantity": 4,
+      "isRated": false
     },
     {
       "id": 725861979528,
       "orderId": 1657082078038,
       "foodId": 4,
-      "quantity": 2
+      "quantity": 2,
+      "isRated": false
     },
     {
       "id": 1170815319539,
       "orderId": 1657082078038,
       "foodId": 62,
-      "quantity": 1
+      "quantity": 1,
+      "isRated": false
     },
     {
       "id": 1116802735779,
       "orderId": 1657082078038,
       "foodId": 56,
-      "quantity": 2
+      "quantity": 2,
+      "isRated": false
     },
     {
       "id": 625965909774,
       "orderId": 1657082078038,
       "foodId": 64,
-      "quantity": 1
+      "quantity": 1,
+      "isRated": false
     },
     {
       "id": 1118886714677,
       "orderId": 1657099003761,
       "foodId": 42,
-      "quantity": 2
+      "quantity": 2,
+      "isRated": false
     },
     {
       "id": 1592047548636,
       "orderId": 1657099003761,
       "foodId": 41,
-      "quantity": 1
+      "quantity": 1,
+      "isRated": false
     },
     {
       "id": 1531842013714,
       "orderId": 1657099235277,
       "foodId": 51,
-      "quantity": 2
+      "quantity": 2,
+      "isRated": false
     },
     {
       "id": 837307502190,
       "orderId": 1657099235277,
       "foodId": 62,
-      "quantity": 4
+      "quantity": 4,
+      "isRated": false
     },
     {
       "id": 67978485932,
       "orderId": 1657099576180,
       "foodId": 52,
-      "quantity": 2
+      "quantity": 2,
+      "isRated": false
     },
     {
       "id": 336866662864,
       "orderId": 1657099576180,
       "foodId": 72,
-      "quantity": 3
+      "quantity": 3,
+      "isRated": true
     },
     {
       "id": 1316187684923,
       "orderId": 1657099755256,
       "foodId": 51,
-      "quantity": 1
+      "quantity": 1,
+      "isRated": false
     },
     {
       "id": 1171751603213,
       "orderId": 1657099755256,
       "foodId": 66,
-      "quantity": 2
+      "quantity": 2,
+      "isRated": false
     },
     {
       "id": 1282200547529,
       "orderId": 1657099755256,
       "foodId": 59,
-      "quantity": 2
+      "quantity": 2,
+      "isRated": false
     },
     {
       "id": 356881074021,
       "orderId": 1657099840288,
       "foodId": 56,
-      "quantity": 2
+      "quantity": 2,
+      "isRated": false
     },
     {
       "id": 189690790736,
       "orderId": 1657099840288,
       "foodId": 47,
-      "quantity": 2
+      "quantity": 2,
+      "isRated": false
     },
     {
       "id": 791603645536,
       "orderId": 1657099908468,
       "foodId": 29,
-      "quantity": 3
+      "quantity": 3,
+      "isRated": false
     },
     {
       "id": 1622583262333,
       "orderId": 1657099908468,
       "foodId": 74,
-      "quantity": 2
+      "quantity": 2,
+      "isRated": false
     },
     {
       "id": 944431084317,
       "orderId": 1657099908468,
       "foodId": 54,
-      "quantity": 3
+      "quantity": 3,
+      "isRated": false
     },
     {
       "id": 1430117044154,
       "orderId": 1657100174392,
       "foodId": 51,
-      "quantity": 3
+      "quantity": 3,
+      "isRated": false
     },
     {
       "id": 630050098944,
       "orderId": 1657100174392,
       "foodId": 44,
-      "quantity": 3
+      "quantity": 3,
+      "isRated": false
     },
     {
       "id": 31292531711,
       "orderId": 1657100174392,
       "foodId": 62,
-      "quantity": 3
+      "quantity": 3,
+      "isRated": false
     },
     {
       "id": 168545740461,
       "orderId": 1657207082398,
       "foodId": 3,
-      "quantity": 1
+      "quantity": 1,
+      "isRated": false
     },
     {
       "id": 865395340519,
       "orderId": 1657207082398,
       "foodId": 4,
-      "quantity": 1
+      "quantity": 1,
+      "isRated": false
     },
     {
       "id": 138062455405,
       "orderId": 1657207082398,
       "foodId": 63,
-      "quantity": 1
+      "quantity": 1,
+      "isRated": false
     },
     {
       "id": 85429858974,
       "orderId": 1657207096190,
       "foodId": 45,
-      "quantity": 1
+      "quantity": 1,
+      "isRated": false
     },
     {
       "id": 506144773121,
       "orderId": 1657207107952,
       "foodId": 63,
-      "quantity": 1
+      "quantity": 1,
+      "isRated": false
     },
     {
       "id": 1450395247199,
       "orderId": 1657207125106,
       "foodId": 57,
-      "quantity": 2
+      "quantity": 2,
+      "isRated": false
     },
     {
       "id": 1259257729118,
       "orderId": 1657207148445,
       "foodId": 52,
-      "quantity": 3
+      "quantity": 3,
+      "isRated": false
     },
     {
       "id": 670370561146,
       "orderId": 1657207148445,
       "foodId": 63,
-      "quantity": 4
+      "quantity": 4,
+      "isRated": false
+    }
+  ],
+  "ratings": [
+    {
+      "userId": null,
+      "firstName": "Nuno",
+      "lastName": "Tavares",
+      "foodId": 72,
+      "star": 4,
+      "review": "I normally don't write reviews for fast food. However this place stands out. It is clean, friendly service, and much better than average food for the price. I tried a baked potato and it was as good as any baked potato in any restaurant! This is a great place!",
+      "isAnonymous": false,
+      "date": "11/7/2022 18:33:22",
+      "id": 1
     },
     {
-      "id": 1068675467082,
-      "orderId": 1657207249696,
-      "foodId": 2,
-      "quantity": 2
+      "userId": null,
+      "firstName": "Ben",
+      "lastName": "White",
+      "foodId": 72,
+      "star": 5,
+      "review": "Staff is the best I have ever experienced at ANY fast food establishment. Restaurant is very clean and neat looking. Maybe the food seems to taste better because of these facts. A great place for a fast meal.",
+      "isAnonymous": false,
+      "date": "11/7/2022 20:59:52",
+      "id": 2
+    },
+    {
+      "userId": null,
+      "firstName": "Ben",
+      "lastName": "White",
+      "foodId": 23,
+      "star": 4,
+      "review": "I have never been in a Captain D's where you really matter. The staff is 5 out of 5. I have been to Captain D's in the past but this one has reached beyond my expectation.",
+      "isAnonymous": false,
+      "date": "11/7/2022 21:08:08",
+      "id": 3
+    },
+    {
+      "userId": 2,
+      "firstName": "Granit",
+      "lastName": "Xhaka",
+      "foodId": 72,
+      "star": 4,
+      "review": "I normally don't write reviews for fast food. However this place stands out. It is clean, friendly service, and much better than average food for the price. I tried a baked potato and it was as good as any baked potato in any restaurant! This is a great place!",
+      "isAnonymous": true,
+      "date": "11/7/2022 23:28:19",
+      "id": 4
     }
   ]
 }
