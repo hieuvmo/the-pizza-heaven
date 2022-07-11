@@ -1,9 +1,10 @@
+import { useEffect, useState } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+
 import { routerPath } from 'common/config/router/router.path';
 import { FooterBottom } from 'components/Footer/FooterBottom/FooterBottom';
 import { FooterTop } from 'components/Footer/FooterTop/FooterTop';
 import { Navbar } from 'components/Navbar/Navbar';
-import { useEffect, useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
 
 export default function AppLayout() {
   let location = useLocation();

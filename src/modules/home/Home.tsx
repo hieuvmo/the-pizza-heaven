@@ -1,7 +1,8 @@
-import { FoodMenu } from '../app/FoodMenu/FoodMenu';
-import { BannerSlider } from 'components/Slider/BannerSlider';
 import { useEffect, useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
+
+import { FoodMenu } from '../app/FoodMenu/FoodMenu';
+import { BannerSlider } from 'components/Slider/BannerSlider';
 
 export const Home = () => {
   const divRef = useRef<HTMLDivElement>(null);

@@ -20,15 +20,15 @@ import { convertNumberToVND } from 'common/helper/convertMoney';
 import { capitalizeFirstLetter } from 'common/helper/string';
 import { IFood } from 'common/types/food.model';
 import { IOrder, IOrderDetail, IOrderStatus } from 'common/types/order.model';
+import appService from 'services/appService';
+import { CustomModal } from 'components/Modal/CustomModal';
+import { ReviewForm } from 'modules/app/Review/ReviewForm';
 import {
   IdOrderDetailType,
   IOrderDetailColumn,
   IOrderDetailDataTable,
 } from 'common/types/table.mui.model';
-import appService from 'services/appService';
 import './CheckoutInfo.style.scss';
-import { CustomModal } from 'components/Modal/CustomModal';
-import { ReviewForm } from 'modules/app/Review/ReviewForm';
 
 interface CheckoutInfoProps {
   orderId: string;
@@ -313,7 +313,11 @@ export const CheckoutInfo: FC<CheckoutInfoProps> = ({ orderId }) => {
                                       disabled={
                                         orderById.status ===
                                           IOrderStatus.CONFIRM ||
-                                        orderById.status === IOrderStatus.CANCEL
+                                        orderById.status ===
+                                          IOrderStatus.CANCEL ||
+                                        orderDetailByOrderId[
+                                          row.ordinalNumber - 1
+                                        ].isRated === true
                                       }
                                     >
                                       Review
@@ -388,7 +392,16 @@ export const CheckoutInfo: FC<CheckoutInfoProps> = ({ orderId }) => {
           content: { maxHeight: '70vh', maxWidth: '90%' },
         }}
       >
-        <ReviewForm foodId={1} />
+        {openModal && (
+          <ReviewForm
+            foodId={foodByIdInOrderDetail[ordinaryNumber - 1].id}
+            ordinaryNumber={ordinaryNumber}
+            orderById={orderById}
+            setOpenModal={setOpenModal}
+            orderDetailByOrderId={orderDetailByOrderId}
+            setOrderDetailByOrderId={setOrderDetailByOrderId}
+          />
+        )}
       </CustomModal>
     </>
   );
