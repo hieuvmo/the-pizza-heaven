@@ -148,7 +148,7 @@ export const Cart = () => {
               margin: 'auto',
             }}
           >
-            <TableContainer sx={{ maxHeight: '47vh' }}>
+            <TableContainer sx={{ maxHeight: '42.5vh' }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>

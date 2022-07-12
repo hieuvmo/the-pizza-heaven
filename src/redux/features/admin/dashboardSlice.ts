@@ -1,13 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { IOrder, IOrderDetail } from 'common/types/order.model';
+import { IRating } from 'common/types/rating.model';
 import { IUser } from 'common/types/user.model';
 import appService from 'services/appService';
 
-export const getTotalUsers = createAsyncThunk(
-  'admin/dashboard/getTotalUsers',
+export const getAverageRating = createAsyncThunk(
+  'admin/dashboard/getAverageRating',
   async () => {
-    const response = await appService.getUserList();
+    const response = await appService.getRatingList();
     return response;
   },
 );
@@ -45,7 +46,7 @@ export const getLatestOrderList = createAsyncThunk(
 );
 
 export interface DashboardState {
-  totalUsers: number;
+  averageRating: number;
   totalOrders: number;
   productSold: number;
   totalIncome: number;
@@ -55,7 +56,7 @@ export interface DashboardState {
 }
 
 const initialState: DashboardState = {
-  totalUsers: 0,
+  averageRating: 0,
   totalOrders: 0,
   productSold: 0,
   totalIncome: 0,
@@ -69,18 +70,25 @@ export const dashboardSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    //getTotalUsers
-    [getTotalUsers.pending.toString()]: (state: DashboardState) => {
+    //getAverageRating
+    [getAverageRating.pending.toString()]: (state: DashboardState) => {
       state.isLoading = true;
     },
-    [getTotalUsers.fulfilled.toString()]: (
+    [getAverageRating.fulfilled.toString()]: (
       state: DashboardState,
-      action: PayloadAction<IUser[]>,
+      action: PayloadAction<IRating[]>,
     ) => {
-      state.totalUsers = action.payload.length;
+      const ratingList = action.payload;
+      const ratingSum = ratingList.reduce(
+        (prevValue, currValue) => prevValue + currValue.star,
+        0,
+      );
+      const average = Number((ratingSum / ratingList.length).toFixed(2));
+      state.averageRating = average;
+
       state.isLoading = false;
     },
-    [getTotalUsers.rejected.toString()]: (state: DashboardState) => {
+    [getAverageRating.rejected.toString()]: (state: DashboardState) => {
       state.isLoading = false;
     },
 
@@ -97,6 +105,7 @@ export const dashboardSlice = createSlice({
         (prevValue, currValue) => prevValue + currValue.totalPrice,
         0,
       );
+
       state.isLoading = false;
     },
     [getTotalOrderAndIncome.rejected.toString()]: (state: DashboardState) => {
@@ -112,6 +121,7 @@ export const dashboardSlice = createSlice({
       action: PayloadAction<IOrderDetail[]>,
     ) => {
       state.productSold = action.payload.length;
+
       state.isLoading = false;
     },
     [getTotalProductSold.rejected.toString()]: (state: DashboardState) => {
@@ -127,6 +137,7 @@ export const dashboardSlice = createSlice({
       action: PayloadAction<IUser[]>,
     ) => {
       state.latestUserList = [...action.payload];
+
       state.isLoading = false;
     },
     [getLatestUserList.rejected.toString()]: (state: DashboardState) => {
@@ -142,6 +153,7 @@ export const dashboardSlice = createSlice({
       action: PayloadAction<IOrder[]>,
     ) => {
       state.latestOrderList = [...action.payload];
+
       state.isLoading = false;
     },
     [getLatestOrderList.rejected.toString()]: (state: DashboardState) => {

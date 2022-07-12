@@ -181,6 +181,10 @@ class AppService {
   }
 
   //RATINGS
+  async getRatingList(): Promise<IRating[]> {
+    const { data } = await axiosClient.get(`${ENDPOINT_API.RATING}`);
+    return data;
+  }
   async addNewRatingToDB(params: IRating): Promise<IRating> {
     const { data } = await axiosClient.post(`${ENDPOINT_API.RATING}`, params);
     return data;
