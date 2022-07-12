@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import GroupIcon from '@mui/icons-material/Group';
+import StarRateIcon from '@mui/icons-material/StarRate';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import PaidIcon from '@mui/icons-material/Paid';
 import SellIcon from '@mui/icons-material/Sell';
@@ -14,11 +14,11 @@ import { convertNumberToVND } from 'common/helper/convertMoney';
 import { useAppDispatch, useAppSelector } from 'common/hooks/ReduxHook';
 import { DashboardColor } from 'common/types/color.model';
 import {
+  getAverageRating,
   getLatestOrderList,
   getLatestUserList,
   getTotalOrderAndIncome,
   getTotalProductSold,
-  getTotalUsers,
 } from 'redux/features/admin/dashboardSlice';
 import { RootState } from 'redux/store';
 import './Dashboard.style.scss';
@@ -33,7 +33,7 @@ interface DashboardDataAnalysisProps {
 
 export const Dashboard = () => {
   const {
-    totalUsers,
+    averageRating,
     totalOrders,
     productSold,
     totalIncome,
@@ -44,7 +44,7 @@ export const Dashboard = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getTotalUsers());
+    dispatch(getAverageRating());
     dispatch(getTotalOrderAndIncome());
     dispatch(getTotalProductSold());
     dispatch(getLatestUserList());
@@ -54,9 +54,9 @@ export const Dashboard = () => {
   const DASHBOARD_DATA_ANALYSIS: DashboardDataAnalysisProps[] = [
     {
       bgColor: DashboardColor.LightRed,
-      analysisTitle: 'Total Users',
-      analysisValue: totalUsers,
-      analysisIcon: <GroupIcon sx={{ color: DashboardColor.LightRed }} />,
+      analysisTitle: 'Average Rating',
+      analysisValue: averageRating,
+      analysisIcon: <StarRateIcon sx={{ color: DashboardColor.LightRed }} />,
       analysisPercent: '+12%',
     },
     {

@@ -1,7 +1,7 @@
 import { routerPath } from 'common/config/router/router.path';
 import { IOrderStatus } from 'common/types/order.model';
 
-export const CATEGORY_TABLE_HEAD = ['id', 'name', ''];
+export const CATEGORY_TABLE_HEAD = ['id', 'name', 'action'];
 
 export const PRODUCT_TABLE_HEAD = [
   'id',
@@ -11,7 +11,7 @@ export const PRODUCT_TABLE_HEAD = [
   'description',
   'price',
   'isStocked',
-  '',
+  'action',
 ];
 
 export const PRODUCT_IN_CART_TABLE_HEAD = [
@@ -20,7 +20,7 @@ export const PRODUCT_IN_CART_TABLE_HEAD = [
   'price',
   'quantity',
   'total',
-  '',
+  'action',
 ];
 
 export const ORDER_DETAIL_TABLE_HEAD = [
@@ -30,7 +30,7 @@ export const ORDER_DETAIL_TABLE_HEAD = [
   'price',
   'quantity',
   'total',
-  '',
+  'action',
 ];
 
 export const ADMIN_ORDER_DETAIL_TABLE_HEAD = [
@@ -51,7 +51,7 @@ export const ORDER_TABLE_HEAD = [
   'address',
   'totalPrice',
   'status',
-  '',
+  'action',
 ];
 
 export const PRODUCT_SELECT_IS_STOCK = [
