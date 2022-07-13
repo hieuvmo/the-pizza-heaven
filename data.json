@@ -49,15 +49,15 @@
     },
     {
       "id": 2,
-      "categoryName": "Khai vị"
+      "categoryName": "Appetizer"
     },
     {
       "id": 3,
-      "categoryName": "Mỳ Ý"
+      "categoryName": "Pasta"
     },
     {
       "id": 4,
-      "categoryName": "Nui Bỏ Lò"
+      "categoryName": "Oven noodles"
     },
     {
       "id": 5,
@@ -65,11 +65,15 @@
     },
     {
       "id": 6,
-      "categoryName": "Thức uống"
+      "categoryName": "Drinks"
     },
     {
       "id": 7,
-      "categoryName": "Kem hộp"
+      "categoryName": "Ice cream"
+    },
+    {
+      "id": 8,
+      "categoryName": "Steak"
     }
   ],
   "foods": [
