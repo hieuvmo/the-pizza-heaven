@@ -117,6 +117,12 @@ class AppService {
     );
     return data;
   }
+  async getCompletedOrder(): Promise<IOrder[]> {
+    const { data } = await axiosClient.get(
+      `${ENDPOINT_API.ORDER}?status=completed`,
+    );
+    return data;
+  }
   async addNewOrderToDB(params: IOrder): Promise<IOrder> {
     const { data } = await axiosClient.post(`${ENDPOINT_API.ORDER}`, params);
     return data;

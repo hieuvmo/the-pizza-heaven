@@ -857,7 +857,7 @@
       "lastName": "Magahead",
       "phone": "791645649879",
       "address": "Brazil",
-      "totalPrice": 307000,
+      "totalPrice": 197000,
       "status": "completed"
     },
     {
@@ -867,7 +867,7 @@
       "lastName": "Pepe",
       "phone": "71649816465",
       "address": "Ivory Coast",
-      "totalPrice": 545000,
+      "totalPrice": 457000,
       "status": "canceled"
     },
     {
@@ -907,7 +907,7 @@
       "lastName": "Mari",
       "phone": "7984198734984",
       "address": "Spain",
-      "totalPrice": 631000,
+      "totalPrice": 356000,
       "status": "completed"
     },
     {
@@ -917,7 +917,7 @@
       "lastName": "Leno",
       "phone": "4984165947498",
       "address": "Germany",
-      "totalPrice": 1195000,
+      "totalPrice": 585000,
       "status": "confirmed"
     },
     {
@@ -937,7 +937,7 @@
       "lastName": "Ramsey",
       "phone": "0123456789",
       "address": "Wales",
-      "totalPrice": 386000,
+      "totalPrice": 307000,
       "status": "confirmed"
     },
     {
@@ -947,7 +947,7 @@
       "lastName": "Ramsey",
       "phone": "0123456789",
       "address": "Wales",
-      "totalPrice": 515000,
+      "totalPrice": 129000,
       "status": "confirmed"
     },
     {
@@ -957,7 +957,7 @@
       "lastName": "Ramsey",
       "phone": "0123456789",
       "address": "Wales",
-      "totalPrice": 544000,
+      "totalPrice": 29000,
       "status": "confirmed"
     },
     {
@@ -967,7 +967,7 @@
       "lastName": "Ramsey",
       "phone": "0123456789",
       "address": "Wales",
-      "totalPrice": 702000,
+      "totalPrice": 158000,
       "status": "confirmed"
     },
     {
@@ -977,7 +977,7 @@
       "lastName": "Johnson",
       "phone": "0123456789",
       "address": "London",
-      "totalPrice": 995000,
+      "totalPrice": 233000,
       "status": "completed"
     },
     {
@@ -993,12 +993,12 @@
     {
       "id": 1657593938598,
       "userId": null,
-      "firstName": "Tommy",
-      "lastName": "Xiaomy",
+      "firstName": "Hike",
+      "lastName": "Tomiyasu",
       "phone": "15441414416",
-      "address": "England",
-      "totalPrice": 708000,
-      "status": "canceled"
+      "address": "Japan",
+      "totalPrice": 354000,
+      "status": "confirmed"
     }
   ],
   "order-detail": [

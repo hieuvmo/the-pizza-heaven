@@ -16,7 +16,7 @@ export const getAverageRating = createAsyncThunk(
 export const getTotalOrderAndIncome = createAsyncThunk(
   'admin/dashboard/getTotalOrderAndIncome',
   async () => {
-    const response = await appService.getOrderList();
+    const response = await appService.getCompletedOrder();
     return response;
   },
 );
@@ -85,7 +85,6 @@ export const dashboardSlice = createSlice({
       );
       const average = Number((ratingSum / ratingList.length).toFixed(2));
       state.averageRating = average;
-
       state.isLoading = false;
     },
     [getAverageRating.rejected.toString()]: (state: DashboardState) => {

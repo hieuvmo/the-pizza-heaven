@@ -7,7 +7,7 @@ import RiceBowlIcon from '@mui/icons-material/RiceBowl';
 import SoupKitchenIcon from '@mui/icons-material/SoupKitchen';
 import { ReactNode } from 'react';
 
-interface MenuProductProps {
+export interface MenuProductProps {
   name: string;
   iconName: ReactNode;
   categoryId: number;

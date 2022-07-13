@@ -33,7 +33,7 @@ export const orderSlice = createSlice({
       state: OrderState,
       action: PayloadAction<number>,
     ) => {
-      state.totalPrice += action.payload;
+      state.totalPrice = action.payload;
     },
   },
 });
