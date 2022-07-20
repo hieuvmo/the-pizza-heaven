@@ -1,0 +1,21 @@
+.order_search {
+  &-container {
+    @apply px-4 py-12;
+  }
+
+  &-search_bar {
+    @apply flex flex-col justify-center items-center;
+  }
+
+  &-title {
+    @apply font-bold my-5 mx-2 text-black text-lg sm:text-xl lg:text-2xl;
+  }
+
+  &-input {
+    @apply w-[20rem] sm:w-[25rem] lg:w-[30rem];
+  }
+
+  &-empty {
+    @apply px-4 pt-16 pb-4 m-auto w-[60%] sm:w-[50%] md:w-[40%] lg:w-[30%];
+  }
+}

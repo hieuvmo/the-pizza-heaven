@@ -1,0 +1,17 @@
+.food_item {
+  &-container {
+    @apply h-48 flex relative;
+  }
+
+  &-sold_out {
+    @apply absolute text-white top-1/4 left-1/4 w-1/2 h-1/2 bg-[rgba(0,0,0,0.75)] text-center rounded-[50%];
+
+    .sold_out-text {
+      @apply h-full flex justify-center items-center;
+    }
+  }
+
+  &-price {
+    @apply text-black font-bold text-base;
+  }
+}

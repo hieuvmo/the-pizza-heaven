@@ -1,0 +1,21 @@
+.confirm_delete {
+  &-container {
+    @apply p-4;
+  }
+
+  &-icon {
+    @apply flex justify-center;
+  }
+
+  &-title {
+    @apply font-bold text-center text-3xl mt-4 mb-2;
+  }
+
+  &-description {
+    @apply text-center text-lg mt-2 mb-3;
+  }
+
+  &-btn {
+    @apply flex flex-col sm:flex-row;
+  }
+}

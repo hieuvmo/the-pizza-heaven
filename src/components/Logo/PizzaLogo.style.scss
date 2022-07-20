@@ -1,0 +1,16 @@
+.logo {
+  &-container {
+    @apply ml-2 hidden  text-white;
+    @media screen and (min-width: 750px) {
+      @apply block;
+    }
+  }
+
+  &-title {
+    @apply text-xl tracking-normal;
+  }
+
+  &-description {
+    @apply text-sm font-light tracking-tight;
+  }
+}

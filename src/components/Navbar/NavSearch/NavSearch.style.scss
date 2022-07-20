@@ -1,0 +1,19 @@
+.nav_search {
+  &-no_result {
+    box-shadow: 0.01rem 0.01rem 0.4rem rgba(0, 0, 0, 0.1);
+    @apply absolute bg-[#dcdcdc] w-[15.5rem] text-black p-2 rounded-b-md;
+  }
+
+  &-result {
+    box-shadow: 0.01rem 0.01rem 0.4rem rgba(0, 0, 0, 0.1);
+    @apply absolute bg-[#dcdcdc] w-[15.5rem] text-black rounded-b-md;
+
+    p {
+      @apply p-2 cursor-pointer;
+    }
+
+    p:hover {
+      @apply text-[#008c7a];
+    }
+  }
+}

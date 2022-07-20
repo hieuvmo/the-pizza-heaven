@@ -1,0 +1,53 @@
+.menu {
+  &-container {
+    @apply px-4 py-8;
+  }
+
+  &-heading {
+    @apply pt-1 px-4 w-full;
+
+    .menu-title::after {
+      content: 'MENU';
+      -webkit-text-stroke: 1px #dee2e6;
+      @apply w-full block text-center absolute text-5xl top-[-0.85rem] text-white z-[-1];
+    }
+  }
+
+  &-title {
+    @apply text-lg font-bold text-center uppercase relative text-[#008c7a] m-12;
+
+    &-description {
+      @apply bg-transparent relative;
+    }
+  }
+
+  &-tabs {
+    @apply pt-4 pb-8 flex flex-wrap list-none justify-center cursor-pointer;
+
+    &-item {
+      @apply px-4 flex flex-col;
+
+      span {
+        color: #ff9c00;
+        font-family: 'Sriracha', cursive;
+        //Disable Text Selection
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
+        @apply text-xl sm:text-xl lg:text-3xl;
+      }
+
+      &.active {
+        span,
+        .menu-tabs-icon {
+          color: #008c7a;
+        }
+      }
+    }
+
+    &-icon {
+      color: #c3c8cc;
+      @apply text-center hidden lg:block;
+    }
+  }
+}

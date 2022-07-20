@@ -1,0 +1,92 @@
+.food_review {
+  &-container {
+    @apply px-4 md:px-12 py-12;
+  }
+
+  &-content {
+    box-shadow: 0.01rem 0.01rem 0.4rem rgba(0, 0, 0, 0.1);
+    @apply px-4 py-4 rounded-[0.75rem] mt-12 mb-8;
+
+    .MuiGrid-root.MuiGrid-container {
+      @apply mt-0 ml-0 w-full;
+    }
+
+    .box-vote {
+      border: 1px solid #dee2e6;
+      @apply rounded-[0.75rem] flex justify-center items-center;
+
+      .chart-rating {
+        @apply p-4 flex flex-col;
+
+        .rating {
+          &-average {
+            @apply text-[1.75rem] font-bold text-center;
+          }
+
+          &-point {
+            .MuiBox-root {
+              @apply mx-auto justify-center;
+            }
+          }
+
+          &-total {
+            @apply text-center;
+            span {
+              @apply font-semibold mr-2;
+            }
+          }
+        }
+      }
+
+      .chart-statistic {
+        @apply p-4;
+      }
+    }
+
+    .box-review {
+      .review-item {
+        @apply pr-4 pb-4;
+
+        .review-content {
+          @apply w-full my-6;
+
+          .review-title {
+            @apply flex justify-between px-2;
+
+            .customer-name {
+              @apply font-bold text-lg;
+            }
+
+            .submitted-time {
+              @apply text-[#707070] font-medium;
+            }
+          }
+
+          .review-description {
+            @apply bg-[#f2f2f2] p-3 rounded-[0.5rem] mt-1 text-justify;
+
+            .feedback-rating {
+              @apply flex;
+
+              h6 {
+                @apply mr-3 font-bold;
+              }
+
+              span {
+                @apply text-lg mt-[0.025rem];
+              }
+            }
+
+            .feedback-content {
+              @apply font-bold;
+
+              span {
+                @apply ml-1 font-normal;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

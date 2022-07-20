@@ -1,0 +1,39 @@
+.account {
+  &-avatar {
+    @apply w-4/5 text-center m-auto;
+  }
+
+  &-info {
+    box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
+    max-width: 22rem;
+    @apply mt-4 mb-12 py-4 px-8 rounded-xl m-auto;
+
+    .full-name {
+      @apply text-2xl text-[#008c7a] font-bold text-center py-4;
+    }
+
+    .info-item {
+      @apply pt-4 pb-2 font-bold;
+
+      span {
+        @apply font-normal ml-2;
+      }
+    }
+  }
+
+  &-tabs {
+    .tab-item {
+      max-width: 20rem;
+      box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem rgba(0, 0, 0, 0.1);
+      border-bottom: 0.375rem;
+      border-right: 0.375rem;
+      @apply m-auto py-2 px-4 mb-4 cursor-pointer font-medium border-[0.375rem];
+    }
+
+    .tab-item.active {
+      border-bottom: 0.375rem;
+      border-right: 0.375rem;
+      @apply border-[#008c7a];
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.review_form {
+  &-thumbnail {
+    @apply w-[55%] sm:w-[40%] md:w-1/2 lg:w-2/3 m-3;
+  }
+
+  &-line {
+    @apply w-6 h-[2px] bg-[#008c7a];
+  }
+
+  &-heading {
+    @apply text-2xl font-bold mt-1 mb-2 text-[#111111];
+  }
+
+  &-description {
+    @apply text-[#444444] mt-1 mb-2;
+  }
+
+  &-rating {
+    @apply flex justify-between mt-1 mb-4;
+
+    .rating-title {
+      @apply font-medium;
+    }
+  }
+
+  &-anonymous_mode {
+    @apply flex justify-between mt-3;
+
+    .mode-title {
+      @apply font-medium;
+    }
+  }
+}

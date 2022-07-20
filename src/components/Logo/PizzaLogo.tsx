@@ -1,29 +1,39 @@
-import React from 'react';
-import { Typography } from '@mui/material';
-import { routerPath } from '../../common/config/router/router.path';
+import { FC } from 'react';
+import Typography from '@mui/material/Typography';
 
-export const PizzaLogo = () => {
+import { routerPath } from '../../common/config/router/router.path';
+import './PizzaLogo.style.scss';
+import { Link } from 'react-router-dom';
+
+interface PizzaLogoProps {
+  customDisplay: {};
+}
+
+export const PizzaLogo: FC<PizzaLogoProps> = ({ customDisplay }) => {
   return (
     <Typography
       variant="h6"
-      noWrap
-      component="a"
-      href={routerPath.common.HOME}
       sx={{
         mr: 4,
-        display: { xs: 'none', md: 'flex' },
+        display: customDisplay,
         fontFamily: 'monospace',
         fontWeight: 700,
         letterSpacing: '.3rem',
-        color: 'inherit',
+        color: 'black',
         textDecoration: 'none',
       }}
     >
-      <img alt="Pizza Logo" width={48} src="https://thepizzaheaven.com/wp-content/uploads/2019/09/Untitled-1.png" />
-      <div className="ml-2">
-        <div className="text-xl tracking-normal">The Pizza Heaven</div>
-        <p className="text-sm font-light tracking-tight">Everything about pizza</p>
-      </div>
+      <Link to={routerPath.common.HOME} className="flex">
+        <img
+          alt="Pizza Logo"
+          width={48}
+          src="https://res.cloudinary.com/duitozhul/image/upload/v1655806771/the-pizza-heaven/logo/pizza-logo.png"
+        />
+        <div className="logo-container">
+          <div className="logo-title">The Pizza Heaven</div>
+          <p className="logo-description">Everything about pizza</p>
+        </div>
+      </Link>
     </Typography>
   );
 };

@@ -1,0 +1,93 @@
+-Improve search product function
+
+import { Search } from '@mui/icons-material';
+import { ChangeEvent, FC, MouseEvent, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { useAppDispatch } from 'common/hooks/ReduxHook';
+import { searchProductFullText } from 'redux/features/app/searchSlice';
+import { routerPath } from 'common/config/router/router.path';
+import {
+  CustomSearch,
+  SearchIconWrapper,
+  StyledInputBase,
+} from './NavSearch.style';
+import { debounce } from '@mui/material';
+import appService from 'services/appService';
+import { IFood } from 'common/types/food.model';
+import './NavSearch.style.scss';
+
+interface NavSearchProps {
+  isAdminPage: boolean;
+}
+
+export const NavSearch: FC<NavSearchProps> = ({ isAdminPage }) => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const [searchValue, setSearchValue] = useState<string>('');
+  console.log('searchValue', searchValue === '');
+  const [searchedProduct, setSearchedProduct] = useState<IFood[]>([]);
+  console.log('searchedProduct', searchedProduct.length);
+  const [startSearching, setStartSearching] = useState<null | boolean>(null);
+
+  const searchProductAPI = async (searchValue: string) => {
+    try {
+      const response = await appService.searchProductFullText(searchValue);
+      setSearchedProduct(response);
+    } catch (error) {
+      console.log('Error when fetch searchProductFullText ', error);
+    }
+  };
+
+  const handleChangeSearchBar = debounce(
+    async (e: ChangeEvent<HTMLInputElement>) => {
+      setStartSearching(true);
+      setSearchValue(e.target.value);
+      searchProductAPI(e.target.value);
+    },
+    400,
+  );
+
+  const handleClickSearchProductBtn = (e: MouseEvent<HTMLInputElement>) => {
+    dispatch(searchProductFullText(searchValue));
+    searchValue && navigate(routerPath.app.SEARCH);
+    setSearchValue('');
+  };
+
+  const renderSearchBarDropDown = () => {
+    if (searchValue === '') return;
+    if (searchedProduct.length === 0)
+      return <div className="nav_search-no_result">No result found</div>;
+    return (
+      <div className="nav_search-result">
+        {searchedProduct.map((product) => (
+          <Link to={`${routerPath.app.FOOD}/${product.id}`}>
+            <p key={product.id}>{product.name}</p>
+          </Link>
+        ))}
+        <p>See all</p>
+      </div>
+    );
+  };
+
+  return (
+    <>
+      {!isAdminPage && (
+        <CustomSearch onClick={handleClickSearchProductBtn}>
+          <SearchIconWrapper>
+            <Search />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Enter the food you want…"
+            inputProps={{ 'aria-label': 'search' }}
+            onChange={handleChangeSearchBar}
+          />
+          {renderSearchBarDropDown()}
+        </CustomSearch>
+      )}
+    </>
+  );
+};
+
+

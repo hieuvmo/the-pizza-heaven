@@ -1,0 +1,13 @@
+.page_not_found {
+  &-container {
+    @apply px-4 py-16;
+
+    .empty_search {
+      @apply px-4 pt-8 pb-4 m-auto w-[70%] sm:w-[60%] md:w-[50%] lg:w-[40%];
+
+      &-text {
+        @apply uppercase mt-8 text-center text-2xl sm:text-3xl md:text-4xl;
+      }
+    }
+  }
+}

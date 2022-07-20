@@ -1,0 +1,25 @@
+.cart {
+  &-container {
+    @apply px-4 py-16;
+  }
+
+  &-heading {
+    @apply font-medium flex justify-center mb-6 text-xl sm:text-2xl md:text-3xl;
+  }
+
+  &-empty {
+    @apply px-4 pt-8 pb-4 m-auto w-[70%] sm:w-[60%] md:w-[50%] lg:w-[40%];
+  }
+
+  &-empty_text {
+    @apply mt-4 text-center text-base sm:text-lg md:text-xl;
+  }
+
+  &-payment {
+    @apply flex justify-evenly pt-4 pb-2;
+
+    .total-price {
+      @apply ml-2 text-lg font-black text-[#d30e15];
+    }
+  }
+}

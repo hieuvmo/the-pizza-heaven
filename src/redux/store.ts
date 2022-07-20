@@ -1,9 +1,26 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterSlice from './features/counterSlice';
+
+import cartSlice from './features/app/cartSlice';
+import categorySlice from './features/admin/categorySlice';
+import foodSlice from './features/admin/foodSlice';
+import orderDetailSlice from './features/app/orderDetailSlice';
+import orderSlice from './features/app/orderSlice';
+import searchSlice from './features/app/searchSlice';
+import orderAdminSlice from './features/admin/orderAdminSlice';
+import orderDetailAdminSlice from './features/admin/orderDetailAdminSlice';
+import dashboardSlice from './features/admin/dashboardSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterSlice,
+    search: searchSlice,
+    cart: cartSlice,
+    order: orderSlice,
+    orderDetail: orderDetailSlice,
+    adminDashboard: dashboardSlice,
+    adminCategory: categorySlice,
+    adminFood: foodSlice,
+    adminOrder: orderAdminSlice,
+    adminOrderDetail: orderDetailAdminSlice,
   },
 });
 
