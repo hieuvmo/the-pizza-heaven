@@ -2,9 +2,6 @@
   "name": "the-pizza-heaven",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "16.14.2"
-  },
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -38,7 +35,6 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "production": "npm run dev && npm run start",
     "start": "react-scripts start",
     "dev": "json-server-auth -p 5000 data.json --watch",
     "build": "react-scripts build",
