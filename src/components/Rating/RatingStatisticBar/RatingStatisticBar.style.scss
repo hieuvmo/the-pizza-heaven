@@ -1,18 +1,18 @@
-.custom-rating-bar {
-  @apply flex justify-between;
+// .custom-rating-bar {
+//   @apply flex justify-between;
 
-  .star-quantity {
-    @apply text-[#faaf00];
-    span {
-      @apply text-base my-auto text-black;
-    }
-  }
+//   .star-quantity {
+//     @apply text-[#faaf00];
+//     span {
+//       @apply text-base my-auto text-black;
+//     }
+//   }
 
-  .rating-bar {
-    @apply w-[82.5%] sm:w-[87.5%] m-auto;
-  }
+//   .rating-bar {
+//     @apply w-[82.5%] sm:w-[87.5%] m-auto;
+//   }
 
-  .rating-quantity {
-    @apply text-sm my-auto;
-  }
-}
+//   .rating-quantity {
+//     @apply text-sm my-auto;
+//   }
+// }
