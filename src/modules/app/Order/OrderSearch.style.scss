@@ -12,10 +12,19 @@
   }
 
   &-input {
-    @apply w-[20rem] sm:w-[25rem] lg:w-[30rem];
+    @apply w-80;
+    @media screen and (min-width: 640px) {
+      width: 25rem;
+    }
+    @media screen and (min-width: 1024px) {
+      width: 30rem;
+    }
   }
 
   &-empty {
-    @apply px-4 pt-16 pb-4 m-auto w-[60%] sm:w-[50%] md:w-[40%] lg:w-[30%];
+    @apply px-4 pt-16 pb-4 m-auto w-3/5 sm:w-1/2 md:w-2/5;
+    @media screen and (min-width: 1024px) {
+      width: 30%;
+    }
   }
 }

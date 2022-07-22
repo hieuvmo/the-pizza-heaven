@@ -5,7 +5,7 @@
 
   &-content {
     box-shadow: 0.01rem 0.01rem 0.4rem rgba(0, 0, 0, 0.1);
-    @apply px-4 py-4 rounded-[0.75rem] mt-12 mb-8;
+    @apply px-4 py-4 rounded-xl mt-12 mb-8;
 
     .MuiGrid-root.MuiGrid-container {
       @apply mt-0 ml-0 w-full;
@@ -13,14 +13,15 @@
 
     .box-vote {
       border: 1px solid #dee2e6;
-      @apply rounded-[0.75rem] flex justify-center items-center;
+      @apply rounded-xl flex justify-center items-center;
 
       .chart-rating {
         @apply p-4 flex flex-col;
 
         .rating {
           &-average {
-            @apply text-[1.75rem] font-bold text-center;
+            font-size: 1.75rem;
+            @apply font-bold text-center;
           }
 
           &-point {
@@ -58,12 +59,14 @@
             }
 
             .submitted-time {
-              @apply text-[#707070] font-medium;
+              color: #707070;
+              @apply font-medium;
             }
           }
 
           .review-description {
-            @apply bg-[#f2f2f2] p-3 rounded-[0.5rem] mt-1 text-justify;
+            background-color: #f2f2f2;
+            @apply p-3 rounded-lg mt-1 text-justify;
 
             .feedback-rating {
               @apply flex;
@@ -73,7 +76,8 @@
               }
 
               span {
-                @apply text-lg mt-[0.025rem];
+                margin-top: 0.025rem;
+                @apply text-lg;
               }
             }
 

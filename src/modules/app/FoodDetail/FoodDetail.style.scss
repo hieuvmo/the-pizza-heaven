@@ -1,22 +1,27 @@
 .food_detail {
   &-thumbnail {
-    @apply w-[55%] sm:w-[40%] md:w-1/2 lg:w-2/3 m-3;
+    width: 55%;
+    @apply sm:w-2/5 md:w-1/2 lg:w-2/3 m-3;
   }
 
   &-price {
-    @apply text-[#d30e15] text-2xl font-bold p-3;
+    color: #d30e15;
+    @apply text-2xl font-bold p-3;
   }
 
   &-line {
-    @apply w-6 h-[2px] bg-[#008c7a];
+    background-color: #008c7a;
+    @apply w-6 h-0.5;
   }
 
   &-title {
-    @apply text-2xl font-bold mt-1 mb-2 text-[#111111];
+    color: #111111;
+    @apply text-2xl font-bold mt-1 mb-2;
   }
 
   &-description {
-    @apply text-[#444444] mt-1 mb-2;
+    color: #444444;
+    @apply mt-1 mb-2;
   }
 
   &-rating {

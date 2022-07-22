@@ -27,7 +27,8 @@
       }
 
       .intro-icon {
-        @apply w-12 h-12 rounded-[50%] bg-white;
+        border-radius: 50%;
+        @apply w-12 h-12  bg-white;
 
         .MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium {
           @apply m-3;
@@ -39,7 +40,8 @@
       @apply text-sm;
 
       label {
-        @apply text-[0.675rem] mr-1;
+        font-size: 0.675rem;
+        @apply mr-1;
       }
     }
   }
@@ -50,7 +52,8 @@
     }
 
     .line-break {
-      @apply w-14 h-[1px] bg-gray-300;
+      height: 1px;
+      @apply w-14 bg-gray-300;
     }
 
     .new-customer-item {
@@ -71,7 +74,9 @@
       }
     }
     .customer-status {
-      @apply w-2 h-2 rounded-[50%] bg-[#2ed8b6] my-auto;
+      background-color: #2ed8b6;
+      border-radius: 50%;
+      @apply w-2 h-2 my-auto;
     }
 
     .customer-status-loading {
@@ -83,20 +88,23 @@
 
       .customer {
         &-name {
-          @apply mb-[0.415rem] font-medium;
+          margin-bottom: 0.415rem;
+          @apply font-medium;
         }
 
         &-phone {
-          @apply text-sm mb-[0.125rem] text-gray-500;
+          margin-bottom: 0.125rem;
+          @apply text-sm  text-gray-500;
         }
 
         &-address {
-          @apply text-sm;
-          @apply text-sm mb-[0.125rem] text-gray-500;
+          margin-bottom: 0.125rem;
+          @apply text-sm text-gray-500;
         }
       }
       .total-price {
-        @apply font-bold text-[#d30e15];
+        color: #d30e15;
+        @apply font-bold;
       }
 
       .order-status {

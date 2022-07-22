@@ -9,12 +9,15 @@
     .menu-title::after {
       content: 'MENU';
       -webkit-text-stroke: 1px #dee2e6;
-      @apply w-full block text-center absolute text-5xl top-[-0.85rem] text-white z-[-1];
+      z-index: -1;
+      top: -0.85rem;
+      @apply w-full block text-center absolute text-5xl text-white;
     }
   }
 
   &-title {
-    @apply text-lg font-bold text-center uppercase relative text-[#008c7a] m-12;
+    color: #008c7a;
+    @apply text-lg font-bold text-center uppercase relative m-12;
 
     &-description {
       @apply bg-transparent relative;
