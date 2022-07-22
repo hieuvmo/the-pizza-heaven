@@ -3,6 +3,7 @@ import { useOutletContext } from 'react-router-dom';
 
 import { FoodMenu } from '../app/FoodMenu/FoodMenu';
 import { BannerSlider } from 'components/Slider/BannerSlider';
+import './Home.style.scss';
 
 export const Home = () => {
   const divRef = useRef<HTMLDivElement>(null);
@@ -22,7 +23,7 @@ export const Home = () => {
 
   return (
     <div>
-      <div ref={divRef}>
+      <div ref={divRef} className="banner-slider">
         <BannerSlider />
       </div>
       <div ref={menuRef}>
