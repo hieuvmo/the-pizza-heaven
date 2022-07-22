@@ -1,4 +1,4 @@
-export const SERVICE_API = 'https://the-pizza-heaven.herokuapp.com/';
+export const SERVICE_API = 'http://localhost:5000';
 
 export const CLOUDINARY_API = 'https://api.cloudinary.com/v1_1/duitozhul';
 
