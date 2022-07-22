@@ -9,7 +9,8 @@
   }
 
   &-title {
-    @apply text-center mb-5 uppercase text-xl text-[#008c7a] font-bold;
+    color: #008c7a;
+    @apply text-center mb-5 uppercase text-xl font-bold;
   }
 
   &-description {

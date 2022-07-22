@@ -4,7 +4,9 @@
   }
 
   &-sold_out {
-    @apply absolute text-white top-1/4 left-1/4 w-1/2 h-1/2 bg-[rgba(0,0,0,0.75)] text-center rounded-[50%];
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 50%;
+    @apply absolute text-white top-1/4 left-1/4 w-1/2 h-1/2 text-center;
 
     .sold_out-text {
       @apply h-full flex justify-center items-center;
